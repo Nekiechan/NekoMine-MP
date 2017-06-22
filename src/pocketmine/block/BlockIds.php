@@ -145,9 +145,10 @@ interface BlockIds{
 	const BREWING_STAND_BLOCK = 117;
 	const CAULDRON_BLOCK = 118;
 
+	const END_PORTAL_BLOCK = 119;
 	const END_PORTAL_FRAME = 120, END_PORTAL = 120;
 	const END_STONE = 121;
-
+	const DRAGON_EGG = 122;
 	const REDSTONE_LAMP = 123, INACTIVE_REDSTONE_LAMP = 123;
 	const LIT_REDSTONE_LAMP = 124, ACTIVE_REDSTONE_LAMP = 124;
 	const DROPPER = 125;
@@ -155,7 +156,7 @@ interface BlockIds{
 	const COCOA_BLOCK = 127, COCOA_PODS = 127;
 	const SANDSTONE_STAIRS = 128;
 	const EMERALD_ORE = 129;
-
+	const ENDER_CHEST = 130;
 	const TRIPWIRE_HOOK = 131;
 	const TRIPWIRE = 132;
 	const EMERALD_BLOCK = 133;
@@ -221,8 +222,18 @@ interface BlockIds{
 	const DARK_OAK_DOOR_BLOCK = 197;
 	const GRASS_PATH = 198;
 	const ITEM_FRAME_BLOCK = 199;
-
-    const END_GATEWAY = 209;
+	const CHORUS_FLOWER = 200;
+	const PURPUR = 201;
+	
+	const PURPUR_STAIRS = 203;
+	
+	const END_BRICKS = 206;
+	
+	const END_ROD = 208;
+	const END_GATEWAY = 209;
+	
+	const CHORUS_PLANT = 240;
+	const STAINED_GLASS = 241;
 
 	
 	const PODZOL = 243;
