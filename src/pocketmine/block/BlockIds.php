@@ -25,7 +25,7 @@ namespace pocketmine\block;
 
 interface BlockIds{
 
-	const AIR = 0;
+	const AIR = 0; const NOTHING = 0;
 	const STONE = 1;
 	const GRASS = 2;
 	const DIRT = 3;
