@@ -215,13 +215,9 @@ class DevTools extends PluginBase implements CommandExecutor{
 			"minecraft" => $server->getVersion(),
 			"creationDate" => time()
 		];
-
-		if(version_compare($server->getApiVersion(), "3.0.0-ALPHA5") >= 0){
-			$metadata["protocol"] = \pocketmine\network\mcpe\protocol\ProtocolInfo::CURRENT_PROTOCOL;
-		}else{
-			$metadata["protocol"] = \pocketmine\network\protocol\Info::CURRENT_PROTOCOL;
-		}
-
+$metadata["protocol"] = \pocketmine\network\mcpe\protocol\ProtocolInfo::CURRENT_PROTOCOL;
+	
+		
 		$phar->setMetadata($metadata);
 
 		$phar->setStub('<?php define("pocketmine\\\\PATH", "phar://". __FILE__ ."/"); require_once("phar://". __FILE__ ."/src/pocketmine/PocketMine.php");  __HALT_COMPILER();');
