@@ -45,4 +45,4 @@ class PurpleGlazedTerracotta extends Solid{
 		$this->getLevel()->setBlock($block, $this, true, true);
 		return true;
 	}
-}f
+}
