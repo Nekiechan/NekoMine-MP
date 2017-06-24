@@ -1,7 +1,7 @@
 # [![NekoMine-MP](https://raw.githubusercontent.com/Nekiechan/NekoMine-MP/master/Neko/NekoMine-MP/images/NekoMine.jpg)](https://nekocraftforums.blogspot.com)
 ### NekoMine-MP is a server software for Minecraft Pocket Edition in PHP. NekoMine-MP is a fork of PocketMine (PMMP) and ### Tesseract as well as ClearSky! NekoMine-MP is a project im working on with creative new commands!
 
-[![Build Status](https://travis-ci.org/pmmp/PocketMine-MP.svg?branch=master)](https://travis-ci.org/pmmp/PocketMine-MP)
+[![Build Status](https://travis-ci.org/Nekiechan/NekoMine-MP.svg?branch=master)](https://travis-ci.org/Nekiechan/NekoMine-MP)
 
 ### Setup, help & support, FAQs
 Head over to the [documentation site](http://pmmp.readthedocs.org/).
