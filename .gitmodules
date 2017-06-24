@@ -1,4 +1,0 @@
-[submodule "Neko/Plugins/NekoCraftCore"]
-	path = Neko/Plugins/CatCraftCore
-	url = https://github.com/Nekiechan/CatCraftCore.git
-	branch = master
