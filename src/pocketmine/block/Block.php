@@ -264,7 +264,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::BEETROOT_BLOCK] = Beetroot::class;
 			self::$list[self::STONECUTTER] = Stonecutter::class;
 			self::$list[self::GLOWING_OBSIDIAN] = GlowingObsidian::class;
-            self::$list[self::BLACK_GLAZED_TERRACOTTA] = BlackGlazedTerracotta::class;
+            /*self::$list[self::BLACK_GLAZED_TERRACOTTA] = BlackGlazedTerracotta::class;
 			self::$list[self::BLUE_GLAZED_TERRACOTTA] = BlueGlazedTerracotta::class;
 			self::$list[self::BROWN_GLAZED_TERRACOTTA] = BrownGlazedTerracotta::class;
 			self::$list[self::CYAN_GLAZED_TERRACOTTA] = CyanGlazedTerracotta::class;
@@ -282,7 +282,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::YELLOW_GLAZED_TERRACOTTA] = YellowGlazedTerracotta::class;
 			
 			self::$list[self::CONCRETE] = Concrete::class;
-			self::$list[self::CONCRETE_POWDER] = ConcretePowder::class;
+			self::$list[self::CONCRETE_POWDER] = ConcretePowder::class;*/
 			foreach(self::$list as $id => $class){
 				if($class !== null){
 					/** @var Block $block */
