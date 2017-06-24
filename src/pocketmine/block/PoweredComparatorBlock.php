@@ -21,19 +21,16 @@
 
 namespace pocketmine\block;
 
-use pocketmine\item\Item;
-use pocketmine\Player;
+class PoweredComparatorBlock extends Solid{
 
-class StickyPiston extends Solid{
-
-	protected $id = self::STICKY_PISTON;
+	protected $id = self::POWERED_COMPARATOR_BLOCK;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function getName(){
-        return "Sticky Piston";
+	public function getName() : string{
+        return "Powered Comparator Block";
 	}
 
 }
