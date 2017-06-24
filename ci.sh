@@ -1,4 +1,5 @@
 #!/bin/bash
+echo xD
 echo Running lint...
 shopt -s globstar
 for file in **/*.php; do
