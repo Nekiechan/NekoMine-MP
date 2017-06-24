@@ -33,7 +33,8 @@ class ListCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.list.description",
-			"%command.players.usage"
+			"%command.players.usage",
+["players","playerlist","listplayers","onlineplayers","lp"]
 		);
 		$this->setPermission("pocketmine.command.list");
 	}
