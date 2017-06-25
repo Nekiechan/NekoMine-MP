@@ -29,7 +29,7 @@ class IamCommand extends VanillaCommand{
       $sender->sendMessage("§l§cPut a action! §a/iam <action>");
 			return false;
 		}
-    $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . implode(" ", $args)  . "!×");
+   $sender->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . implode(" ", $args)  . "!×");
 
 		
 		return true;
