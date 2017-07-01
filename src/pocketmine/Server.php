@@ -1511,10 +1511,10 @@ class Server{
 
 			$this->maxPlayers = $this->getConfigInt("max-players", 20);
 			$this->setAutoSave($this->getConfigBoolean("auto-save", true));
-			$this->nekocommands = $this->getConfigBoolean("enable-neko-commands", true));
-			$this->superdev = $this->getConfigBoolean("enable-superdev-commands", false));
-			$this->deathmessage = $this->getConfigString("deathmessage", "{player} died!"));
-			$this->joinmessage = $this->getConfigString("joinmessage", "Welcome {player} to my server!"));
+			$this->nekocommands = $this->getConfigBoolean("enable-neko-commands", true);
+			$this->superdev = $this->getConfigBoolean("enable-superdev-commands", false);
+			$this->deathmessage = $this->getConfigString("deathmessage", "{player} died!");
+			$this->joinmessage = $this->getConfigString("joinmessage", "Welcome {player} to my server!");
 			if($this->getConfigBoolean("hardcore", false) === true and $this->getDifficulty() < 3){
 				$this->setConfigInt("difficulty", 3);
 			}
