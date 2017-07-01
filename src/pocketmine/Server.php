@@ -1446,7 +1446,11 @@ class Server{
 				"enable-rcon" => false,
 				"rcon.password" => substr(base64_encode(random_bytes(20)), 3, 10),
 				"auto-save" => true,
-				"view-distance" => 8
+				"view-distance" => 8,
+				"joinmessage" => "Welcome {player} to my server!",
+				"deathmessage" => "{player} died!",
+				"enable-neko-commands" => true,
+				"enable-superdev-commands" => false
 			]);
 
 			$this->forceLanguage = $this->getProperty("settings.force-language", false);
@@ -1507,7 +1511,10 @@ class Server{
 
 			$this->maxPlayers = $this->getConfigInt("max-players", 20);
 			$this->setAutoSave($this->getConfigBoolean("auto-save", true));
-
+			$this->nekocommands = $this->getConfigBoolean("enable-neko-commands", true));
+			$this->superdev = $this->getConfigBoolean("enable-superdev-commands", false));
+			$this->deathmessage = $this->getConfigString("deathmessage", "{player} died!"));
+			$this->joinmessage = $this->getConfigString("joinmessage", "Welcome {player} to my server!"));
 			if($this->getConfigBoolean("hardcore", false) === true and $this->getDifficulty() < 3){
 				$this->setConfigInt("difficulty", 3);
 			}
@@ -1591,12 +1598,20 @@ class Server{
 				LevelProviderManager::addProvider(LevelDB::class);
 			}
 
-
+			this->generatorlist = array(
+				"flat",
+				"normal",
+				"default",
+				"hell",
+				"nether",
+				"generic"
+				);
 			Generator::addGenerator(Flat::class, "flat");
 			Generator::addGenerator(Normal::class, "normal");
 			Generator::addGenerator(Normal::class, "default");
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
+			Generator::addGenerator(Flat::class, "generic");
 
 			foreach((array) $this->getProperty("worlds", []) as $name => $worldSetting){
 				if($this->loadLevel($name) === false){
