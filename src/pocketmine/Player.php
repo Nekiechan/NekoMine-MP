@@ -432,7 +432,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function setAllowInstaBreak(bool $value = false){
 		$this->allowInstaBreak = $value;
 	}
-
 	/**
 	 * @param Player $player
 	 */
@@ -661,12 +660,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->setLevel($this->server->getDefaultLevel());
 		$this->newPosition = new Vector3(0, 0, 0);
 		$this->boundingBox = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
-
 		$this->uuid = null;
 		$this->rawUUID = null;
-
 		$this->creationTime = microtime(true);
-
 		$this->allowMovementCheats = (bool) $this->server->getProperty("player.anti-cheat.allow-movement-cheats", false);
 		$this->allowInstaBreak = (bool) $this->server->getProperty("player.anti-cheat.allow-instabreak", false);
 	}
@@ -743,7 +739,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function getPort(){
 		return $this->port;
 	}
-
+	/**
+	 * @return string
+	 */
+	public function getFancyIp(){
+		return $this->ip . ":" . $this->port;
+	}
 	public function getNextPosition(){
 		return $this->newPosition !== null ? new Position($this->newPosition->x, $this->newPosition->y, $this->newPosition->z, $this->level) : $this->getPosition();
 	}
@@ -871,28 +872,21 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	protected function doFirstSpawn(){
 		$this->spawned = true;
-
 		$this->sendSettings();
 		$this->sendPotionEffects($this);
 		$this->sendData($this);
 		$this->inventory->sendContents($this);
 		$this->inventory->sendArmorContents($this);
 		$this->inventory->sendHeldItem($this);
-
 		$pos = $this->level->getSafeSpawn($this);
-
 		$this->server->getPluginManager()->callEvent($ev = new PlayerRespawnEvent($this, $pos));
-
 		$pos = $ev->getRespawnPosition();
-
 		$pk = new RespawnPacket();
 		$pk->x = $pos->x;
 		$pk->y = $pos->y;
 		$pk->z = $pos->z;
 		$this->dataPacket($pk);
-
 		$this->sendPlayStatus(PlayStatusPacket::PLAYER_SPAWN);
-
 		if($this->hasPermission(Server::BROADCAST_CHANNEL_USERS)){
 			$this->server->getPluginManager()->subscribeToPermission(Server::BROADCAST_CHANNEL_USERS, $this);
 		}
