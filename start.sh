@@ -29,6 +29,7 @@ if [ "$PHP_BINARY" == "" ]; then
 		PHP_BINARY=$(type -p php)
 	else
 		echo "Couldn't find a working PHP 7 binary, please use the installer."
+		echo "You could also download a new php binary if you are using the uncompiled version!"
 		exit 1
 	fi
 fi
@@ -36,10 +37,12 @@ fi
 if [ "$POCKETMINE_FILE" == "" ]; then
 	if [ -f ./PocketMine-MP.phar ]; then
 		POCKETMINE_FILE="./PocketMine-MP.phar"
+	elif [ -f ./NekoMine-MP.phar ]; then
+		POCKETMINE_FILE="./NekoMine-MP.phar"
 	elif [ -f ./src/pocketmine/PocketMine.php ]; then
 		POCKETMINE_FILE="./src/pocketmine/PocketMine.php"
 	else
-		echo "Couldn't find a valid PocketMine-MP installation"
+		echo "Couldn't find a valid NekoMine-MP installation"
 		exit 1
 	fi
 fi
