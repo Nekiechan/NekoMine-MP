@@ -1,6 +1,5 @@
 ### Issue description
-<!--- use our forum https://forums.pmmp.io for questions -->
-<!--- Any issues requesting updates to new versions of MCPE will be treated as spam. We do not need issues to tell us that there is a new version available. -->
+<!--- use our forum https://nekocraftforums.blogspot.com for questions -->
 <!--- 
 Write a short description about the issue
 
@@ -15,15 +14,13 @@ Actual result: What actually happened?
 2. ...
 
 ### OS and versions
-<!--- use the 'version' command in PocketMine-MP
+<!--- use the 'version' command in NekoMine-MP
 
-NOTE: LATEST is not a valid version. PocketMine version should include Jenkins build number and/or git commit hash.
+NOTE: LATEST is not a valid version. NekoMine version should include Jenkins build number and/or git commit hash.
 
-NO support whatsoever will be provided for forks or spoons of PocketMine. Issues relating to non-official distributions will be closed as spam. Please send such issues to whoever is responsible for the fork or spoon you are using.
-
-Note that 32-bit platforms are no longer supported by PocketMine-MP and issues concerning 32-bit platforms will be closed.
+Note that 32-bit platforms are no longer supported by NekoMine-MP and issues concerning 32-bit platforms will be closed. However, you can grab our 32-bit NekoMine Build at https://link.com
 -->
-* PocketMine-MP:
+* NekoMine-MP:
 * PHP:
 * Server OS:
 * Game version: PE/Win10 (delete as appropriate)
@@ -34,7 +31,7 @@ Note that 32-bit platforms are no longer supported by PocketMine-MP and issues c
 If the issue is **not** reproducible without plugins:
 - Have you asked for help on our forums before creating an issue?
 - Can you provide sample, *minimal* reproducing code for the issue? If so, paste it in the bottom section
-- Paste your list of plugins here (use the 'plugins' command in PocketMine-MP)
+- Paste your list of plugins here (use the 'plugins' command in NekoMine-MP)
 
 ### Crashdump, backtrace or other files
 <!--- please use gist or anything else and add links here -->
