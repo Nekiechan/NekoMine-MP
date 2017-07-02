@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 /**
  * Implementation of the Source RCON Protocol to allow remote console commands
  * Source: https://developer.valvesoftware.com/wiki/Source_RCON_Protocol

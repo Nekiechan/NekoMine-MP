@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\item;
 
 use pocketmine\entity\Entity;
@@ -54,7 +52,7 @@ abstract class Food extends Item implements FoodSource{
 
 	public function onConsume(Entity $human){
 		$pk = new EntityEventPacket();
-		$pk->entityRuntimeId = $human->getId();
+		$pk->eid = $human->getId();
 		$pk->event = EntityEventPacket::USE_ITEM;
 		if($human instanceof Player){
 			$human->dataPacket($pk);

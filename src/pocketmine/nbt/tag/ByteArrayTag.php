@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\nbt\tag;
 
 use pocketmine\nbt\NBT;
@@ -28,16 +26,6 @@ use pocketmine\nbt\NBT;
 #include <rules/NBT.h>
 
 class ByteArrayTag extends NamedTag{
-
-	/**
-	 * ByteArrayTag constructor.
-	 *
-	 * @param string $name
-	 * @param string $value
-	 */
-	public function __construct(string $name = "", string $value = ""){
-		parent::__construct($name, $value);
-	}
 
 	public function getType(){
 		return NBT::TAG_ByteArray;
@@ -50,24 +38,5 @@ class ByteArrayTag extends NamedTag{
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putInt(strlen($this->value), $network);
 		$nbt->put($this->value);
-	}
-
-	/**
-	 * @return string
-	 */
-	public function &getValue() : string{
-		return parent::getValue();
-	}
-
-	/**
-	 * @param string $value
-	 *
-	 * @throws \TypeError
-	 */
-	public function setValue($value){
-		if(!is_string($value)){
-			throw new \TypeError("ByteArrayTag value must be of type string, " . gettype($value) . " given");
-		}
-		parent::setValue($value);
 	}
 }

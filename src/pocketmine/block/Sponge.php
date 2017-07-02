@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\block;
 
 
@@ -28,8 +26,8 @@ class Sponge extends Solid{
 
 	protected $id = self::SPONGE;
 
-	public function __construct($meta = 0){
-		$this->meta = $meta;
+	public function __construct(){
+
 	}
 
 	public function getHardness(){

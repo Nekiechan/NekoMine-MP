@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\event;
 
 use pocketmine\command\defaults\TimingsCommand;

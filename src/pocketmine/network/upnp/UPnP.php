@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 /**
  * UPnP port forwarding support. Only for Windows
  */

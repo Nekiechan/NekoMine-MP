@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\tile;
 
 
@@ -30,15 +28,15 @@ interface Nameable{
 	/**
 	 * @return string
 	 */
-	public function getName() : string;
+	public function getName();
 
 	/**
-	 * @param string $str
+	 * @param void $str
 	 */
-	public function setName(string $str);
+	public function setName($str);
 
 	/**
 	 * @return bool
 	 */
-	public function hasName() : bool;
+	public function hasName();
 }

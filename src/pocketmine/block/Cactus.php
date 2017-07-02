@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
@@ -86,7 +84,7 @@ class Cactus extends Transparent{
 			}
 		}elseif($type === Level::BLOCK_UPDATE_RANDOM){
 			if($this->getSide(0)->getId() !== self::CACTUS){
-				if($this->meta === 0x0f){
+				if($this->meta == 0x0F){
 					for($y = 1; $y < 3; ++$y){
 						$b = $this->getLevel()->getBlock(new Vector3($this->x, $this->y + $y, $this->z));
 						if($b->getId() === self::AIR){

@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\block;
 
 use pocketmine\inventory\EnchantInventory;
@@ -36,8 +34,8 @@ class EnchantingTable extends Transparent{
 
 	protected $id = self::ENCHANTING_TABLE;
 
-	public function __construct($meta = 0){
-		$this->meta = $meta;
+	public function __construct(){
+
 	}
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){

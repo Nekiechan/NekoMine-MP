@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -32,18 +30,18 @@ use pocketmine\network\mcpe\NetworkSession;
 class UpdateAttributesPacket extends DataPacket{
 	const NETWORK_ID = ProtocolInfo::UPDATE_ATTRIBUTES_PACKET;
 
-	public $entityRuntimeId;
+	public $entityId;
 	/** @var Attribute[] */
 	public $entries = [];
 
 	public function decode(){
-		$this->entityRuntimeId = $this->getEntityRuntimeId();
+		$this->entityId = $this->getEntityRuntimeId();
 		$this->entries = $this->getAttributeList();
 	}
 
 	public function encode(){
 		$this->reset();
-		$this->putEntityRuntimeId($this->entityRuntimeId);
+		$this->putEntityRuntimeId($this->entityId);
 		$this->putAttributeList(...$this->entries);
 	}
 

@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
@@ -30,8 +28,8 @@ class Melon extends Transparent{
 
 	protected $id = self::MELON_BLOCK;
 
-	public function __construct($meta = 0){
-		$this->meta = $meta;
+	public function __construct(){
+
 	}
 
 	public function getName(){

@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\level\sound;
 
 use pocketmine\math\Vector3;

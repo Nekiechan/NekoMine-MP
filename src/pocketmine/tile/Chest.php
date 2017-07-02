@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\tile;
 
 use pocketmine\inventory\ChestInventory;
@@ -190,24 +188,15 @@ class Chest extends Spawnable implements InventoryHolder, Container, Nameable{
 		}
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getName() : string{
+	public function getName(){
 		return isset($this->namedtag->CustomName) ? $this->namedtag->CustomName->getValue() : "Chest";
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function hasName() : bool{
+	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
 
-	/**
-	 * @param string $str
-	 */
-	public function setName(string $str){
+	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
 			return;

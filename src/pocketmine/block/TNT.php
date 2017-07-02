@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
@@ -37,8 +35,8 @@ class TNT extends Solid{
 
 	protected $id = self::TNT;
 
-	public function __construct($meta = 0){
-		$this->meta = $meta;
+	public function __construct(){
+
 	}
 
 	public function getName(){

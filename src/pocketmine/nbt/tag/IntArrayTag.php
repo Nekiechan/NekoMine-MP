@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\nbt\tag;
 
 use pocketmine\nbt\NBT;
@@ -28,16 +26,6 @@ use pocketmine\nbt\NBT;
 #include <rules/NBT.h>
 
 class IntArrayTag extends NamedTag{
-
-	/**
-	 * IntArrayTag constructor.
-	 *
-	 * @param string $name
-	 * @param int[]  $value
-	 */
-	public function __construct(string $name = "", array $value = []){
-		parent::__construct($name, $value);
-	}
 
 	public function getType(){
 		return NBT::TAG_IntArray;
@@ -57,28 +45,5 @@ class IntArrayTag extends NamedTag{
 		$str = get_class($this) . "{\n";
 		$str .= implode(", ", $this->value);
 		return $str . "}";
-	}
-
-	/**
-	 * @return int[]
-	 */
-	public function &getValue() : array{
-		return parent::getValue();
-	}
-
-	/**
-	 * @param int[] $value
-	 *
-	 * @throws \TypeError
-	 */
-	public function setValue($value){
-		if(!is_array($value)){
-			throw new \TypeError("IntArrayTag value must be of type int[], " . gettype($value) . " given");
-		}
-		assert(count(array_filter($value, function($v){
-			return !is_int($v);
-		})) === 0);
-
-		parent::setValue($value);
 	}
 }

@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\level\generator\hell;
 
 use pocketmine\block\Block;
@@ -30,7 +28,7 @@ use pocketmine\level\generator\biome\BiomeSelector;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\noise\Simplex;
 use pocketmine\level\generator\populator\Populator;
-use pocketmine\math\Vector3;
+use pocketmine\math\Vector3 as Vector3;
 use pocketmine\utils\Random;
 
 class Nether extends Generator{

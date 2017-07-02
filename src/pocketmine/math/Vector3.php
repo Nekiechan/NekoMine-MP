@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\math;
 
 class Vector3{
@@ -157,15 +155,6 @@ class Vector3{
 			default:
 				return $this;
 		}
-	}
-
-	/**
-	 * Return a Vector3 instance
-	 * 
-	 * @return Vector3
-	 */
-	public function asVector3() : Vector3{
-		return new Vector3($this->x, $this->y, $this->z);
 	}
 
 	/**

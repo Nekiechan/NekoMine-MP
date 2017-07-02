@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -51,7 +49,7 @@ class PlayerActionPacket extends DataPacket{
 
 	const ACTION_CONTINUE_BREAK = 18;
 
-	public $entityRuntimeId;
+	public $eid;
 	public $action;
 	public $x;
 	public $y;
@@ -59,7 +57,7 @@ class PlayerActionPacket extends DataPacket{
 	public $face;
 
 	public function decode(){
-		$this->entityRuntimeId = $this->getEntityRuntimeId();
+		$this->eid = $this->getEntityRuntimeId();
 		$this->action = $this->getVarInt();
 		$this->getBlockPosition($this->x, $this->y, $this->z);
 		$this->face = $this->getVarInt();
@@ -67,7 +65,7 @@ class PlayerActionPacket extends DataPacket{
 
 	public function encode(){
 		$this->reset();
-		$this->putEntityRuntimeId($this->entityRuntimeId);
+		$this->putEntityRuntimeId($this->eid);
 		$this->putVarInt($this->action);
 		$this->putBlockPosition($this->x, $this->y, $this->z);
 		$this->putVarInt($this->face);

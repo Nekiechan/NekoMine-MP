@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 
 namespace pocketmine\updater;
 
@@ -36,7 +34,7 @@ class UpdateCheckTask extends AsyncTask{
 	/** @var string */
 	private $channel;
 	/** @var string */
-	private $error = "Unknown error";
+	private $error;
 
 	public function __construct(string $endpoint, string $channel){
 		$this->endpoint = $endpoint;
@@ -44,27 +42,24 @@ class UpdateCheckTask extends AsyncTask{
 	}
 
 	public function onRun(){
-		$error = "";
-		$response = Utils::getURL($this->endpoint . "?channel=" . $this->channel, 4, [], $error);
-		$this->error = $error;
-
-		if($response !== false){
+		$this->error = "";
+		$response = Utils::getURL($this->endpoint . "?channel=" . $this->channel, 4, [], $this->error);
+		if($this->error !== ""){
+			return;
+		}else{
 			$response = json_decode($response, true);
 			if(is_array($response)){
-				if(
-					isset($response["version"]) and
-					isset($response["api_version"]) and
-					isset($response["build"]) and
-					isset($response["date"]) and
-					isset($response["download_url"])
-				){
-					$response["details_url"] = $response["details_url"] ?? null;
-					$this->setResult($response, true);
-				}elseif(isset($response["error"])){
-					$this->error = $response["error"];
-				}else{
-					$this->error = "Invalid response data";
-				}
+				$this->setResult(
+					[
+						 "version" => $response["version"],
+						 "api_version" => $response["api_version"],
+						 "build" => $response["build"],
+						 "date" => $response["date"],
+						 "details_url" => $response["details_url"] ?? null,
+						 "download_url" => $response["download_url"]
+					],
+					true
+				);
 			}else{
 				$this->error = "Invalid response data";
 			}

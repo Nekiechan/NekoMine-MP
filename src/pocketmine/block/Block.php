@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 /**
  * All Block classes are in here
  */
@@ -128,15 +126,6 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::MONSTER_SPAWNER] = MonsterSpawner::class;
 			self::$list[self::WOOD_STAIRS] = WoodStairs::class;
 			self::$list[self::CHEST] = Chest::class;
-			//Pistons
-			self::$list[self::STICKY_PISTON] = StickyPiston::class;
-			self::$list[self::PISTON] = Piston::class;
-			//EnderChest
-			self::$list[self::ENDER_CHEST] = EnderChest::class;
-			//EndRod
-			self::$list[self::END_ROD] = EndRod::class;
-			//DragonEgg
-			self::$list[self::DRAGON_EGG] = DragonEgg::class;
 
 			self::$list[self::DIAMOND_ORE] = DiamondOre::class;
 			self::$list[self::DIAMOND_BLOCK] = Diamond::class;
@@ -197,10 +186,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::NETHER_BRICKS] = NetherBrick::class;
 			self::$list[self::NETHER_BRICK_FENCE] = NetherBrickFence::class;
 			self::$list[self::NETHER_BRICKS_STAIRS] = NetherBrickStairs::class;
-			self::$list[self::PURPUR_STAIRS] = PurpurStairs::class;
-			self::$list[self::END_BRICKS] = EndBricks::class;
-			self::$list[self::END_ROD] = EndRod::class;
-			self::$list[self::CHORUS_PLANT] = ChorusPlant::class;
+
 			self::$list[self::ENCHANTING_TABLE] = EnchantingTable::class;
 			self::$list[self::BREWING_STAND_BLOCK] = BrewingStand::class;
 			self::$list[self::END_PORTAL_FRAME] = EndPortalFrame::class;
@@ -259,7 +245,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::ITEM_FRAME_BLOCK] = ItemFrame::class;
 
 			self::$list[self::GRASS_PATH] = GrassPath::class;
-			self::$list[self::NETHER_REACTOR] = NetherReactor::class;
+
 			self::$list[self::PODZOL] = Podzol::class;
 			self::$list[self::BEETROOT_BLOCK] = Beetroot::class;
 			self::$list[self::STONECUTTER] = Stonecutter::class;

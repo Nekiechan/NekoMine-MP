@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 /**
  * Various Utilities used around the code
  */
@@ -126,51 +124,39 @@ class Utils{
 	 *
 	 * @param bool $force default false, force IP check even when cached
 	 *
-	 * @return string|bool
+	 * @return string
 	 */
+
 	public static function getIP($force = false){
 		if(Utils::$online === false){
 			return false;
 		}elseif(Utils::$ip !== false and $force !== true){
 			return Utils::$ip;
 		}
-
-		do{
-			$ip = Utils::getURL("http://api.ipify.org/");
-			if($ip !== false){
-				Utils::$ip = $ip;
-				break;
-			}
-
-			$ip = Utils::getURL("http://checkip.dyndns.org/");
-			if($ip !== false and preg_match('#Current IP Address\: ([0-9a-fA-F\:\.]*)#', trim(strip_tags($ip)), $matches) > 0){
-				Utils::$ip = $matches[1];
-				break;
-			}
-
+		$ip = trim(strip_tags(Utils::getURL("http://checkip.dyndns.org/")));
+		if(preg_match('#Current IP Address\: ([0-9a-fA-F\:\.]*)#', $ip, $matches) > 0){
+			Utils::$ip = $matches[1];
+		}else{
 			$ip = Utils::getURL("http://www.checkip.org/");
-			if($ip !== false and preg_match('#">([0-9a-fA-F\:\.]*)</span>#', $ip, $matches) > 0){
+			if(preg_match('#">([0-9a-fA-F\:\.]*)</span>#', $ip, $matches) > 0){
 				Utils::$ip = $matches[1];
-				break;
+			}else{
+				$ip = Utils::getURL("http://checkmyip.org/");
+				if(preg_match('#Your IP address is ([0-9a-fA-F\:\.]*)#', $ip, $matches) > 0){
+					Utils::$ip = $matches[1];
+				}else{
+					$ip = trim(Utils::getURL("http://ifconfig.me/ip"));
+					if($ip != ""){
+						Utils::$ip = $ip;
+					}else{
+						return false;
+					}
+				}
 			}
-
-			$ip = Utils::getURL("http://checkmyip.org/");
-			if($ip !== false and preg_match('#Your IP address is ([0-9a-fA-F\:\.]*)#', $ip, $matches) > 0){
-				Utils::$ip = $matches[1];
-				break;
-			}
-
-			$ip = Utils::getURL("http://ifconfig.me/ip");
-			if($ip !== false and trim($ip) != ""){
-				Utils::$ip = trim($ip);
-				break;
-			}
-
-			return false;
-
-		}while(false);
+		}
 
 		return Utils::$ip;
+
 	}
 
 	/**

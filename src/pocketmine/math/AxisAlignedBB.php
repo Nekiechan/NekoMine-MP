@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\math;
 
 use pocketmine\level\MovingObjectPosition;

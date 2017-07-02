@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\block;
 
 use pocketmine\item\Tool;
@@ -29,8 +27,8 @@ class PackedIce extends Solid{
 
 	protected $id = self::PACKED_ICE;
 
-	public function __construct($meta = 0){
-		$this->meta = $meta;
+	public function __construct(){
+
 	}
 
 	public function getName(){

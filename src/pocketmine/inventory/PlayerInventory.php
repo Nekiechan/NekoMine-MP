@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\inventory;
 
 use pocketmine\entity\Human;
@@ -234,11 +232,10 @@ class PlayerInventory extends BaseInventory{
 		$item = $this->getItemInHand();
 
 		$pk = new MobEquipmentPacket();
-		$pk->entityRuntimeId = $this->getHolder()->getId();
+		$pk->eid = $this->getHolder()->getId();
 		$pk->item = $item;
 		$pk->inventorySlot = $this->getHeldItemSlot();
 		$pk->hotbarSlot = $this->getHeldItemIndex();
-		$pk->windowId = ContainerSetContentPacket::SPECIAL_INVENTORY;
 
 		if(!is_array($target)){
 			$target->dataPacket($pk);
@@ -247,7 +244,7 @@ class PlayerInventory extends BaseInventory{
 			}
 		}else{
 			$this->getHolder()->getLevel()->getServer()->broadcastPacket($target, $pk);
-			if($this->getHeldItemSlot() !== -1 and in_array($this->getHolder(), $target, true)){
+			if($this->getHeldItemSlot() !== -1 and in_array($this->getHolder(), $target)){
 				$this->sendSlot($this->getHeldItemSlot(), $this->getHolder());
 			}
 		}
@@ -416,7 +413,7 @@ class PlayerInventory extends BaseInventory{
 		$armor = $this->getArmorContents();
 
 		$pk = new MobArmorEquipmentPacket();
-		$pk->entityRuntimeId = $this->getHolder()->getId();
+		$pk->eid = $this->getHolder()->getId();
 		$pk->slots = $armor;
 		$pk->encode();
 		$pk->isEncoded = true;
@@ -464,7 +461,7 @@ class PlayerInventory extends BaseInventory{
 		$armor = $this->getArmorContents();
 
 		$pk = new MobArmorEquipmentPacket();
-		$pk->entityRuntimeId = $this->getHolder()->getId();
+		$pk->eid = $this->getHolder()->getId();
 		$pk->slots = $armor;
 		$pk->encode();
 		$pk->isEncoded = true;

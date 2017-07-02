@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -47,13 +45,13 @@ class StartGamePacket extends DataPacket{
 	public $spawnX;
 	public $spawnY;
 	public $spawnZ;
-	public $hasAchievementsDisabled = true;
+	public $hasAchievementsDisabled = 1;
 	public $dayCycleStopTime = -1; //-1 = not stopped, any positive value = stopped at that time
-	public $eduMode = false;
+	public $eduMode = 0;
 	public $rainLevel;
 	public $lightningLevel;
 	public $commandsEnabled;
-	public $isTexturePacksRequired = true;
+	public $isTexturePacksRequired = 0;
 	public $levelId = ""; //base64 string, usually the same as world folder name in vanilla
 	public $worldName;
 	public $premiumWorldTemplateId = "";

@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 /**
  * All the entity classes
  */
@@ -60,7 +58,6 @@ use pocketmine\network\mcpe\protocol\SetEntityDataPacket;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
-use pocketmine\utils\Binary;
 
 abstract class Entity extends Location implements Metadatable{
 
@@ -739,7 +736,7 @@ abstract class Entity extends Location implements Metadatable{
 			$this->namedtag->id = new StringTag("id", $this->getSaveId());
 			if($this->getNameTag() !== ""){
 				$this->namedtag->CustomName = new StringTag("CustomName", $this->getNameTag());
-				$this->namedtag->CustomNameVisible = new ByteTag("CustomNameVisible", $this->isNameTagVisible() ? 1 : 0);
+				$this->namedtag->CustomNameVisible = new StringTag("CustomNameVisible", $this->isNameTagVisible());
 			}else{
 				unset($this->namedtag->CustomName);
 				unset($this->namedtag->CustomNameVisible);
@@ -747,34 +744,34 @@ abstract class Entity extends Location implements Metadatable{
 		}
 
 		$this->namedtag->Pos = new ListTag("Pos", [
-			new DoubleTag("", $this->x),
-			new DoubleTag("", $this->y),
-			new DoubleTag("", $this->z)
+			new DoubleTag(0, $this->x),
+			new DoubleTag(1, $this->y),
+			new DoubleTag(2, $this->z)
 		]);
 
 		$this->namedtag->Motion = new ListTag("Motion", [
-			new DoubleTag("", $this->motionX),
-			new DoubleTag("", $this->motionY),
-			new DoubleTag("", $this->motionZ)
+			new DoubleTag(0, $this->motionX),
+			new DoubleTag(1, $this->motionY),
+			new DoubleTag(2, $this->motionZ)
 		]);
 
 		$this->namedtag->Rotation = new ListTag("Rotation", [
-			new FloatTag("", $this->yaw),
-			new FloatTag("", $this->pitch)
+			new FloatTag(0, $this->yaw),
+			new FloatTag(1, $this->pitch)
 		]);
 
 		$this->namedtag->FallDistance = new FloatTag("FallDistance", $this->fallDistance);
 		$this->namedtag->Fire = new ShortTag("Fire", $this->fireTicks);
 		$this->namedtag->Air = new ShortTag("Air", $this->getDataProperty(self::DATA_AIR));
-		$this->namedtag->OnGround = new ByteTag("OnGround", $this->onGround ? 1 : 0);
-		$this->namedtag->Invulnerable = new ByteTag("Invulnerable", $this->invulnerable ? 1 : 0);
+		$this->namedtag->OnGround = new ByteTag("OnGround", $this->onGround == true ? 1 : 0);
+		$this->namedtag->Invulnerable = new ByteTag("Invulnerable", $this->invulnerable == true ? 1 : 0);
 
 		if(count($this->effects) > 0){
 			$effects = [];
 			foreach($this->effects as $effect){
-				$effects[] = new CompoundTag("", [
+				$effects[$effect->getId()] = new CompoundTag($effect->getId(), [
 					"Id" => new ByteTag("Id", $effect->getId()),
-					"Amplifier" => new ByteTag("Amplifier", Binary::signByte($effect->getAmplifier())),
+					"Amplifier" => new ByteTag("Amplifier", $effect->getAmplifier()),
 					"Duration" => new IntTag("Duration", $effect->getDuration()),
 					"Ambient" => new ByteTag("Ambient", 0),
 					"ShowParticles" => new ByteTag("ShowParticles", $effect->isVisible() ? 1 : 0)
@@ -801,7 +798,7 @@ abstract class Entity extends Location implements Metadatable{
 
 		if(isset($this->namedtag->ActiveEffects)){
 			foreach($this->namedtag->ActiveEffects->getValue() as $e){
-				$amplifier = Binary::unsignByte($e->Amplifier->getValue()); //0-255 only
+				$amplifier = $e["Amplifier"] & 0xff; //0-255 only
 
 				$effect = Effect::getEffect($e["Id"]);
 				if($effect === null){
@@ -837,7 +834,7 @@ abstract class Entity extends Location implements Metadatable{
 	public function sendPotionEffects(Player $player){
 		foreach($this->effects as $effect){
 			$pk = new MobEffectPacket();
-			$pk->entityRuntimeId = $this->id;
+			$pk->eid = $this->id;
 			$pk->effectId = $effect->getId();
 			$pk->amplifier = $effect->getAmplifier();
 			$pk->particles = $effect->isVisible();
@@ -858,7 +855,7 @@ abstract class Entity extends Location implements Metadatable{
 		}
 
 		$pk = new SetEntityDataPacket();
-		$pk->entityRuntimeId = $this->getId();
+		$pk->eid = $this->getId();
 		$pk->metadata = $data === null ? $this->dataProperties : $data;
 
 		foreach($player as $p){
@@ -881,7 +878,7 @@ abstract class Entity extends Location implements Metadatable{
 		if(isset($this->hasSpawned[$player->getLoaderId()])){
 			if($send){
 				$pk = new RemoveEntityPacket();
-				$pk->entityUniqueId = $this->id;
+				$pk->eid = $this->id;
 				$player->dataPacket($pk);
 			}
 			unset($this->hasSpawned[$player->getLoaderId()]);

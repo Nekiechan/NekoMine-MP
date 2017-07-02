@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -50,19 +48,19 @@ class EntityEventPacket extends DataPacket{
 
 	//TODO: add more events
 
-	public $entityRuntimeId;
+	public $eid;
 	public $event;
 	public $data = 0;
 
 	public function decode(){
-		$this->entityRuntimeId = $this->getEntityRuntimeId();
+		$this->eid = $this->getEntityRuntimeId();
 		$this->event = $this->getByte();
 		$this->data = $this->getVarInt();
 	}
 
 	public function encode(){
 		$this->reset();
-		$this->putEntityRuntimeId($this->entityRuntimeId);
+		$this->putEntityRuntimeId($this->eid);
 		$this->putByte($this->event);
 		$this->putVarInt($this->data);
 	}

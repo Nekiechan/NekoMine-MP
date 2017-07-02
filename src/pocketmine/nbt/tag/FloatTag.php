@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\nbt\tag;
 
 use pocketmine\nbt\NBT;
@@ -28,16 +26,6 @@ use pocketmine\nbt\NBT;
 #include <rules/NBT.h>
 
 class FloatTag extends NamedTag{
-
-	/**
-	 * FloatTag constructor.
-	 *
-	 * @param string $name
-	 * @param float  $value
-	 */
-	public function __construct(string $name = "", float $value = 0.0){
-		parent::__construct($name, $value);
-	}
 
 	public function getType(){
 		return NBT::TAG_Float;
@@ -49,19 +37,5 @@ class FloatTag extends NamedTag{
 
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putFloat($this->value);
-	}
-
-	/**
-	 * @return float
-	 */
-	public function &getValue() : float{
-		return parent::getValue();
-	}
-
-	public function setValue($value){
-		if(!is_float($value) and !is_int($value)){
-			throw new \TypeError("FloatTag value must be of type float, " . gettype($value) . " given");
-		}
-		parent::setValue((float) $value);
 	}
 }

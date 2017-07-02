@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -46,7 +44,7 @@ class BatchPacket extends DataPacket{
 	}
 
 	public function decode(){
-		$this->payload = $this->getRemaining();
+		$this->payload = $this->get(true);
 	}
 
 	public function encode(){

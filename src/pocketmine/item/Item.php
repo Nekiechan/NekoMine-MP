@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 /**
  * All the Item classes
  */
@@ -40,7 +38,6 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\nbt\tag\Tag;
 use pocketmine\Player;
 use pocketmine\Server;
-use pocketmine\utils\Binary;
 use pocketmine\utils\Config;
 
 class Item implements ItemIds, \JsonSerializable{
@@ -1010,7 +1007,7 @@ class Item implements ItemIds, \JsonSerializable{
 	public function nbtSerialize(int $slot = -1, string $tagName = "") : CompoundTag{
 		$tag = new CompoundTag($tagName, [
 			"id" => new ShortTag("id", $this->id),
-			"Count" => new ByteTag("Count", Binary::signByte($this->count)),
+			"Count" => new ByteTag("Count", $this->count ?? -1),
 			"Damage" => new ShortTag("Damage", $this->meta),
 		]);
 
@@ -1038,15 +1035,12 @@ class Item implements ItemIds, \JsonSerializable{
 			return Item::get(0);
 		}
 
-		$count = Binary::unsignByte($tag->Count->getValue());
-		$meta = isset($tag->Damage) ? $tag->Damage->getValue() : 0;
-
 		if($tag->id instanceof ShortTag){
-			$item = Item::get($tag->id->getValue(), $meta, $count);
+			$item = Item::get($tag->id->getValue(), !isset($tag->Damage) ? 0 : $tag->Damage->getValue(), $tag->Count->getValue());
 		}elseif($tag->id instanceof StringTag){ //PC item save format
 			$item = Item::fromString($tag->id->getValue());
-			$item->setDamage($meta);
-			$item->setCount($count);
+			$item->setDamage(!isset($tag->Damage) ? 0 : $tag->Damage->getValue());
+			$item->setCount($tag->Count->getValue());
 		}else{
 			throw new \InvalidArgumentException("Item CompoundTag ID must be an instance of StringTag or ShortTag, " . get_class($tag->id) . " given");
 		}

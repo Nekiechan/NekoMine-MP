@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\nbt\tag;
 
 
@@ -29,13 +27,13 @@ abstract class NamedTag extends Tag{
 	protected $__name;
 
 	/**
-	 * @param string $name
-	 * @param mixed  $value
+	 * @param string                                                                  $name
+	 * @param bool|float|double|int|ByteTag|ShortTag|array|CompoundTag|ListTag|string $value
 	 */
-	public function __construct(string $name = "", $value = null){
+	public function __construct($name = "", $value = null){
 		$this->__name = ($name === null or $name === false) ? "" : $name;
 		if($value !== null){
-			$this->setValue($value);
+			$this->value = $value;
 		}
 	}
 

@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\entity;
 
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -67,7 +65,7 @@ class Squid extends WaterAnimal implements Ageable{
 			}
 
 			$pk = new EntityEventPacket();
-			$pk->entityRuntimeId = $this->getId();
+			$pk->eid = $this->getId();
 			$pk->event = EntityEventPacket::SQUID_INK_CLOUD;
 			$this->server->broadcastPacket($this->hasSpawned, $pk);
 		}
