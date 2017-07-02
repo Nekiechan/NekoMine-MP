@@ -1598,7 +1598,7 @@ class Server{
 				LevelProviderManager::addProvider(LevelDB::class);
 			}
 
-			this->generatorlist = array(
+			$this->generatorlist = array(
 				"flat",
 				"normal",
 				"default",
