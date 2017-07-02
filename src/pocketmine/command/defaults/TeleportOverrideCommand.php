@@ -34,7 +34,8 @@ class TeleportOverrideCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"Allows Telepotation without being noticed",
-			"Usage: /tpo <player> <targetplayer> || <player> <x> <y> <z>"
+			"Usage: /tpo <player> <targetplayer> || <player> <x> <y> <z>",
+["tpaoverride"]
 		);
 		$this->setPermission("pocketmine.command.tpo");
 	}

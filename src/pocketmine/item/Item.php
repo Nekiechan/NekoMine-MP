@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 /**
  * All the Item classes
  */
@@ -38,6 +40,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\nbt\tag\Tag;
 use pocketmine\Player;
 use pocketmine\Server;
+use pocketmine\utils\Binary;
 use pocketmine\utils\Config;
 
 class Item implements ItemIds, \JsonSerializable{
@@ -224,7 +227,8 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::QUARTZ] = Quartz::class;
 			self::$list[self::QUARTZ] = NetherQuartz::class;
 			self::$list[self::COOKED_RABBIT] = CookedRabbit::class;
-			// self::$list[self::CAMERA] = Camera::class;
+			// self::$list[self::CAMERA] = Camera::class; Blame Mojang xD
+			self::$list[self::ELYTRA] = Elytra::class;
 			self::$list[self::BEETROOT] = Beetroot::class;
 			self::$list[self::BEETROOT_SEEDS] = BeetrootSeeds::class;
 			self::$list[self::BEETROOT_SOUP] = BeetrootSoup::class;
@@ -1007,7 +1011,7 @@ class Item implements ItemIds, \JsonSerializable{
 	public function nbtSerialize(int $slot = -1, string $tagName = "") : CompoundTag{
 		$tag = new CompoundTag($tagName, [
 			"id" => new ShortTag("id", $this->id),
-			"Count" => new ByteTag("Count", $this->count ?? -1),
+			"Count" => new ByteTag("Count", Binary::signByte($this->count)),
 			"Damage" => new ShortTag("Damage", $this->meta),
 		]);
 
@@ -1035,12 +1039,15 @@ class Item implements ItemIds, \JsonSerializable{
 			return Item::get(0);
 		}
 
+		$count = Binary::unsignByte($tag->Count->getValue());
+		$meta = isset($tag->Damage) ? $tag->Damage->getValue() : 0;
+
 		if($tag->id instanceof ShortTag){
-			$item = Item::get($tag->id->getValue(), !isset($tag->Damage) ? 0 : $tag->Damage->getValue(), $tag->Count->getValue());
+			$item = Item::get($tag->id->getValue(), $meta, $count);
 		}elseif($tag->id instanceof StringTag){ //PC item save format
 			$item = Item::fromString($tag->id->getValue());
-			$item->setDamage(!isset($tag->Damage) ? 0 : $tag->Damage->getValue());
-			$item->setCount($tag->Count->getValue());
+			$item->setDamage($meta);
+			$item->setCount($count);
 		}else{
 			throw new \InvalidArgumentException("Item CompoundTag ID must be an instance of StringTag or ShortTag, " . get_class($tag->id) . " given");
 		}

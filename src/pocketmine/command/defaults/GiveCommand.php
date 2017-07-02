@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\Command;
@@ -36,7 +38,8 @@ class GiveCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.give.description",
-			"%pocketmine.command.give.usage"
+			"%pocketmine.command.give.usage",
+["item","spawnitem","giveitem"]
 		);
 		$this->setPermission("pocketmine.command.give");
 	}

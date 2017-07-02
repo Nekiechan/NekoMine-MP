@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\Command;
@@ -35,7 +37,7 @@ class GamemodeCommand extends VanillaCommand{
 			$name,
 			"%pocketmine.command.gamemode.description",
 			"%commands.gamemode.usage",
-			["gm", "gametype", "mode"]
+["gm","gametype","setmode"]
 		);
 		$this->setPermission("pocketmine.command.gamemode");
 	}

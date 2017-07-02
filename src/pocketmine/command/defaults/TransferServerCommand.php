@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 
 namespace pocketmine\command\defaults;
 
@@ -34,8 +36,8 @@ class TransferServerCommand extends VanillaCommand{
 			$name,
 			"%pocketmine.command.transferserver.description",
 			"%pocketmine.command.transferserver.usage",
-			["transfer", "warpserver", "changeserver", "tpserver"]		
-);
+			["transfer", "warpserver", "tpserver", "changeserver"]
+		);
 		$this->setPermission("pocketmine.command.transferserver");
 	}
 

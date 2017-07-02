@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\Command;
@@ -97,7 +99,7 @@ class HelpCommand extends VanillaCommand{
 					return true;
 				}
 			}
-			$sender->sendMessage(TextFormat::RED . "No help for " . strtolower($command));
+			$sender->sendMessage(TextFormat::RED . "Uh oh! " . strtolower($command) . " Isnt in our Command Storage, mabye you should try /help");
 
 			return true;
 		}

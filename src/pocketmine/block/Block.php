@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 /**
  * All Block classes are in here
  */
@@ -126,6 +128,15 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::MONSTER_SPAWNER] = MonsterSpawner::class;
 			self::$list[self::WOOD_STAIRS] = WoodStairs::class;
 			self::$list[self::CHEST] = Chest::class;
+			//Pistons
+			self::$list[self::STICKY_PISTON] = StickyPiston::class;
+			self::$list[self::PISTON] = Piston::class;
+			//EnderChest
+			self::$list[self::ENDER_CHEST] = EnderChest::class;
+			//EndRod
+			self::$list[self::END_ROD] = EndRod::class;
+			//DragonEgg
+			self::$list[self::DRAGON_EGG] = DragonEgg::class;
 
 			self::$list[self::DIAMOND_ORE] = DiamondOre::class;
 			self::$list[self::DIAMOND_BLOCK] = Diamond::class;
@@ -186,7 +197,10 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::NETHER_BRICKS] = NetherBrick::class;
 			self::$list[self::NETHER_BRICK_FENCE] = NetherBrickFence::class;
 			self::$list[self::NETHER_BRICKS_STAIRS] = NetherBrickStairs::class;
-
+			self::$list[self::PURPUR_STAIRS] = PurpurStairs::class;
+			self::$list[self::END_BRICKS] = EndBricks::class;
+			self::$list[self::END_ROD] = EndRod::class;
+			self::$list[self::CHORUS_PLANT] = ChorusPlant::class;
 			self::$list[self::ENCHANTING_TABLE] = EnchantingTable::class;
 			self::$list[self::BREWING_STAND_BLOCK] = BrewingStand::class;
 			self::$list[self::END_PORTAL_FRAME] = EndPortalFrame::class;
@@ -245,12 +259,30 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::ITEM_FRAME_BLOCK] = ItemFrame::class;
 
 			self::$list[self::GRASS_PATH] = GrassPath::class;
-
+			self::$list[self::NETHER_REACTOR] = NetherReactor::class;
 			self::$list[self::PODZOL] = Podzol::class;
 			self::$list[self::BEETROOT_BLOCK] = Beetroot::class;
 			self::$list[self::STONECUTTER] = Stonecutter::class;
 			self::$list[self::GLOWING_OBSIDIAN] = GlowingObsidian::class;
-
+            self::$list[self::BLACK_GLAZED_TERRACOTTA] = BlackGlazedTerracotta::class;
+			self::$list[self::BLUE_GLAZED_TERRACOTTA] = BlueGlazedTerracotta::class;
+			self::$list[self::BROWN_GLAZED_TERRACOTTA] = BrownGlazedTerracotta::class;
+			self::$list[self::CYAN_GLAZED_TERRACOTTA] = CyanGlazedTerracotta::class;
+			self::$list[self::GRAY_GLAZED_TERRACOTTA] = GrayGlazedTerracotta::class;
+			self::$list[self::GREEN_GLAZED_TERRACOTTA] = GreenGlazedTerracotta::class;
+			self::$list[self::LIGHT_BLUE_GLAZED_TERRACOTTA] = LightBlueGlazedTerracotta::class;
+			self::$list[self::LIME_GLAZED_TERRACOTTA] = LimeGlazedTerracotta::class;
+			self::$list[self::MAGENTA_GLAZED_TERRACOTTA] = MagentaGlazedTerracotta::class;
+			self::$list[self::ORANGE_GLAZED_TERRACOTTA] = OrangeGlazedTerracotta::class;
+			self::$list[self::PINK_GLAZED_TERRACOTTA] = PinkGlazedTerracotta::class;
+			self::$list[self::PURPLE_GLAZED_TERRACOTTA] = PurpleGlazedTerracotta::class;
+			self::$list[self::RED_GLAZED_TERRACOTTA] = RedGlazedTerracotta::class;
+			self::$list[self::SILVER_GLAZED_TERRACOTTA] = SilverGlazedTerracotta::class;
+			self::$list[self::WHITE_GLAZED_TERRACOTTA] = WhiteGlazedTerracotta::class;
+			self::$list[self::YELLOW_GLAZED_TERRACOTTA] = YellowGlazedTerracotta::class;
+			
+			self::$list[self::CONCRETE] = Concrete::class;
+			self::$list[self::CONCRETE_POWDER] = ConcretePowder::class;
 			foreach(self::$list as $id => $class){
 				if($class !== null){
 					/** @var Block $block */
