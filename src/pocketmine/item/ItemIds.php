@@ -19,8 +19,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\item;
 
 use pocketmine\block\BlockIds;
@@ -203,7 +201,7 @@ interface ItemIds extends BlockIds{
 	const DARK_OAK_DOOR = 431;
 
 	const SPLASH_POTION = 438;
-	const ELYTRA = 444; const ELYTRA_WINGS = 444; const ELYTRA_WING = 444;
+
 	const BEETROOT = 457;
 	const BEETROOT_SEEDS = 458, BEETROOT_SEED = 458;
 	const BEETROOT_SOUP = 459;
