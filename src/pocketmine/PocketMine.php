@@ -73,7 +73,7 @@ namespace pocketmine {
 	use pocketmine\wizard\SetupWizard;
 	use raklib\RakLib;
 
-	const VERSION = "1.Nek.O";
+	const VERSION = "1.0.0Beta(32Bit)";
 	const API_VERSION = "2.0.0";
 	const CODENAME = "§l§aNeko";
 

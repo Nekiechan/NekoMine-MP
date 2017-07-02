@@ -118,8 +118,8 @@ interface ItemIds extends BlockIds{
 	const FISHING_ROD = 346;
 	const CLOCK = 347;
 	const GLOWSTONE_DUST = 348;
-	const RAW_FISH = 349;
-	const COOKED_FISH = 350;
+	const RAW_FISH = 349; const FWISHY = 349;
+	const COOKED_FISH = 350; const COOKED_FWISHY = 350;
 	const DYE = 351;
 	const BONE = 352;
 	const SUGAR = 353;
