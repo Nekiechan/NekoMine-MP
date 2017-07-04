@@ -201,12 +201,13 @@ interface ItemIds extends BlockIds{
 	const DARK_OAK_DOOR = 431;
 
 	const SPLASH_POTION = 438;
+    const ELYTRA = 444; const ELYTRA_WINGS = 444; const ELYTRA_WING = 444;
 
 	const BEETROOT = 457;
 	const BEETROOT_SEEDS = 458, BEETROOT_SEED = 458;
 	const BEETROOT_SOUP = 459;
 	const RAW_SALMON = 460;
-	const CLOWN_FISH = 461;
+	const CLOWN_FISH = 461; const FWISHY = 461;
 	const PUFFER_FISH = 462;
 	const COOKED_SALMON = 463;
 
