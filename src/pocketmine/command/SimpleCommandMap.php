@@ -66,6 +66,7 @@ use pocketmine\command\defaults\VanillaCommand;
 use pocketmine\command\defaults\VersionCommand;
 use pocketmine\command\defaults\WhitelistCommand;
 use pocketmine\command\defaults\IamCommand;
+use pocketmine\command\defaults\SendpopupCommand;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
@@ -87,6 +88,7 @@ class SimpleCommandMap implements CommandMap{
 
 	private function setDefaultCommands(){
         $this->register("pocketmine", new IamCommand("iam"));
+        $this->register("pocketmine", new SendpopupCommand("sendpopup"));
 		$this->register("pocketmine", new VersionCommand("version"));
 		$this->register("pocketmine", new PluginsCommand("plugins"));
 		$this->register("pocketmine", new SeedCommand("seed"));
