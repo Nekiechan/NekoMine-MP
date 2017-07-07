@@ -2,7 +2,7 @@
 ### NekoMine-MP is a server software for Minecraft Pocket Edition in PHP. NekoMine-MP is a fork of PocketMine (PMMP) and ### Tesseract as well as ClearSky! NekoMine-MP is a project im working on with creative new commands!
 
 [![Build Status](https://travis-ci.org/Nekiechan/NekoMine-MP.svg?branch=master)](https://travis-ci.org/Nekiechan/NekoMine-MP)
-
+### 32-BIT SUPPORTED! GOTO 32SUPPORT BRANCH!
 ### Setup, help & support, FAQs
 Head over to the [documentation site](http://pmmp.readthedocs.org/).
 If you don't find what you're looking for there, [talk to a human](#discussion). Please do not use our issue tracker for support requests.
