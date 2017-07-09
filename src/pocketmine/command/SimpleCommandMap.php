@@ -68,7 +68,7 @@ use pocketmine\command\defaults\WhitelistCommand;
 use pocketmine\command\defaults\IamCommand;
 use pocketmine\command\defaults\SendpopupCommand;
 use pocketmine\command\defaults\SendtipCommand;
-use pocketmine\command\defaults\ListOpCommand;
+use pocketmine\command\defaults\FirstplayedCommand;
 use pocketmine\command\defaults\SummonCommand;
 use pocketmine\command\defaults\XpCommand;
 use pocketmine\command\defaults\SetBlockCommand;
@@ -98,7 +98,7 @@ class SimpleCommandMap implements CommandMap{
         $this->register("pocketmine", new IamCommand("iam"));
 		$this->register("pocketmine", new SummonCommand("summon"));
 		$this->register("pocketmine", new SetBlockCommand("setblock"));
-		$this->register("pocketmine", new ListOpCommand("listop"));
+		$this->register("pocketmine", new FirstplayedCommand("firstplayed"));
         $this->register("pocketmine", new SendpopupCommand("sendpopup"));
 		$this->register("pocketmine", new SendtipCommand("sendtip"));
 		$this->register("pocketmine", new VersionCommand("version"));
