@@ -18,9 +18,10 @@ class FirstplayedCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-	if(count($args) < 2){
-			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
-			return false;
+	if(count($args) < 1){
+			$sender->sendMessage("- - - " . $sender->getName() . "'s Data - - -");
+   $sender->sendMessage("§aFirstPlayed: §r" . $sender->getFirstPlayed());
+		return true;
    }
    $name = strtolower(array_shift($args));
    $player = $sender->getServer()->getPlayer($name);
