@@ -14,8 +14,7 @@ class SendpopupCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"§aSends a popup to a player!",
-			"§l§aUsage: §l§d/sendpopup <player> <msg>",
-			["sendtip"]
+			"§l§aUsage: §l§d/sendpopup <player> <msg>
 		);
 		$this->setPermission("pocketmine.command.sendpopup");
 	}
@@ -37,7 +36,7 @@ class SendpopupCommand extends VanillaCommand{
 
 		if($player instanceof Player){
 			$sender->sendMessage("Message: " . implode(" ", $args) . ", Was sent to: " . $player->getName());
-			$player->sendTip(implode(" ", $args));
+			$player->sendPopup(implode(" ", $args));
 		}else{
 			$sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
 		}
