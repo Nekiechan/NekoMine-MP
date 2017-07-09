@@ -232,7 +232,7 @@ interface BlockIds{
 	const END_ROD = 208;
 	const END_GATEWAY = 209;
     //thankies to Suko ^-^
-    const SHULKER_BOX = 229;
+    const SHULKER_BOX = 218;
 	const CHORUS_PLANT = 240;
 	const STAINED_GLASS = 241;
 
