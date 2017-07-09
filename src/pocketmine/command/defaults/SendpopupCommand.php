@@ -14,7 +14,7 @@ class SendpopupCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"§aSends a popup to a player!",
-			"§l§aUsage: §l§d/sendpopup <player> <msg>
+			"§l§aUsage: §l§d/sendpopup <player> <msg>"
 		);
 		$this->setPermission("pocketmine.command.sendpopup");
 	}
