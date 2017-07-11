@@ -241,7 +241,8 @@ class Server{
 
 	/** @var Config */
 	private $properties;
-
+    private $nekoprop;
+    private $nekopropCache = [];
 	private $propertyCache = [];
 
 	/** @var Config */
@@ -1163,6 +1164,25 @@ class Server{
 
 		return $this->propertyCache[$variable] === null ? $defaultValue : $this->propertyCache[$variable];
 	}
+	
+	/**
+	 * @param string $variable
+	 * @param mixed  $defaultValue
+	 *
+	 * @return mixed
+	 */
+public function getNekoProp($variable, $defaultValue = null){
+		if(!array_key_exists($variable, $this->nekopropCache)){
+			$v = getopt("", ["$variable::"]);
+			if(isset($v[$variable])){
+				$this->nekopropCache[$variable] = $v[$variable];
+			}else{
+				$this->nekopropCache[$variable] = $this->config->getNested($variable);
+			}
+		}
+
+		return $this->nekopropCache[$variable] === null ? $defaultValue : $this->nekopropCache[$variable];
+	}
 
 	/**
 	 * @param string $variable
@@ -1172,6 +1192,13 @@ class Server{
 		$this->properties->set($variable, $value);
 	}
 
+	/**
+	 * @param string $variable
+	 * @param string $value
+	 */
+	public function setNekoConfigString($variable, $value){
+		$this->nekoprop->set($variable, $value);
+	}
 	/**
 	 * @param string $variable
 	 * @param int    $defaultValue
@@ -1412,9 +1439,9 @@ class Server{
 				}
 				@file_put_contents($this->dataPath . "pocketmine.yml", $content);
 			}
-			$this->config = new Config($this->dataPath . "pocketmine.yml", Config::YAML, []);
+			$this->config =$this->config = new Config($this->dataPath . "pocketmine.yml", Config::YAML, []);
 
-			$this->logger->info("Loading server properties...");
+			$this->logger->info("Loading server properties 1/2...");
 			$this->properties = new Config($this->dataPath . "server.properties", Config::PROPERTIES, [
 				"motd" => "Minecraft: PE Server",
 				"server-port" => 19132,
@@ -1439,7 +1466,19 @@ class Server{
 				"rcon.password" => substr(base64_encode(random_bytes(20)), 3, 10),
 				"auto-save" => true,
 				"view-distance" => 8
+			]); 
+			
+			$this->logger->info("Loading server properties 2/2...");
+			$this->nekoprop = new Config($this->dataPath . "nekomine.properties", Config::PROPERTIES, [
+            "enable-playerdata-cmd" => false,
+            "enable-custom-deathmessage" => true,
+            "custom-deathmessage-generic" => "§l§d{player} died!"
+            "custom-deathmessage-lava" => "§l§d{player} tried to swim in lava xD!",
+            "custom-deathmessage-drown" => "§l§d{player} could'nt swim and drowned!",
+            "custom-deathmessage-fall" => "§l§d{player} broke their legs!",
+            "perm-op" => "YourNameHere"
 			]);
+$this->playerdata = $this->nekoprop->
 
 			$this->forceLanguage = $this->getProperty("settings.force-language", false);
 			$this->baseLang = new BaseLang($this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE));
