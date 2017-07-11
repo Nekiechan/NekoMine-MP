@@ -18,11 +18,14 @@ class FirstplayedCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-		
+if(count($args) === 0){
+   $sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
+return false;
+}
+		$name = strtolower(array_shift($args));
+        $player = $sender->getServer()->getPlayer($name);
 		if($player instanceof Player){
-			 $name = strtolower(array_shift($args));
-             $player = $sender->getServer()->getPlayer($name);
-             $sender->sendMessage("- - - " . $player->getName() . "'s Data - - -");
+			 $sender->sendMessage("- - - " . $player->getName() . "'s Data - - -");
              $sender->sendMessage("§aFirstPlayed: §r" . $player->getFirstPlayed());
              $sender->sendMessage("§aPlayer Ip/port: §r" . $player->getAddress() . "§a:§r" . $player->getPort());
 			return true;
