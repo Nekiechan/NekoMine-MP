@@ -317,17 +317,20 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	protected $allowInstaBreak = false;
 
 	private $needACK = [];
-
+    private $customdeath = false;
+    private $customdeathmessage = " Left the server!";
 	private $batchedPackets = [];
 
 	/** @var PermissibleBase */
 	private $perm = null;
 
 	public function getLeaveMessage(){
-		return new TranslationContainer(TextFormat::YELLOW . "%custom.leave.message", [
-			$this->getDisplayName()
-		]);
-	}
+        if($this->customdeath===true){
+        return $this->getDisplayName() . " " . $this->customdeathmessage;
+        }else{
+		return "§l§a" . $this->getDisplayName() . "§r§l§dLeft this server.....";
+        }
+    }
 
 	/**
 	 * This might disappear in the future.
