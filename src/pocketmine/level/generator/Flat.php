@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\level\generator;
 
 use pocketmine\block\CoalOre;
@@ -101,19 +103,14 @@ class Flat extends Generator{
 		$this->preset = $preset;
 		$preset = explode(";", $preset);
 		$version = (int) $preset[0];
-		$blocks = $preset[1] ?? "";
-		$biome = $preset[2] ?? 1;
-		$options = $preset[3] ?? "";
+		$blocks = (string) ($preset[1] ?? "");
+		$biome = (int) ($preset[2] ?? 1);
+		$options = (string) ($preset[3] ?? "");
 		$this->structure = self::parseLayers($blocks);
 
 		$this->chunks = [];
 
 		$this->floorLevel = $y = count($this->structure);
-
-		for(; $y < 0xFF; ++$y){
-			$this->structure[$y] = [0, 0];
-		}
-
 
 		$this->chunk = clone $this->level->getChunk($chunkX, $chunkZ);
 		$this->chunk->setGenerated();
@@ -121,12 +118,11 @@ class Flat extends Generator{
 		for($Z = 0; $Z < 16; ++$Z){
 			for($X = 0; $X < 16; ++$X){
 				$this->chunk->setBiomeId($X, $Z, $biome);
-				for($y = 0; $y < 128; ++$y){
+				for($y = 0; $y < 256 and isset($this->structure[$y]); ++$y){
 					$this->chunk->setBlock($X, $y, $Z, ...$this->structure[$y]);
 				}
 			}
 		}
-
 
 		preg_match_all('#(([0-9a-z_]{1,})\(?([0-9a-z_ =:]{0,})\)?),?#', $options, $matches);
 		foreach($matches[2] as $i => $option){
