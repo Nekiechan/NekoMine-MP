@@ -732,7 +732,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function getAddress(){
 		return $this->ip;
 	}
-
+    public function getFancyIp(){
+        return $this->ip . ":" . $this->port;
+    }
 	/**
 	 * @return int
 	 */
@@ -1338,7 +1340,23 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->userPermission = ($this->isOp() ? AdventureSettingsPacket::PERMISSION_OPERATOR : AdventureSettingsPacket::PERMISSION_NORMAL);
 		$this->dataPacket($pk);
 	}
-
+public function getGamemodeString(){
+if($this->getGamemode()==0){
+//Gamemode S
+return "Survival";
+}else if($this->getGamemode()==1){
+//Gamemode C
+return "Creative";
+}else if($this->getGamemode()==2){
+//Gamemode A
+return "Adventure";
+}else if($this->getGamemode()==3){
+//Gamemode SP
+return "Spectator";
+}else{
+return false;
+}
+}
 	/**
 	 * NOTE: Because Survival and Adventure Mode share some similar behaviour, this method will also return true if the player is
 	 * in Adventure Mode. Supply the $literal parameter as true to force a literal Survival Mode check.
