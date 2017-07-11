@@ -1586,6 +1586,7 @@ class Server{
 
 
 			Generator::addGenerator(Flat::class, "flat");
+            Generator::addGenerator(Forest::class, "forest");
 			Generator::addGenerator(Normal::class, "normal");
 			Generator::addGenerator(Normal::class, "default");
 			Generator::addGenerator(Nether::class, "hell");
