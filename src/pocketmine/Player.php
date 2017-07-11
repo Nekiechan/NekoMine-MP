@@ -324,7 +324,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	private $perm = null;
 
 	public function getLeaveMessage(){
-		return new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.left", [
+		return new TranslationContainer(TextFormat::YELLOW . "%custom.leave.message", [
 			$this->getDisplayName()
 		]);
 	}
