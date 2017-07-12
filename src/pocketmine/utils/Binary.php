@@ -647,7 +647,8 @@ class Binary{
 	 */
 	public static function writeVarLong($v) : string{
 		if(PHP_INT_SIZE === 8){
-			return self::writeVarLong_64($v);
+			//return self::writeVarLong_64($v); Force 32-bit on 64bit so it wont block players from joining on 64Bit systems
+			return self::writeVarLong_32((string) $v);
 		}else{
 			return self::writeVarLong_32((string) $v);
 		}
