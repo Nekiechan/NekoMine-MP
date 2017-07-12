@@ -107,7 +107,8 @@ class Binary{
 	public static function readSignedShort(string $str) : int{
 		self::checkLength($str, 2);
 		if(PHP_INT_SIZE === 8){
-			return unpack("n", $str)[1] << 48 >> 48;
+			//return unpack("n", $str)[1] << 48 >> 48; force 64 to use 32
+			return unpack("n", $str)[1] << 16 >> 16;
 		}else{
 			return unpack("n", $str)[1] << 16 >> 16;
 		}
@@ -146,7 +147,8 @@ class Binary{
 	public static function readSignedLShort(string $str) : int{
 		self::checkLength($str, 2);
 		if(PHP_INT_SIZE === 8){
-			return unpack("v", $str)[1] << 48 >> 48;
+			//return unpack("v", $str)[1] << 48 >> 48; force 64 to use 32
+			return unpack("v", $str)[1] << 16 >> 16;
 		}else{
 			return unpack("v", $str)[1] << 16 >> 16;
 		}
@@ -214,7 +216,8 @@ class Binary{
 	public static function readInt(string $str) : int{
 		self::checkLength($str, 4);
 		if(PHP_INT_SIZE === 8){
-			return unpack("N", $str)[1] << 32 >> 32;
+			//return unpack("N", $str)[1] << 32 >> 32; force 64 to use 32
+			return unpack("N", $str)[1];
 		}else{
 			return unpack("N", $str)[1];
 		}
@@ -239,7 +242,8 @@ class Binary{
 	public static function readLInt(string $str) : int{
 		self::checkLength($str, 4);
 		if(PHP_INT_SIZE === 8){
-			return unpack("V", $str)[1] << 32 >> 32;
+			//return unpack("V", $str)[1] << 32 >> 32; force 64 to use 32
+			return unpack("V", $str)[1];
 		}else{
 			return unpack("V", $str)[1];
 		}
@@ -382,8 +386,12 @@ class Binary{
 	public static function readLong(string $x){
 		self::checkLength($x, 8);
 		if(PHP_INT_SIZE === 8){
-			$int = unpack("N*", $x);
-			return ($int[1] << 32) | $int[2];
+		//	$int = unpack("N*", $x); force 64 to use 32
+		//	return ($int[1] << 32) | $int[2]; force 64 to use 32
+			$value = "0";
+			for($i = 0; $i < 8; $i += 2){
+				$value = bcmul($value, "65536", 0);
+				$value = bcadd($value, (string) self::readShort(substr($x, $i, 2)), 0);
 		}else{
 			$value = "0";
 			for($i = 0; $i < 8; $i += 2){
@@ -407,7 +415,12 @@ class Binary{
 	 */
 	public static function writeLong($value) : string{
 		if(PHP_INT_SIZE === 8){
-			return pack("NN", $value >> 32, $value & 0xFFFFFFFF);
+			//return pack("NN", $value >> 32, $value & 0xFFFFFFFF); force 64 to use 32
+			$x = "";
+			$value = (string) $value;
+
+			if(bccomp($value, "0") == -1){
+				$value = bcadd($value, "18446744073709551616");
 		}else{
 			$x = "";
 			$value = (string) $value;
@@ -534,7 +547,8 @@ class Binary{
 	 */
 	public static function readVarLong(string $buffer, int &$offset){
 		if(PHP_INT_SIZE === 8){
-			return self::readVarLong_64($buffer, $offset);
+			//return self::readVarLong_64($buffer, $offset); force 64 to use 32
+			return self::readVarLong_32($buffer, $offset);
 		}else{
 			return self::readVarLong_32($buffer, $offset);
 		}
@@ -583,7 +597,8 @@ class Binary{
 	 */
 	public static function readUnsignedVarLong(string $buffer, int &$offset){
 		if(PHP_INT_SIZE === 8){
-			return self::readUnsignedVarLong_64($buffer, $offset);
+			//return self::readUnsignedVarLong_64($buffer, $offset); force 64 to use 32
+			return self::readUnsignedVarLong_32($buffer, $offset);
 		}else{
 			return self::readUnsignedVarLong_32($buffer, $offset);
 		}
@@ -687,7 +702,8 @@ class Binary{
 	 */
 	public static function writeUnsignedVarLong($v) : string{
 		if(PHP_INT_SIZE === 8){
-			return self::writeUnsignedVarLong_64($v);
+			//return self::writeUnsignedVarLong_64($v); force 64 to use 32
+			return self::writeUnsignedVarLong_32((string) $v);
 		}else{
 			return self::writeUnsignedVarLong_32((string) $v);
 		}
