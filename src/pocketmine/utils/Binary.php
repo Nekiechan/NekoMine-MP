@@ -386,23 +386,26 @@ class Binary{
 	public static function readLong(string $x){
 		self::checkLength($x, 8);
 		if(PHP_INT_SIZE === 8){
-		//	$int = unpack("N*", $x); force 64 to use 32
-		//	return ($int[1] << 32) | $int[2]; force 64 to use 32
+			//$int = unpack("N*", $x); force 64 to use 32
+			//return ($int[1] << 32) | $int[2]; force 64 to use 32
 			$value = "0";
 			for($i = 0; $i < 8; $i += 2){
 				$value = bcmul($value, "65536", 0);
 				$value = bcadd($value, (string) self::readShort(substr($x, $i, 2)), 0);
+			}
+			if(bccomp($value, "9223372036854775807") == 1){
+				$value = bcadd($value, "-18446744073709551616");
+			}
+			return $value;
 		}else{
 			$value = "0";
 			for($i = 0; $i < 8; $i += 2){
 				$value = bcmul($value, "65536", 0);
 				$value = bcadd($value, (string) self::readShort(substr($x, $i, 2)), 0);
 			}
-
 			if(bccomp($value, "9223372036854775807") == 1){
 				$value = bcadd($value, "-18446744073709551616");
 			}
-
 			return $value;
 		}
 	}
