@@ -687,7 +687,8 @@ class Binary{
 	 */
 	public static function writeUnsignedVarLong($v) : string{
 		if(PHP_INT_SIZE === 8){
-			return self::writeUnsignedVarLong_64($v);
+			//return self::writeUnsignedVarLong_64($v); forced 64 to use 32
+			return self::writeUnsignedVarLong_32((string) $v);
 		}else{
 			return self::writeUnsignedVarLong_32((string) $v);
 		}
