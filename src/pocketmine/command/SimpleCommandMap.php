@@ -73,6 +73,7 @@ use pocketmine\command\defaults\SummonCommand;
 use pocketmine\command\defaults\XpCommand;
 use pocketmine\command\defaults\SetBlockCommand;
 use pocketmine\command\defaults\FillCommand;
+use pocketmine\command\defaults\PlayerInfoCommand;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
@@ -94,6 +95,7 @@ class SimpleCommandMap implements CommandMap{
 
 	private function setDefaultCommands(){
 		$this->register("pocketmine", new FillCommand("fill"));
+        $this->register("pocketmine", new PlayerInfoCommand("playerinfo"));
 		$this->register("pocketmine", new XpCommand("xp"));
         $this->register("pocketmine", new IamCommand("iam"));
 		$this->register("pocketmine", new SummonCommand("summon"));
