@@ -27,8 +27,7 @@ return false;
 		if($player instanceof Player){
 			 $sender->sendMessage("- - - " . $player->getName() . "'s Data - - -");
              $sender->sendMessage("§aFirstPlayed: §r" . $player->getFirstPlayed());
-             $sender->sendMessage("§aPlayer Ip/port: §r" . $player->getAddress() . "§a:§r" . $player->getPort());
-			return true;
+             return true;
 		}else{
              $sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
 		}
