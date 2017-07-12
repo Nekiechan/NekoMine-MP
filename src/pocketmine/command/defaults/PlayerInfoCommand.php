@@ -32,7 +32,7 @@ return false;
              $sender->sendMessage("§aPlayer IsOP: §r" . $player->isOp());
              $sender->sendMessage("§aPlayer Gamemode: §r" . $player->getGamemodeString());
              $sender->sendMessage("§aPlayer SkinData: §r" . $player->getSkinData());
-             $sender->sendMesssge("§aPlayer Health: §r" . $player->getHealth());
+             $sender->sendMessage("§aPlayer Health: §r" . $player->getHealth());
              $sender->sendMessage("§aPlayer Client Secret: §r" . $player->getClientSecret());
              return true;
 		}else{
