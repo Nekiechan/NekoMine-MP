@@ -304,7 +304,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	protected $spawnThreshold;
 	/** @var null|WeakPosition */
 	private $spawnPosition = null;
-
+	private $nMessage;
 	protected $inAirTicks = 0;
 	protected $startAirTicks = 5;
 
@@ -323,12 +323,44 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/** @var PermissibleBase */
 	private $perm = null;
+	public function applyConfig($string)
+    {
+        $string = str_replace("&0", TextFormat::BLACK, $string);
+        $string = str_replace("&1", TextFormat::DARK_BLUE, $string);
+        $string = str_replace("&2", TextFormat::DARK_GREEN, $string);
+        $string = str_replace("&3", TextFormat::DARK_AQUA, $string);
+        $string = str_replace("&4", TextFormat::DARK_RED, $string);
+        $string = str_replace("&5", TextFormat::DARK_PURPLE, $string);
+        $string = str_replace("&6", TextFormat::GOLD, $string);
+        $string = str_replace("&7", TextFormat::GRAY, $string);
+        $string = str_replace("&8", TextFormat::DARK_GRAY, $string);
+        $string = str_replace("&9", TextFormat::BLUE, $string);
+        $string = str_replace("&a", TextFormat::GREEN, $string);
+        $string = str_replace("&b", TextFormat::AQUA, $string);
+        $string = str_replace("&c", TextFormat::RED, $string);
+        $string = str_replace("&d", TextFormat::LIGHT_PURPLE, $string);
+        $string = str_replace("&e", TextFormat::YELLOW, $string);
+        $string = str_replace("&f", TextFormat::WHITE, $string);
+        $string = str_replace("&k", TextFormat::OBFUSCATED, $string);
+        $string = str_replace("&l", TextFormat::BOLD, $string);
+        $string = str_replace("&m", TextFormat::STRIKETHROUGH, $string);
+        $string = str_replace("&n", TextFormat::UNDERLINE, $string);
+        $string = str_replace("&o", TextFormat::ITALIC, $string);
+        $string = str_replace("&r", TextFormat::RESET, $string);
+		$string = str_replace("{player}", $this->getDisplayName(), $string);
+		$string = str_replace("{gamemode}", $this->getGamemodeString(), $string);
+		$string = str_replace("{serverprefix}", $this->server->getNekoMineConfigValue("server-prefix","[A-NekoMine-Server]"), $string);
+        return $string;
+    }
 
 	public function getLeaveMessage(){
-        if($this->customdeath===true){
-        return $this->getDisplayName() . " " . $this->customdeathmessage;
+        if($this->server->getNekoMineConfigValue("enable-custom-message", true)){
+		$nMessage = $this->applyConfig($this->server->getNekoMineConfigValue("leave-message", "§l§a{player} §r§l§e>§dLeft {serverprefix}....."));
+        return $nMessage
         }else{
-		return "§l§a" . $this->getDisplayName() . " §r§l§e>§dLeft this server.....";
+		return new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.left", [
+            $this->getDisplayName()
+        ]);
         }
     }
 
@@ -916,12 +948,22 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($this->hasPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE)){
 			$this->server->getPluginManager()->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this);
 		}
-
-		$this->server->getPluginManager()->callEvent($ev = new PlayerJoinEvent($this,"§l§a" . $this->getDisplayName() . "§r§l§dJoined the Server! §eHave a Great Time!!!"));
+ 		if($this->server->getNekoMineConfigValue("enable-custom-message", true)){
+		$nMessage = $this->applyConfig($this->server->getNekoMineConfigValue("join-message", "§l§a{player} §r§l§e>§dJoined {serverprefix}"));
+        $this->server->getPluginManager()->callEvent($ev = new PlayerJoinEvent($this,$nMessage));
 		if(strlen(trim($ev->getJoinMessage())) > 0){
 			$this->server->broadcastMessage($ev->getJoinMessage());
 		}
-
+        }else{
+		 $this->server->getPluginManager()->callEvent($ev = new PlayerJoinEvent($this,
+            new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.joined", [
+                $this->getDisplayName()
+            ])
+        ));
+        if (strlen(trim((string)$ev->getJoinMessage())) > 0) {
+            $this->server->broadcastMessage($ev->getJoinMessage());
+        }
+        }
 		$this->noDamageTicks = 60;
 
 		foreach($this->usedChunks as $index => $c){
@@ -1356,23 +1398,23 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->userPermission = ($this->isOp() ? AdventureSettingsPacket::PERMISSION_OPERATOR : AdventureSettingsPacket::PERMISSION_NORMAL);
 		$this->dataPacket($pk);
 	}
-public function getGamemodeString(){
-if($this->getGamemode()==0){
-//Gamemode S
-return "Survival";
-}else if($this->getGamemode()==1){
-//Gamemode C
-return "Creative";
-}else if($this->getGamemode()==2){
-//Gamemode A
-return "Adventure";
-}else if($this->getGamemode()==3){
-//Gamemode SP
-return "Spectator";
-}else{
-return false;
-}
-}
+	public function getGamemodeString(){
+		if($this->getGamemode()==0){
+			//Gamemode S
+			return "Survival";
+		}else if($this->getGamemode()==1){
+			//Gamemode C
+			return "Creative";
+		}else if($this->getGamemode()==2){
+			//Gamemode A
+			return "Adventure";
+		}else if($this->getGamemode()==3){
+			//Gamemode SP
+			return "Spectator";
+		}else{
+			return false;
+		}
+	}
 	/**
 	 * NOTE: Because Survival and Adventure Mode share some similar behaviour, this method will also return true if the player is
 	 * in Adventure Mode. Supply the $literal parameter as true to force a literal Survival Mode check.
