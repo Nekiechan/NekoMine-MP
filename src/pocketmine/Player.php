@@ -359,7 +359,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
         return $nMessage;
         }else{
 		return new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.left", [
-            $this->getDisplayName();
+            $this->getDisplayName()
         ]);
         }
     }
@@ -957,7 +957,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
         }else{
 		 $this->server->getPluginManager()->callEvent($ev = new PlayerJoinEvent($this,
             new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.joined", [
-                $this->getDisplayName();
+                $this->getDisplayName()
             ])
         ));
         if (strlen(trim((string)$ev->getJoinMessage())) > 0) {
