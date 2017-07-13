@@ -62,10 +62,10 @@ use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\network\protocol\MobEffectPacket;
-use pocketmine\network\protocol\RemoveEntityPacket;
-use pocketmine\network\protocol\SetEntityDataPacket;
-use pocketmine\network\protocol\SetEntityLinkPacket;
+use pocketmine\network\mcpe\protocol\MobEffectPacket; //exists
+use pocketmine\network\mcpe\protocol\RemoveEntityPacket; //exists
+use pocketmine\network\mcpe\protocol\SetEntityDataPacket; //exists
+use pocketmine\network\mcpe\protocol\SetEntityLinkPacket; //exists
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
