@@ -1,0 +1,32 @@
+# NekoMine's config version, DO NOT EDIT!
+version: 2
+# Plugin api, edit at your own risk! (alot of 3.0.0 and below wont work properly!)
+plugin-api: 2.0.0
+# Allows older clients to join! WARNING, USE AT YOUR OWN RISK!
+# Example:
+# backwards-protocol: [number , number]
+backwards-protocol: []
+# Kill php process on shutdown, WIP!
+kill-on-exit: false
+# Join/Leave Messages
+# formats:
+# {player} = player name
+# {gamemode} = player gamemode
+# {world} = world that player spawned in
+# {time} = time (in server's timezone) of player joining
+# {serverprefix} = your custom [Bob'sServer] tag
+server-prefix: "[A-NekoMine-Server]"
+join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
+leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
+#Enable Dev commands
+enable-dev-commands: true
+#Enable NSFW
+#notifies players that this is a NSFW server on join if true
+enable-nsfw: false
+nsfw-message: "§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"
+#Enable Player like/dislike System		--WIP--
+#enables/disables the /like <player> and the /dislike <player> commands
+enable-likesystem: false
+likesystem-data: []
+#Enable pause console on crash	--WIP--
+enable-pause: false
