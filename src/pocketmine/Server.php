@@ -1131,7 +1131,21 @@ class Server{
 
 		return null;
 	}
-
+	public function getNekoMineConfig(){
+		return $this->nekomineconfig;
+	}
+    /**
+     * @param string $key
+     * @param null $defaultValue
+     * @return mixed
+     */
+    public function getNekoMineConfigValue(string $key, $defaultValue = null){
+		if($this->nekomineconfig->exists($key)){
+			return $this->nekomineconfig->get($key);
+		} else {
+			return $defaultValue;
+		}
+	}
 	/**
 	 * @param string $variable
 	 * @param string $defaultValue
@@ -1446,8 +1460,22 @@ class Server{
 			$this->forceLanguage = $this->getProperty("settings.force-language", false);
 			$this->baseLang = new BaseLang($this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE));
 			$this->logger->info($this->getLanguage()->translateString("language.selected", [$this->getLanguage()->getName(), $this->getLanguage()->getLang()]));
-
+			
+			
 			$this->memoryManager = new MemoryManager($this);
+			$version = $this->getVersion();
+			$this->version = $version;
+			$code = $this->getCodename();
+			$mcpe = $this->getVersion();
+			$protocol = ProtocolInfo::CURRENT_PROTOCOL;
+			$api = $this->getApiVersion();
+			$ip = Utils::getIP();
+			$port = $this->getPort();
+			$query = $this->getIp();
+			$ssl = $this->isExtensionInstalled("OpenSSL");
+			$mode = $this->checkAuthentication();
+			$lang = $this->getProperty("settings.language", "eng");
+			$date = date("D, F d, Y, H:i T");
 			$lang = $this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE);
 			if(!file_exists($this->dataPath . "NekoMine.yml")){
 				if(file_exists($this->filePath . "src/pocketmine/resources/NekoMine_$lang.yml")){
