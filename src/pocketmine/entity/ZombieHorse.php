@@ -24,7 +24,7 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\network\mcpe\protocol\AddEntityPacket;
+use pocketmine\network\mcpe\protocol\AddEntityPacket; //just a few left to fix
 use pocketmine\Player;
 
 class ZombieHorse extends Animal {
