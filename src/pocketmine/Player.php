@@ -328,7 +328,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
         if($this->customdeath===true){
         return $this->getDisplayName() . " " . $this->customdeathmessage;
         }else{
-		return "§l§a" . $this->getDisplayName() . " §r§l§dLeft this server.....";
+		return "§l§a" . $this->getDisplayName() . " §r§l§e>§dLeft this server.....";
         }
     }
 
