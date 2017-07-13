@@ -21,29 +21,17 @@
 
 namespace pocketmine\item;
 
+use pocketmine\block\Block;
 
-class WoodenPickaxe extends Tool {
+class SpruceDoor extends Door {
 	/**
-	 * WoodenPickaxe constructor.
+	 * SpruceDoor constructor.
 	 *
 	 * @param int $meta
 	 * @param int $count
 	 */
 	public function __construct($meta = 0, $count = 1){
-		parent::__construct(self::WOODEN_PICKAXE, $meta, $count, "Wooden Pickaxe");
-	}
-
-	/**
-	 * @return int
-	 */
-	public function isPickaxe(){
-		return Tool::TIER_WOODEN;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getAttackDamage(){
-		return 3;
+		$this->block = Block::get(Item::SPRUCE_DOOR_BLOCK);
+		parent::__construct(self::SPRUCE_DOOR, 0, $count, "Spruce Door");
 	}
 }
