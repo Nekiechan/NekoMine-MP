@@ -2,11 +2,13 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ *  _______                                _   
+ * |__   __|                              | |  
+ *    | | ___  ___ ___  ___ _ __ __ _  ___| |_ 
+ *    | |/ _ \/ __/ __|/ _ \ '__/ _` |/ __| __|
+ *    | |  __/\__ \__ \  __/ | | (_| | (__| |_ 
+ *    |_|\___||___/___/\___|_|  \__,_|\___|\__|
+ *                                             
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,29 +23,30 @@
 
 namespace pocketmine\item;
 
-class Beetroot extends Food {
+
+class ChorusFruit extends Food {
 	/**
-	 * Beetroot constructor.
+	 * ChorusFruit constructor.
 	 *
 	 * @param int $meta
 	 * @param int $count
 	 */
 	public function __construct($meta = 0, $count = 1){
-		parent::__construct(self::BEETROOT, $meta, $count, "Beetroot");
+		parent::__construct(self::CHORUS_FRUIT, 0, $count, "Chorus Fruit");
 	}
 
 	/**
 	 * @return int
 	 */
 	public function getFoodRestore() : int{
-		return 1;
+		return 4;
 	}
 
 	/**
 	 * @return float
 	 */
 	public function getSaturationRestore() : float{
-		return 1.2;
+		return 2.4;
 	}
-}
 
+}
