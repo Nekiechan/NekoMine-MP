@@ -1463,19 +1463,6 @@ class Server{
 			
 			
 			$this->memoryManager = new MemoryManager($this);
-			$version = $this->getVersion();
-			$this->version = $version;
-			$code = $this->getCodename();
-			$mcpe = $this->getVersion();
-			$protocol = ProtocolInfo::CURRENT_PROTOCOL;
-			$api = $this->getApiVersion();
-			$ip = Utils::getIP();
-			$port = $this->getPort();
-			$query = $this->getIp();
-			$ssl = $this->isExtensionInstalled("OpenSSL");
-			$mode = $this->checkAuthentication();
-			$lang = $this->getProperty("settings.language", "eng");
-			$date = date("D, F d, Y, H:i T");
 			$lang = $this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE);
 			if(!file_exists($this->dataPath . "NekoMine.yml")){
 				if(file_exists($this->filePath . "src/pocketmine/resources/NekoMine_$lang.yml")){
