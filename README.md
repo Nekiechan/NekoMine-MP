@@ -4,9 +4,7 @@
 [![Build Status](https://travis-ci.org/Nekiechan/NekoMine-MP.svg?branch=master)](https://travis-ci.org/Nekiechan/NekoMine-MP)
 
 ### Setup, help & support, FAQs
-Head over to the [documentation site](http://pmmp.readthedocs.org/).
-If you don't find what you're looking for there, [talk to a human](#discussion). Please do not use our issue tracker for support requests.
-
+Download this as a zip and extract SRC to your Pocketmine Folder. Be sure to remove PocketMine-MP.phar! (to compile it, use the NekoMine DevTools (Pocketmine dev tools isnt compatable with this fork!))
 ### Discussion
 - [Forums](https://forums.pmmp.io/)
 - [#pmmp + #pocketmine channel IRC](http://webchat.freenode.net/?channels=pmmp,pocketmine)
