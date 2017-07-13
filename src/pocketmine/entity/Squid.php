@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -23,21 +23,18 @@ namespace pocketmine\entity;
 
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
-use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item as ItemItem;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\AddEntityPacket;
 use pocketmine\network\mcpe\protocol\EntityEventPacket;
 use pocketmine\Player;
 
-class Squid extends WaterAnimal implements Ageable {
+class Squid extends WaterAnimal implements Ageable{
 	const NETWORK_ID = 17;
 
 	public $width = 0.95;
 	public $length = 0.95;
 	public $height = 0.95;
-
-	public $dropExp = [1, 3];
 
 	/** @var Vector3 */
 	public $swimDirection = null;
@@ -46,23 +43,14 @@ class Squid extends WaterAnimal implements Ageable {
 	private $switchDirectionTicker = 0;
 
 	public function initEntity(){
+		$this->setMaxHealth(10);
 		parent::initEntity();
-		$this->setMaxHealth(5);
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getName() : string{
+	public function getName(){
 		return "Squid";
 	}
 
-	/**
-	 * @param float             $damage
-	 * @param EntityDamageEvent $source
-	 *
-	 * @return bool|void
-	 */
 	public function attack($damage, EntityDamageEvent $source){
 		parent::attack($damage, $source);
 		if($source->isCancelled()){
@@ -72,7 +60,9 @@ class Squid extends WaterAnimal implements Ageable {
 		if($source instanceof EntityDamageByEntityEvent){
 			$this->swimSpeed = mt_rand(150, 350) / 2000;
 			$e = $source->getDamager();
-			$this->swimDirection = (new Vector3($this->x - $e->x, $this->y - $e->y, $this->z - $e->z))->normalize();
+			if($e !== null){
+				$this->swimDirection = (new Vector3($this->x - $e->x, $this->y - $e->y, $this->z - $e->z))->normalize();
+			}
 
 			$pk = new EntityEventPacket();
 			$pk->eid = $this->getId();
@@ -81,19 +71,11 @@ class Squid extends WaterAnimal implements Ageable {
 		}
 	}
 
-	/**
-	 * @return Vector3
-	 */
 	private function generateRandomDirection(){
 		return new Vector3(mt_rand(-1000, 1000) / 1000, mt_rand(-500, 500) / 1000, mt_rand(-1000, 1000) / 1000);
 	}
 
 
-	/**
-	 * @param $currentTick
-	 *
-	 * @return bool
-	 */
 	public function onUpdate($currentTick){
 		if($this->closed !== false){
 			return false;
@@ -164,12 +146,9 @@ class Squid extends WaterAnimal implements Ageable {
 	}
 
 
-	/**
-	 * @param Player $player
-	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
-		$pk->eid = $this->getId();
+		$pk->entityRuntimeId = $this->getId();
 		$pk->type = Squid::NETWORK_ID;
 		$pk->x = $this->x;
 		$pk->y = $this->y;
@@ -185,23 +164,9 @@ class Squid extends WaterAnimal implements Ageable {
 		parent::spawnTo($player);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getDrops(){
-		$lootingL = 0;
-		$cause = $this->lastDamageCause;
-		if($cause instanceof EntityDamageByEntityEvent and $cause->getDamager() instanceof Player){
-			$damager = $cause->getDamager();
-			if($damager instanceof Player){
-				$lootingL = $damager->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
-
-				$drops = [ItemItem::get(ItemItem::DYE, 0, mt_rand(1, 3 + $lootingL))];
-
-				return $drops;
-			}
-		}
-
-		return [];
+		return [
+			ItemItem::get(ItemItem::DYE, 0, mt_rand(1, 3))
+		];
 	}
 }

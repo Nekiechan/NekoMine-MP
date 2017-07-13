@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\mcpe\protocol\AddItemEntityPacket;
 use pocketmine\Player;
 
-class Item extends Entity {
+class Item extends Entity{
 	const NETWORK_ID = 64;
 
 	protected $owner = null;
@@ -43,6 +43,8 @@ class Item extends Entity {
 	public $width = 0.25;
 	public $length = 0.25;
 	public $height = 0.25;
+	protected $baseOffset = 0.125;
+
 	protected $gravity = 0.04;
 	protected $drag = 0.02;
 
@@ -65,6 +67,8 @@ class Item extends Entity {
 		if(isset($this->namedtag->Thrower)){
 			$this->thrower = $this->namedtag["Thrower"];
 		}
+
+
 		if(!isset($this->namedtag->Item)){
 			$this->close();
 			return;
@@ -74,15 +78,10 @@ class Item extends Entity {
 
 		$this->item = ItemItem::nbtDeserialize($this->namedtag->Item);
 
+
 		$this->server->getPluginManager()->callEvent(new ItemSpawnEvent($this));
 	}
 
-	/**
-	 * @param float             $damage
-	 * @param EntityDamageEvent $source
-	 *
-	 * @return bool|void
-	 */
 	public function attack($damage, EntityDamageEvent $source){
 		if(
 			$source->getCause() === EntityDamageEvent::CAUSE_VOID or
@@ -94,17 +93,10 @@ class Item extends Entity {
 		}
 	}
 
-	/**
-	 * @param $currentTick
-	 *
-	 * @return bool
-	 */
 	public function onUpdate($currentTick){
 		if($this->closed){
 			return false;
 		}
-
-		$this->age++;
 
 		$tickDiff = $currentTick - $this->lastUpdate;
 		if($tickDiff <= 0 and !$this->justCreated){
@@ -148,10 +140,9 @@ class Item extends Entity {
 				$this->motionY *= -0.5;
 			}
 
-			if($currentTick % 5 == 0)
-				$this->updateMovement();
+			$this->updateMovement();
 
-			if($this->age > 2000){
+			if($this->age > 6000){
 				$this->server->getPluginManager()->callEvent($ev = new ItemDespawnEvent($this));
 				if($ev->isCancelled()){
 					$this->age = 0;
@@ -189,11 +180,6 @@ class Item extends Entity {
 		return $this->item;
 	}
 
-	/**
-	 * @param Entity $entity
-	 *
-	 * @return bool
-	 */
 	public function canCollideWith(Entity $entity){
 		return false;
 	}
@@ -240,12 +226,9 @@ class Item extends Entity {
 		$this->thrower = $thrower;
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function spawnTo(Player $player){
 		$pk = new AddItemEntityPacket();
-		$pk->eid = $this->getId();
+		$pk->entityRuntimeId = $this->getId();
 		$pk->x = $this->x;
 		$pk->y = $this->y;
 		$pk->z = $this->z;
@@ -253,9 +236,8 @@ class Item extends Entity {
 		$pk->speedY = $this->motionY;
 		$pk->speedZ = $this->motionZ;
 		$pk->item = $this->getItem();
+		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
-		$this->sendData($player);
 
 		parent::spawnTo($player);
 	}
