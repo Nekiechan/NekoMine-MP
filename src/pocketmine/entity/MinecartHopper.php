@@ -21,7 +21,7 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\network\mcpe\protocol\AddEntityPacket; //man when will genisys update their network folder?
 use pocketmine\Player;
 
 class MinecartHopper extends Minecart {
