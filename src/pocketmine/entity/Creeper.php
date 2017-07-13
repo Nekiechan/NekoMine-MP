@@ -24,7 +24,7 @@ namespace pocketmine\entity;
 
 use pocketmine\event\entity\CreeperPowerEvent;
 use pocketmine\nbt\tag\ByteTag;
-use pocketmine\network\mcpe\protocol\AddEntityPacket;
+use pocketmine\network\mcpe\protocol\AddEntityPacket; //lol i forgot to say hello .3.
 use pocketmine\Player;
 
 class Creeper extends Monster {
