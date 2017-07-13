@@ -34,6 +34,7 @@ kill-on-exit: false
 # {time} = time (in server's timezone) of player joining
 # {serverprefix} = your custom [Bob'sServer] tag
 server-prefix: "[A-NekoMine-Server]"
+enable-custom-message: true
 join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
 leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
 #Enable Dev commands
