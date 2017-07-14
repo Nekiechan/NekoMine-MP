@@ -19,7 +19,6 @@
 */      
 namespace pocketmine\API;
 class Types{
-     protected type = null;
      private PLAYER;
      private SERVER;
      private ENTITY;
