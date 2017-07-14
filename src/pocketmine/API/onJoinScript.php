@@ -21,9 +21,10 @@ namespace pocketmine\API;
 use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\API\Api;
-class onJoinScript extends Api{
+use pocketmine\API\ApiTypes;
+class onJoinScript implements Types extends Api{
 protected $onJoinScriptAPI;
-protected $type = "player";
+protected $PLAYER;
 public function __construct(Player $player, Server $server, Api $onJoinScriptAPI){
 		$this->player = $player;
         $this->server = $server;
