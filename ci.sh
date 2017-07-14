@@ -9,7 +9,7 @@ done
 echo Lint done successfully.
 mkdir plugins
 cd plugins
-wget https://github.com/Nekiechan/PocketMine-DevTools/releases/download/neko/DevTools_v1.11.3.phar
+wget https://github.com/Nekiechan/NekoMine-DevTools/releases/download/neko/DevTools_v1.11.3.phar
 cd -
 echo -e "version\nmakeserver\nstop\n" | php src/pocketmine/PocketMine.php --no-wizard | grep -v "\[Neko] Adding "
 if ls plugins/DevTools/NekoMine-MP*.phar >/dev/null 2>&1; then
