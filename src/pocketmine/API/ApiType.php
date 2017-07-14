@@ -19,11 +19,12 @@
 */      
 namespace pocketmine\API;
 class Types{
-     private PLAYER;
-     private SERVER;
-     private ENTITY;
-     private BLOCK;
-     private ERROR; //use api's to run code on error!
+protected $type = null;
+     private $PLAYER;
+     private $SERVER;
+     private $ENTITY;
+     private $BLOCK;
+     private $ERROR; //use api's to run code on error!
      
      final public function getType(){
           return $this->type;
