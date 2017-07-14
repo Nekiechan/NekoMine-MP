@@ -6,21 +6,10 @@
 ### Setup, help & support, FAQs
 Download this as a zip and extract SRC to your Pocketmine Folder. Be sure to remove PocketMine-MP.phar! (to compile it, use the NekoMine DevTools (Pocketmine dev tools isnt compatable with this fork!))
 ### Discussion
-- [Forums](https://forums.pmmp.io/)
-- [#pmmp + #pocketmine channel IRC](http://webchat.freenode.net/?channels=pmmp,pocketmine)
-
-### Plugins
-There are a very wide range of already-written plugins available which you can use to customise your server. Check out [the old plugin repository](http://plugins.pocketmine.net/) and [Poggit](https://poggit.pmmp.io), or just search GitHub.
+- [Forums](https://nekocraftforums.blogspot.com/)
 
 ### For developers
- * [Latest API documentation](https://jenkins.pmmp.io/job/PocketMine-MP-doc/doxygen/) - Doxygen documentation generated from development
- * [DevTools](https://github.com/pmmp/PocketMine-DevTools/) - A development tools plugin for creating plugins.
-
-### Can I contribute?
-Yes you can! Contributions are welcomed provided that they comply with our [Contributing Guidelines](CONTRIBUTING.md). Please ensure you read the relevant sections of the guidelines carefully before making a Pull Request or opening an Issue.
-
-### Where can I get the latest .phar?
-Head over to our [official Jenkins server](https://jenkins.pmmp.io/)
+ * [NekoMineDevTools](https://github.com/Nekiechan/NekoMine-DevTools) - A development tools plugin for creating plugins.
 
 ## Third-party Libraries/Protocols Used
 * __[PHP Sockets](http://php.net/manual/en/book.sockets.php)__
@@ -33,6 +22,8 @@ Head over to our [official Jenkins server](https://jenkins.pmmp.io/)
 * __[Zlib](http://www.zlib.net/)__: A Massively Spiffy Yet Delicately Unobtrusive Compression Library
 * __[Source RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)__
 * __[UT3 Query Protocol](http://wiki.unrealadmin.org/UT3_query_protocol)__
+* __[GENISYS](https://github.com/GenisysPro/GenisysPro)__
+* __[Hydracon](https://github.com/E-DevPM/Hydracon)__
 
 ## Licensing information
 
