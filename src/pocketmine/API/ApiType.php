@@ -17,7 +17,7 @@
 * 
 *
 */      
-namespace pocketmine\API
+namespace pocketmine\API;
 class Types{
      protected type = null;
      private PLAYER;
