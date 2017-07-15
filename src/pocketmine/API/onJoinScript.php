@@ -22,7 +22,7 @@ use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\API\Api;
 use pocketmine\API\ApiTypes;
-class onJoinScript implements Types extends Api{
+class onJoinScript extends Api implements Types{
 protected $onJoinScriptAPI;
 protected $PLAYER;
 public function __construct(Player $player, Server $server, Api $onJoinScriptAPI){
