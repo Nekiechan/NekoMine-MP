@@ -1384,6 +1384,21 @@ class Server{
 			Server::$sleeper->wait($ms);
 		}, $microseconds);
 	}
+	public function getCurrentConfigVer(){
+		return 2;
+	}
+	public function getNekoVersion(){
+		return $this->getNekoMineConfigValue("version", $this->getCurrentConfigVer());
+	}
+	public function getCurrentConfigApi(){
+		return "2.0.0";
+	}
+	public function getNekoConfigApi(){
+		return $this->getNekoMineConfigValue("plugin-api", $this->getCurrentConfigApi());
+	}
+	public function isNSFW(){
+		return $this->getNekoMineConfigValue("enable-nsfw", false);
+	}
 	public function about(){
 	$version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
 		$string = " 
