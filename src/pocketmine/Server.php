@@ -1400,7 +1400,6 @@ class Server{
 		return $this->getNekoMineConfigValue("enable-nsfw", false);
 	}
 	public function about(){
-	$version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
 		$string = " 
    _   _      _         __  __ _                   __  __ _____  
   | \ | |    | |       |  \/  (_)                 |  \/  |  __ \ 
@@ -1409,7 +1408,6 @@ class Server{
   | |\  |  __/   < (_) | |  | | | | | |  __/      | |  | | |     
   |_| \_|\___|_|\_\___/|_|  |_|_|_| |_|\___|      |_|  |_|_|     
 	Version: §6" . $this->getPocketMineVersion() . '§f
-	Client Version: §b' . $version . '§f
 	PHP Version: §e' . PHP_VERSION . '§f
 	System OS: §6' . PHP_OS .'§f
 	NekoMine-MP made by the NekoMine Team!
