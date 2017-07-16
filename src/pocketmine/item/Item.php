@@ -246,7 +246,7 @@ class Item implements ItemIds, \JsonSerializable {
 			self::$list[self::POPPED_CHORUS_FRUIT] = PoppedChorusFruit::class;
 			self::$list[self::PUMPKIN_SEEDS] = PumpkinSeeds::class;
 			self::$list[self::PRISMARINE_SHARD] = PrismarineShard::class;
-			self::$list[self::PAINTING] = Painting::class;
+          //self::$list[self::PAINTING] = Painting::class;
 			self::$list[self::POTION] = Potion::class;
 			self::$list[self::PAPER] = Paper::class;
 			self::$list[self::POTATO] = Potato::class;
