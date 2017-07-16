@@ -17,11 +17,13 @@
 #*
 #*/                   
 # NekoMine's config version, DO NOT EDIT!
-version: 2
+version: 3
 # Plugin api, edit at your own risk! (alot of 3.0.0 and below wont work properly!)
 plugin-api: "2.0.0"
 # Allows older clients to join! WARNING, USE AT YOUR OWN RISK!
 # Example:
+# Enables devs to use event scripts to excecute code. IE when server crashes, starts etc (WIP)
+enable-api-scripts: false
 # backwards-protocol: [number , number]
 backwards-protocol: []
 # Kill php process on shutdown, WIP!
