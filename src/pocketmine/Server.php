@@ -1384,7 +1384,22 @@ class Server{
 			Server::$sleeper->wait($ms);
 		}, $microseconds);
 	}
-
+	public function about(){
+	$version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
+		$string = " 
+   _   _      _         __  __ _                   __  __ _____  
+  | \ | |    | |       |  \/  (_)                 |  \/  |  __ \ 
+  |  \| | ___| | _____ | \  / |_ _ __   ___ ______| \  / | |__) |
+  | . ` |/ _ \ |/ / _ \| |\/| | | '_ \ / _ \______| |\/| |  ___/ 
+  | |\  |  __/   < (_) | |  | | | | | |  __/      | |  | | |     
+  |_| \_|\___|_|\_\___/|_|  |_|_|_| |_|\___|      |_|  |_|_|     
+	Version: §6" . $this->getPocketMineVersion() . '§f
+	Client Version: §b' . $version . '§f
+	PHP Version: §e' . PHP_VERSION . '§f
+	System OS: §6' . PHP_OS .'§f
+	NekoMine-MP made by the NekoMine Team!
+	Donate at: https://www.paypal.com/donate/?token=d3uraLjjvZEZDLxcxXw5m8t9-XHXUtF_wOAuZYkG9NLuZhPMPtUSotsXJX6UZzCjXNj_kG&country.x=US&locale.x=US';		$this->getLogger()->info($string);
+	}
 	/**
 	 * @param \ClassLoader    $autoloader
 	 * @param \ThreadedLogger $logger
@@ -1420,6 +1435,8 @@ class Server{
 
 			$version = new VersionString($this->getPocketMineVersion());
 
+			$this->about();
+			
 			$this->logger->info("Loading pocketmine.yml...");
 			if(!file_exists($this->dataPath . "pocketmine.yml")){
 				$content = file_get_contents($this->filePath . "src/pocketmine/resources/pocketmine.yml");
@@ -1463,6 +1480,7 @@ class Server{
 			
 			
 			$this->memoryManager = new MemoryManager($this);
+			$this->logger->info("Loading NekoMine.yml...");
 			$lang = $this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE);
 			if(!file_exists($this->dataPath . "NekoMine.yml")){
 				if(file_exists($this->filePath . "src/pocketmine/resources/NekoMine_$lang.yml")){
