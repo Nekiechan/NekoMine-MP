@@ -84,7 +84,7 @@ use pocketmine\command\defaults\MeowCommand;
 use pocketmine\command\defaults\PurrCommand;
 use pocketmine\command\defaults\SlapCommand;
 use pocketmine\command\defaults\SnuggleCommand;
-use pocketmine\commands\defaults\NsfwCommand;
+use pocketmine\command\defaults\NsfwCommand;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
