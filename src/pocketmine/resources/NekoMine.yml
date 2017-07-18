@@ -17,7 +17,7 @@
 #*
 #*/                   
 # NekoMine's config version, DO NOT EDIT!
-version: 3
+version: 4
 # Plugin api, edit at your own risk! (alot of 3.0.0 and below wont work properly!)
 plugin-api: "2.0.0"
 # Allows older clients to join! WARNING, USE AT YOUR OWN RISK!
@@ -51,3 +51,5 @@ enable-likesystem: false
 likesystem-data: []
 #Enable pause console on crash	--WIP--
 enable-pause: false
+#Enable RolePlay Commands (turn off if a plugin uses these commands, command overlapping causes both to not work!)
+enable-rp-commands: true
