@@ -122,7 +122,7 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new SlapCommand("slap"));
 		$this->register("pocketmine", new SnuggleCommand("snuggle"));
         }
-		$this->register("pocketmine", new nsfwCommand("nsfw"));
+		$this->register("pocketmine", new NsfwCommand("nsfw"));
 		
 		$this->register("pocketmine", new SetBlockCommand("setblock"));
 		$this->register("pocketmine", new FirstplayedCommand("firstplayed"));
