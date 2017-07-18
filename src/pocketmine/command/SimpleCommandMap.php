@@ -76,6 +76,15 @@ use pocketmine\command\defaults\FillCommand;
 use pocketmine\command\defaults\PlayerInfoCommand;
 use pocketmine\command\defaults\ClearCommand;
 use pocketmine\command\defaults\GameRuleCommand;
+use pocketmine\command\defaults\FacepalmCommand;
+use pocketmine\command\defaults\HissCommand;
+use pocketmine\command\defaults\HugCommand;
+use pocketmine\command\defaults\KissCommand;
+use pocketmine\command\defaults\MeowCommand;
+use pocketmine\command\defaults\PurrCommand;
+use pocketmine\command\defaults\SlapCommand;
+use pocketmine\command\defaults\SnuggleCommand;
+use pocketmine\commands\defaults\NsfwCommand;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
@@ -103,6 +112,18 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new XpCommand("xp"));
         $this->register("pocketmine", new IamCommand("iam"));
 		$this->register("pocketmine", new SummonCommand("summon"));
+        if($this->server->getNekoMineConfigValue("enable-rp-commands",true)){
+		$this->register("pocketmine", new FacepalmCommand("facepalm"));
+		$this->register("pocketmine", new HissCommand("hiss"));
+		$this->register("pocketmine", new HugCommand("hug"));
+        $this->register("pocketmine", new KissCommand("kiss"));
+		$this->register("pocketmine", new MeowCommand("meow"));
+        $this->register("pocketmine", new PurrCommand("purr"));
+		$this->register("pocketmine", new SlapCommand("slap"));
+		$this->register("pocketmine", new SnuggleCommand("snuggle"));
+        }
+		$this->register("pocketmine", new nsfwCommand("nsfw"));
+		
 		$this->register("pocketmine", new SetBlockCommand("setblock"));
 		$this->register("pocketmine", new FirstplayedCommand("firstplayed"));
         $this->register("pocketmine", new SendpopupCommand("sendpopup"));
