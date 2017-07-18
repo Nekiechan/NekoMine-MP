@@ -42,7 +42,7 @@ class KissCommand extends VanillaCommand{
 			$name = strtolower(array_shift($args));
 			$player = $sender->getServer()->getPlayer($name);
 			if($player instanceof Player){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aKisses §r§c" .  $player->getDisplayName() . "§r§a!×");
+			$sender->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aKisses §r§c" .  $player->getDisplayName() . "§r§a!×");
 			}else{
 			$sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
       }
