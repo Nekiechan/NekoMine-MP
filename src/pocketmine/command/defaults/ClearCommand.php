@@ -41,7 +41,7 @@ class ClearCommand extends VanillaCommand {
         if(!$this->testPermission($sender)){
             return true;
         }
-		if($args[0]!==null){
+		if($args!==null){
 			$name = strtolower(array_shift($args));
 			$player = $sender->getServer()->getPlayer($name);
 			$player->getInventory()->clearAll();
