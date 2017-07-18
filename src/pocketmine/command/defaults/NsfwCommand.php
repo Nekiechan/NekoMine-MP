@@ -25,7 +25,7 @@ use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
-class nsfwCommand extends VanillaCommand{
+class NsfwCommand extends VanillaCommand{
 
 	public function __construct($name){
 		parent::__construct(
