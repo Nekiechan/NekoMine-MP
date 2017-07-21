@@ -38,18 +38,18 @@ class KissCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-    if($args[0]!==null){
-			$name = strtolower(array_shift($args));
+   if(count($args) === 0){
+$sender->sendMessage(TextFormat::RED . "Please put a target player!");
+return true;
+   }
+	$name = strtolower(array_shift($args));
 			$player = $sender->getServer()->getPlayer($name);
 			if($player instanceof Player){
 			$sender->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aKisses §r§c" .  $player->getDisplayName() . "§r§a!×");
 			}else{
 			$sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
-      }
+            }
 			return true;
-			}else{
-      $sender->sendMessage("§l§cForgot to Put a player!");
-      return true;
-			}
+			
 	}
  }
