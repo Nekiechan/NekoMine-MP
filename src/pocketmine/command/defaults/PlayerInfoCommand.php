@@ -47,11 +47,11 @@ return false;
              $sender->sendMessage("§aFirstPlayed: §r" . $player->getFirstPlayed());
              $sender->sendMessage("§aPlayer Ip/port: §r" . $player->getAddress() . "§a:§r" . $player->getPort());
              $sender->sendMessage("§aPlayer ClientId: §r" . $player->getClientId());
-             $sender->sendMessage("§aPlayer IsOP: §r" . $player->isOp());
+             $sender->sendMessage("§aPlayer IsOP: §r" . $player->isOp() . " Note: no value means not OP!");
              $sender->sendMessage("§aPlayer Gamemode: §r" . $player->getGamemodeString());
-             $sender->sendMessage("§aPlayer SkinData: §r" . $player->getSkinData());
              $sender->sendMessage("§aPlayer Health: §r" . $player->getHealth());
-             $sender->sendMessage("§aPlayer Client Secret: §r" . $player->getClientSecret());
+             $sender->sendMessage("§aPlayer OS: §r" . $player->getDeviceOS());
+			 $sender->sendMessage("§aPlayer Model: §r" . $player->getDeviceModel());
              return true;
 		}else{
              $sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
