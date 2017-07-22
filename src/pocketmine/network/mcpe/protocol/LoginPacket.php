@@ -30,6 +30,7 @@ class LoginPacket extends DataPacket {
 	public $gameEdition;
 	public $clientUUID;
 	public $clientId;
+	public $clientData = [];
 	public $adRole;
 	public $currentInputMode;
 	public $defaultInputMode;
@@ -43,9 +44,12 @@ class LoginPacket extends DataPacket {
 	public $serverAddress;
 	public $skinId = null;
 	public $skin = null;
-	public function decode(){
+	public function canBeSentBeforeLogin() : bool{
+		return true;
+	}
+	public function decodePayload(){
 		$this->protocol = $this->getInt();
-		if(!in_array($this->protocol, ProtocolInfo::ACCEPTED_PROTOCOLS)){
+		if($this->protocol !== ProtocolInfo::CURRENT_PROTOCOL){
 			$this->buffer = null;
 			return; //Do not attempt to decode for non-accepted protocols
 		}
