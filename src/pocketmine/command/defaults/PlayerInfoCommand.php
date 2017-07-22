@@ -50,7 +50,7 @@ return false;
              $sender->sendMessage("§aPlayer IsOP: §r" . $player->isOp() . " Note: no value means not OP!");
              $sender->sendMessage("§aPlayer Gamemode: §r" . $player->getGamemodeString());
              $sender->sendMessage("§aPlayer Health: §r" . $player->getHealth());
-             $sender->sendMessage("§aPlayer OS: §r" . $player->getDeviceOS());
+             $sender->sendMessage("§aPlayer OS: §r" .$player->OSnumToString($player->getDeviceOS()));
 			 $sender->sendMessage("§aPlayer Model: §r" . $player->getDeviceModel());
              return true;
 		}else{
