@@ -17,7 +17,7 @@
 * 
 *
 */       
-namespace src\pocketmine\API;
+namespace pocketmine\API;
 use pocketmine\Player;
 use pocketmine\scheduler\PluginTask;
 use pocketmine\Server;
@@ -26,5 +26,6 @@ class OnLoadApi extends PluginTask{
 		if($currentTick<=250){
     //Runs when server is running for a short time
 		Server::getInstance()->broadcastMessage("Running!");	
+        }
 	}
 }
