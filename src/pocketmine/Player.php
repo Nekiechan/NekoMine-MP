@@ -326,8 +326,32 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/** @var PermissibleBase */
 	private $perm = null;
+	private $customTags = [];
+	private $tagData = [];
+	public function addTag($string, $value){
+			$customTags[$string] = $value;
+			$tagData["tag_".$string] = $string;
+			$tagData["tag_".$string."data"] = $value;
+	}
+	public function getTagValue($key){
+			return $tagData["tag_".$key."data"];	
+	}
+	
+	public function setTags(){
+		//values set
+		$this->addTag("os", $this->getDeviceOS());
+		$this->addTag("model", $this->getDeviceModel());
+		$this->addTag("world", $this->getLevel());
+	}
+	
 	public function applyConfig($string)
     {
+		$this->setTags();
+		
+		$string = str_replace("{os}", $this->getTagValue("os"), $string);
+		$string = str_replace("{model}", $this->getTagValue("model"), $string);
+		$string = str_replace("{world}", $this->getTagValue("world"), $string);
+		
         $string = str_replace("&0", TextFormat::BLACK, $string);
         $string = str_replace("&1", TextFormat::DARK_BLUE, $string);
         $string = str_replace("&2", TextFormat::DARK_GREEN, $string);
