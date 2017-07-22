@@ -128,34 +128,9 @@ class LoginPacket extends DataPacket {
 			$this->identityPublicKey = $chainKey;
 		}
 	}
-	public function decodeToken($token, $key){
-		$tokens = explode(".", $token);
-		list($headB64, $payloadB64, $sigB64) = $tokens;
-		if($key !== null and extension_loaded("openssl")){
-			$sig = base64_decode(strtr($sigB64, '-_', '+/'), true);
-			$rawLen = 48; // ES384
-			for($i = $rawLen; $i > 0 and $sig[$rawLen - $i] == chr(0); $i--){
-			}
-			$j = $i + (ord($sig[$rawLen - $i]) >= 128 ? 1 : 0);
-			for($k = $rawLen; $k > 0 and $sig[2 * $rawLen - $k] == chr(0); $k--){
-			}
-			$l = $k + (ord($sig[2 * $rawLen - $k]) >= 128 ? 1 : 0);
-			$len = 2 + $j + 2 + $l;
-			$derSig = chr(48);
-			if($len > 255){
-				throw new \RuntimeException("Invalid signature format");
-			}elseif($len >= 128){
-				$derSig .= chr(81);
-			}
-			$derSig .= chr($len) . chr(2) . chr($j);
-			$derSig .= str_repeat(chr(0), $j - $i) . substr($sig, $rawLen - $i, $i);
-			$derSig .= chr(2) . chr($l);
-			$derSig .= str_repeat(chr(0), $l - $k) . substr($sig, 2 * $rawLen - $k, $k);
-			$verified = openssl_verify($headB64 . "." . $payloadB64, $derSig, "-----BEGIN PUBLIC KEY-----\n" . wordwrap($key, 64, "\n", true) . "\n-----END PUBLIC KEY-----\n", OPENSSL_ALGO_SHA384) === 1;
-		}else{
-			$verified = false;
-		}
-		return array($verified, json_decode(base64_decode($payloadB64), true));
+	public function decodeToken($token){
+		list($headB64, $payloadB64, $sigB64) = explode(".", $token);
+		return json_decode(base64_decode($payloadB64), true);
 	}
 	public function encode(){
 	}
