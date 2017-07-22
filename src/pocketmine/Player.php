@@ -283,6 +283,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/** @var Vector3 */
 	protected $sleeping = null;
 	protected $clientID = null;
+	
+	protected $deviceModel;
+	protected $deviceOS;
 
 	private $loaderId = null;
 
@@ -724,6 +727,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 
 		return isset($this->achievements[$achievementId]) and $this->achievements[$achievementId] != false;
+	}
+	
+	public function getDeviceModel(){
+		return $this->deviceModel;
+	}
+	public function getDeviceOS(){
+		return $this->deviceOS;
 	}
 
 	/**
@@ -2000,6 +2010,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->username = TextFormat::clean($packet->username);
 		$this->displayName = $this->username;
 		$this->iusername = strtolower($this->username);
+		
+		$this->deviceModel = $packet->deviceModel;
+		$this->deviceOS = $packet->deviceOS;
+		
 		$this->setDataProperty(self::DATA_NAMETAG, self::DATA_TYPE_STRING, $this->username, false);
 
 		if(count($this->server->getOnlinePlayers()) >= $this->server->getMaxPlayers() and $this->kick("disconnectionScreen.serverFull", false)){
