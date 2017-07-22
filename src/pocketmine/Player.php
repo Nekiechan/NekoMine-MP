@@ -330,11 +330,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	private $tagData = [];
 	public function addTag($string, $value){
 			$customTags[$string] = $value;
-			$tagData["tag_".$string] = $string;
-			$tagData["tag_".$string."data"] = $value;
+			$tagData["tag_". $string] = $value;
+			$tagData["tag_". $string ."data"] = $value;
 	}
-	public function getTagValue($key){
-			return $tagData["tag_".$key."data"];	
+	public function getTagValue($string){
+			return $tagData["tag_". $string ."data"];	
 	}
 	
 	public function setTags(){
