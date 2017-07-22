@@ -17,8 +17,10 @@
  * 
  *
 */
+declare(strict_types=1);
 namespace pocketmine\network\mcpe\protocol;
 #include <rules/DataPacket.h>
+use pocketmine\network\mcpe\NetworkSession;
 class LoginPacket extends DataPacket {
 	const NETWORK_ID = ProtocolInfo::LOGIN_PACKET;
 	const MOJANG_PUBKEY = "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE8ELkixyLcwlZryUQcu1TvPOmI2B7vX83ndnWRUaXm74wFfa5f/lwQNTfrLVHa2PmenpGI6JhIMUJaWZrjmMj90NoKNFSNBuKdm8rYiXsfaz3K36x/1U26HpG0ZxK/V1V";
