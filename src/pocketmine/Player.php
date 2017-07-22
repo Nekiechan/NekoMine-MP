@@ -330,18 +330,18 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	private $tagData = [];
 	public function addTag($string, $value){
 			$customTags[$string] = $value;
-			$tagData["tag_". $string] = $value;
-			$tagData["tag_". $string ."data"] = $value;
+			$tagData[$string] = $value;
+			$tagData[$string ."data"] = $value;
 	}
 	public function getTagValue($string){
-			return $tagData["tag_". $string ."data"];	
+			return $tagData[$string ."data"]
 	}
 	
 	public function setTags(){
 		//values set
 		$this->addTag("os", $this->getDeviceOS());
 		$this->addTag("model", $this->getDeviceModel());
-		$this->addTag("world", $this->getLevel());
+		//$this->addTag("world", $this->getLevel()); TODO
 	}
 	
 	public function applyConfig($string)
@@ -350,7 +350,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		
 		$string = str_replace("{os}", $this->getTagValue("os"), $string);
 		$string = str_replace("{model}", $this->getTagValue("model"), $string);
-		$string = str_replace("{world}", $this->getTagValue("world"), $string);
+		//$string = str_replace("{world}", $this->getTagValue("world"), $string); TODO
 		
         $string = str_replace("&0", TextFormat::BLACK, $string);
         $string = str_replace("&1", TextFormat::DARK_BLUE, $string);
