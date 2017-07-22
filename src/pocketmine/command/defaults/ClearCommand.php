@@ -46,10 +46,15 @@ if($sender instanceof Player){
 if($sender->getServer()->isOp($sender->getName())===true){
 			$name = strtolower(array_shift($args));
 			$player = $sender->getServer()->getPlayer($name);
+			if($player instanceof Player){
 			$player->getInventory()->clearAll();
             $player->sendMessage(TextFormat::GREEN . "Your inventory was Cleared!");
             $sender->sendMessage(TextFormat::GREEN . "Successfully cleared " . $player->getDisplayName() . "'s inventory");
             return true;
+			}else{
+				$sender->sendMessage(TextFormat::RED . "Player does not exist!");
+				return true;
+			}
 }else{
 $sender->sendMessage(TextFormat::RED . "You need OP to clear other player's inventories!");
 return true;
@@ -58,10 +63,15 @@ return true;
        //so the Console/Rcon/Plugins can use this to clear people's inventory!
             $name = strtolower(array_shift($args));
 			$player = $sender->getServer()->getPlayer($name);
+			if($player instanceof Player){
 			$player->getInventory()->clearAll();
             $player->sendMessage(TextFormat::GREEN . "Your inventory was Cleared!");
             $sender->sendMessage(TextFormat::GREEN . "Successfully cleared " . $player->getDisplayName() . "'s inventory");
             return true;
+			}else{
+				$sender->sendMessage(TextFormat::RED . "Player does not exist!");
+				return true;
+			}
 }
         }else if(count($args) === 0){
         if($sender instanceof Player){
