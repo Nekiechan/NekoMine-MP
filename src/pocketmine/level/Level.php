@@ -77,6 +77,8 @@ use pocketmine\level\generator\PopulationTask;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\level\particle\Particle;
 use pocketmine\level\sound\Sound;
+use pocketmine\level\weather\Weather;
+use pocketmine\entity\Lightning;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Math;
 use pocketmine\math\Vector2;
@@ -261,7 +263,7 @@ class Level implements ChunkManager, Metadatable{
 	private $generator;
 	/** @var Generator */
 	private $generatorInstance;
-
+    private $weather;
 	private $closed = false;
 
 	public static function chunkHash(int $x, int $z){
@@ -359,10 +361,13 @@ class Level implements ChunkManager, Metadatable{
 			}
 		}
 
+		$this->weather = new Weather($this, 0);
 		$this->timings = new LevelTimings($this);
 		$this->temporalPosition = new Position(0, 0, 0, $this);
 		$this->temporalVector = new Vector3(0, 0, 0);
 		$this->tickRate = 1;
+		
+		$this->weather->setCanCalculate(true);
 	}
 
 	public function getTickRate() : int{
@@ -384,14 +389,49 @@ class Level implements ChunkManager, Metadatable{
 
 		$this->registerGenerator();
 	}
-
+    /**
+	 * @return Weather
+	 */
+	public function getWeather()
+	{
+		return $this->weather;
+	}
 	public function registerGenerator(){
 		$size = $this->server->getScheduler()->getAsyncTaskPoolSize();
 		for($i = 0; $i < $size; ++$i){
 			$this->server->getScheduler()->scheduleAsyncTaskToWorker(new GeneratorRegisterTask($this, $this->generatorInstance), $i);
 		}
 	}
+/**
+	 * Add a lightning
+	 *
+	 * @param Vector3 $pos
+	 * @return Lightning
+	 */
+	public function spawnLightning(Vector3 $pos): Lightning
+	{
+		$nbt = new CompoundTag("", [
+			"Pos"      => new ListTag("Pos", [
+				new DoubleTag("", $pos->getX()),
+				new DoubleTag("", $pos->getY()),
+				new DoubleTag("", $pos->getZ()),
+			]),
+			"Motion"   => new ListTag("Motion", [
+				new DoubleTag("", 0),
+				new DoubleTag("", 0),
+				new DoubleTag("", 0),
+			]),
+			"Rotation" => new ListTag("Rotation", [
+				new FloatTag("", 0),
+				new FloatTag("", 0),
+			]),
+		]);
 
+		$lightning = new Lightning($this, $nbt);
+		$lightning->spawnToAll();
+
+		return $lightning;
+	}
 	public function unregisterGenerator(){
 		$size = $this->server->getScheduler()->getAsyncTaskPoolSize();
 		for($i = 0; $i < $size; ++$i){
@@ -697,11 +737,15 @@ class Level implements ChunkManager, Metadatable{
 
 		$this->checkTime();
 
-		if(++$this->sendTimeTicker === 200){
-			$this->sendTime();
-			$this->sendTimeTicker = 0;
-		}
+		if($this->getGameRule("doDaylightCycle")) {
+			$this->checkTime();
 
+			if(++$this->sendTimeTicker === 200) {
+				$this->sendTime();
+				$this->sendTimeTicker = 0;
+			}
+		}
+$this->weather->calcWeather($currentTick);
 		$this->unloadChunks();
 
 		//Do block updates
@@ -796,7 +840,10 @@ class Level implements ChunkManager, Metadatable{
 
 		$this->timings->doTick->stopTiming();
 	}
-
+public function getGameRule($rule)
+	{
+		return $this->provider->getGameRule($rule);
+	}
 	public function checkSleep(){
 		if(count($this->players) === 0){
 			return;
@@ -822,7 +869,10 @@ class Level implements ChunkManager, Metadatable{
 			}
 		}
 	}
-
+public function updateGameRule($rule, $switch)
+	{
+		$this->provider->updateGameRule($rule, $switch);
+	}
 	public function sendBlockExtraData(int $x, int $y, int $z, int $id, int $data, array $targets = null){
 		$pk = new LevelEventPacket;
 		$pk->evid = LevelEventPacket::EVENT_SET_DATA;
