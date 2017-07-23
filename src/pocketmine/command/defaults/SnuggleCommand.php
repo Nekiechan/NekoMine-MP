@@ -38,7 +38,7 @@ class SnuggleCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-    if($args[0]!==null){
+    if(count($args) === 1){
 			$name = strtolower(array_shift($args));
 			$player = $sender->getServer()->getPlayer($name);
 			if($player instanceof Player){
