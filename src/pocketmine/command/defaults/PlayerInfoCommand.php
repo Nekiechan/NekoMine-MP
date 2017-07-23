@@ -28,7 +28,8 @@ class PlayerInfoCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
       "Gets a players data!",
-			"/playerinfo <player>"
+			"/playerinfo <player>",
+["playerdata","userdata","plrinfo","plrdata"]
 		);
 		$this->setPermission("pocketmine.command.playerinfo");
 	}
@@ -43,7 +44,7 @@ return false;
         $name = strtolower(array_shift($args));
         $player = $sender->getServer()->getPlayer($name);
 		if($player instanceof Player){
-			       $sender->sendMessage("- - - " . $player->getName() . "'s Data - - -");
+			 $sender->sendMessage("- - - " . $player->getName() . "'s Data - - -");
              $sender->sendMessage("§aFirstPlayed: §r" . $player->getFirstPlayed());
              $sender->sendMessage("§aPlayer Ip/port: §r" . $player->getAddress() . "§a:§r" . $player->getPort());
              $sender->sendMessage("§aPlayer ClientId: §r" . $player->getClientId());
