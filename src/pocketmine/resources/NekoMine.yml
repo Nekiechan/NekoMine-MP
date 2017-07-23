@@ -17,7 +17,7 @@
 #*
 #*/                   
 # NekoMine's config version, DO NOT EDIT!
-version: 4
+version: 5
 # Plugin api, edit at your own risk! (alot of 3.0.0 and below wont work properly!)
 plugin-api: "2.0.0"
 # Allows older clients to join! WARNING, USE AT YOUR OWN RISK!
@@ -35,6 +35,8 @@ kill-on-exit: false
 # {world} = world that player spawned in
 # {time} = time (in server's timezone) of player joining
 # {serverprefix} = your custom [Bob'sServer] tag
+# {os} = the player's OS
+# {model} the player's Device Model
 server-prefix: "[A-NekoMine-Server]"
 enable-custom-message: true
 join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
@@ -53,3 +55,17 @@ likesystem-data: []
 enable-pause: false
 #Enable RolePlay Commands (turn off if a plugin uses these commands, command overlapping causes both to not work!)
 enable-rp-commands: true
+#Block specific OS's from joining
+enable-blocking: false
+block-windows: false
+#win32 is anyone not running windows 10 and somehow joined
+block-win32: false
+block-android: false
+block-ios: false
+block-fireos: false
+block-osx: false
+block-gearvr: false
+block-hololens: false
+#what even is the OS dedicated?
+block-dedicated: false
+
