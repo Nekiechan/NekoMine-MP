@@ -52,15 +52,33 @@ class OS {
      public function getModel(Player $other){
           return $other->getDeviceModel();
      }
-     //Allows Certain OS's to be "disabled" and prevented from joining.
+     //check to see if the OS a player is using is "blocked"
+	 //returns a bool
      public function supportedOS(Player $player){
-          if(Server::getInstance()->getNekoMineConfigValue("enable-Blocking-OS",false)){
-               
-          }else{
-               if(Server::getInstance()->getNekoMineConfigValue("Block-IOS", false)){
-                 
+          if(Server::getInstance()->getNekoMineConfigValue("enable-blocking",false)){
+			  //check to see if blocking is enabled in config
+               if(Server::getInstance()->getNekoMineConfigValue("block-windows", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-win32", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-android", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-ios", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-fireos", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-osx", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-gearvr", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-hololens", false)){
+                 return true;
+               }else if(Server::getInstance()->getNekoMineConfigValue("block-dedicated", false)){
+                 return true;
                }
-          }
+		  }else{
+			return false;  
+		  }
      }
      
 }
