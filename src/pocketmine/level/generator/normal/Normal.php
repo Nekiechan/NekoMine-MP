@@ -164,24 +164,27 @@ class Normal extends Generator{
 		$this->selector->addBiome(Biome::getBiome(Biome::ICE_PLAINS));
 		$this->selector->addBiome(Biome::getBiome(Biome::SMALL_MOUNTAINS));
 		$this->selector->addBiome(Biome::getBiome(Biome::BIRCH_FOREST));
-
+        $this->selector->addBiome(Biome::getBiome(Biome::MESA));
 		$this->selector->recalculate();
 
 		$cover = new GroundCover();
 		$this->generationPopulators[] = $cover;
 
 		$ores = new Ore();
-		$ores->setOreTypes([
-			new OreType(new CoalOre(), 20, 16, 0, 128),
-			new OreType(New IronOre(), 20, 8, 0, 64),
-			new OreType(new RedstoneOre(), 8, 7, 0, 16),
-			new OreType(new LapisOre(), 1, 6, 0, 32),
-			new OreType(new GoldOre(), 2, 8, 0, 32),
-			new OreType(new DiamondOre(), 1, 7, 0, 16),
-			new OreType(new Dirt(), 20, 32, 0, 128),
-			new OreType(new Gravel(), 10, 16, 0, 128)
-		]);
-		$this->populators[] = $ores;
+        $ores->setOreTypes([
+            new OreType(new CoalOre(), 20, 17, 0, 128),
+            new OreType(new IronOre(), 20, 9, 0, 64),
+            new OreType(new RedstoneOre(), 8, 8, 0, 16),
+            new OreType(new LapisOre(), 1, 7, 0, 16),
+            new OreType(new GoldOre(), 2, 9, 0, 32),
+            new OreType(new DiamondOre(), 1, 8, 0, 16),
+            new OreType(new Dirt(), 10, 33, 0, 128),
+            new OreType(new Stone(Stone::GRANITE), 10, 33, 0, 80),
+            new OreType(new Stone(Stone::DIORITE), 10, 33, 0, 80),
+            new OreType(new Stone(Stone::ANDESITE), 10, 33, 0, 80),
+            new OreType(new Gravel(), 8, 33, 0, 128)
+        ]);
+        $this->populators[] = $ores;
 	}
 
 	public function generateChunk($chunkX, $chunkZ){
