@@ -22,6 +22,7 @@
 namespace pocketmine\level\generator\normal;
 
 use pocketmine\block\Block;
+use pocketmine\block\Stone;
 use pocketmine\block\CoalOre;
 use pocketmine\block\DiamondOre;
 use pocketmine\block\Dirt;
