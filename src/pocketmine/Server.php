@@ -129,7 +129,13 @@ class Server{
 
 	/** @var Config */
 	private $operators = null;
-
+	
+	public $weatherRandomDurationMin = 6000;
+	public $weatherRandomDurationMax = 12000;
+	
+	public $lightningTime = 200;
+	public $lightningFire = false;
+	
 	/** @var Config */
 	private $whitelist = null;
 
