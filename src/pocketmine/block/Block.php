@@ -102,6 +102,8 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::COCOA_BLOCK] = CocoaBlock::class;
             self::$list[self::COMMAND_BLOCK] = CommandBlock::class;
 			self::$list[self::SANDSTONE] = Sandstone::class;
+			self::$list[self::RED_SANDSTONE] = RedSandstone::class;
+			self::$list[self::RED_SANDSTONE_STAIRS] = RedSandstoneStairs::class;
 			self::$list[self::NOTE_BLOCK] = NoteBlock::class;
 			self::$list[self::BED_BLOCK] = Bed::class;
 			self::$list[self::POWERED_RAIL] = PoweredRail::class;
@@ -118,6 +120,8 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::IRON_BLOCK] = Iron::class;
 			self::$list[self::DOUBLE_SLAB] = DoubleSlab::class;
 			self::$list[self::SLAB] = Slab::class;
+			self::$list[self::RED_SANDSTONE_SLAB] = RedSandstoneSlab::class;
+			self::$list[self::DOUBLE_RED_SANDSTONE_SLAB] = DoubleRedSandstoneSlab::class;
 			self::$list[self::BRICKS_BLOCK] = Bricks::class;
 			self::$list[self::TNT] = TNT::class;
 			self::$list[self::BOOKSHELF] = Bookshelf::class;
