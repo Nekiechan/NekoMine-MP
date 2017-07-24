@@ -77,8 +77,8 @@ class Weather
 
 			if($this->duration <= 0) {
 				$duration = mt_rand(
-					min($this->level->getServer()->getLeverylConfigValue("WeatherDurationMin", 6000), $this->level->getServer()->getLeverylConfigValue("WeatherDurationMax", 6000)),
-					max($this->level->getServer()->getLeverylConfigValue("WeatherDurationMin", 6000), $this->level->getServer()->getLeverylConfigValue("WeatherDurationMax", 6000)));
+					min(6000, 6000),
+					max(6000,6000));
 
 				if($this->weatherNow === self::SUNNY) {
 					$weather = $this->randomWeatherData[array_rand($this->randomWeatherData)];
@@ -88,7 +88,7 @@ class Weather
 					$this->setWeather($weather, $duration);
 				}
 			}
-			if(($this->weatherNow >= self::RAINY_THUNDER) and ($this->level->getServer()->getLeverylConfigValue("LightningTime", 200) > 0) and is_int($this->duration / $this->level->getServer()->getLeverylConfigValue("LightningTime", 200))) {
+			if(($this->weatherNow >= self::RAINY_THUNDER) and (200 > 0) and is_int($this->duration / 200)) {
 				$players = $this->level->getPlayers();
 				if(count($players) > 0) {
 					$p = $players[array_rand($players)];
