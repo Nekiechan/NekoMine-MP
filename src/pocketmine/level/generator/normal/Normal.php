@@ -131,9 +131,11 @@ class Normal extends Generator{
 					return Biome::ICE_PLAINS;
 				}elseif($temperature < 0.75){
 					return Biome::PLAINS;
-				}else{
+				}elseif($temperature < 0.50){
 					return Biome::DESERT;
-				}
+				}else{
+                    return Biome::MESA;
+                }
 			}elseif($rainfall < 0.80){
 				if($temperature < 0.25){
 					return Biome::TAIGA;
