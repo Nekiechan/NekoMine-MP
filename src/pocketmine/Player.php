@@ -345,6 +345,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->addTag("gamemode", $this->getGamemodeString());
 		$this->addTag("serverprefix", $this->server->getNekoMineConfigValue("server-prefix","[A-NekoMine-Server]"));
 		//$this->addTag("world", $this->getLevel()); TODO
+		$this->addTag("nsfw", $this->server->getNekoMineConfigValue("nsfw-message","§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"));
 	}
 	
 	public function applyConfig($string)
@@ -357,6 +358,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$string = str_replace("{player}", $this->getTagValue("player"), $string);
 		$string = str_replace("{gamemode}", $this->getTagValue("gamemode"), $string);
 		$string = str_replace("{serverprefix}", $this->getTagValue("serverprefix"), $string);
+		$string = str_replace("{nsfw}", $this->getTagValue("nsfw"), $string);
 		
         $string = str_replace("&0", TextFormat::BLACK, $string);
         $string = str_replace("&1", TextFormat::DARK_BLUE, $string);
@@ -1024,7 +1026,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($this->hasPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE)){
 			$this->server->getPluginManager()->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this);
 		}
+		//NSFW
+		 if($this->server->getNekoMineConfigValue("enable-nsfw", false)){
+		 	$this->getPlayer()->sendMessage($this->server->getNekoMineConfigValue("nsfw-message","§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"));
+		    $this->server->getLogger()->info("NSFW is enabled in this server!");
+		 }else{
+		 //code when a server has NSFW disabled
+		    $this->server->getLogger()->info("NSFW is disabled in this server!");
+		 }
+		
  		if($this->server->getNekoMineConfigValue("enable-custom-message", true)){
+		
 		$nMessage = $this->applyConfig($this->server->getNekoMineConfigValue("join-message", "§l§a{player} §r§l§e>§dJoined {serverprefix}"));
         $this->server->getPluginManager()->callEvent($ev = new PlayerJoinEvent($this,$nMessage));
 		if(strlen(trim($ev->getJoinMessage())) > 0){
