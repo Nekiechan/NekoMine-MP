@@ -89,7 +89,7 @@ class Custom extends Generator{
 		for($x = 0; $x < 16; ++$x){
 			for($z = 0; $z < 16; ++$z){
 
-				$biome = Biome::getBiome(Biome::Mesa);
+				$biome = Biome::getBiome(Biome::MESA);
 				$chunk->setBiomeId($x, $z, $biome->getId());
 
 				for($y = 0; $y < 128; ++$y){
