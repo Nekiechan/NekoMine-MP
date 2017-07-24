@@ -737,14 +737,11 @@ class Level implements ChunkManager, Metadatable{
 
 		$this->checkTime();
 
-		if($this->getGameRule("doDaylightCycle")) {
-			$this->checkTime();
-
+		
 			if(++$this->sendTimeTicker === 200) {
 				$this->sendTime();
 				$this->sendTimeTicker = 0;
 			}
-		}
 $this->weather->calcWeather($currentTick);
 		$this->unloadChunks();
 
@@ -840,10 +837,7 @@ $this->weather->calcWeather($currentTick);
 
 		$this->timings->doTick->stopTiming();
 	}
-public function getGameRule($rule)
-	{
-		return $this->provider->getGameRule($rule);
-	}
+
 	public function checkSleep(){
 		if(count($this->players) === 0){
 			return;
@@ -869,10 +863,7 @@ public function getGameRule($rule)
 			}
 		}
 	}
-public function updateGameRule($rule, $switch)
-	{
-		$this->provider->updateGameRule($rule, $switch);
-	}
+
 	public function sendBlockExtraData(int $x, int $y, int $z, int $id, int $data, array $targets = null){
 		$pk = new LevelEventPacket;
 		$pk->evid = LevelEventPacket::EVENT_SET_DATA;
