@@ -33,6 +33,7 @@ use pocketmine\level\generator\normal\biome\RiverBiome;
 use pocketmine\level\generator\normal\biome\SmallMountainsBiome;
 use pocketmine\level\generator\normal\biome\SwampBiome;
 use pocketmine\level\generator\normal\biome\TaigaBiome;
+use pocketmine\level\generator\normal\biome\MesaBiome;
 use pocketmine\level\generator\populator\Populator;
 use pocketmine\utils\Random;
 
@@ -46,7 +47,7 @@ abstract class Biome{
 	const TAIGA = 5;
 	const SWAMP = 6;
 	const RIVER = 7;
-
+    
 	const HELL = 8;
 
 	const ICE_PLAINS = 12;
@@ -57,7 +58,10 @@ abstract class Biome{
 
 	const BIRCH_FOREST = 27;
 
-
+    const MESA = 37;
+    const MESA_PLATEAU_F = 38;
+    const MESA_PLATEAU = 39;
+	
 	const MAX_BIOMES = 256;
 
 	/** @var Biome[] */
@@ -90,7 +94,7 @@ abstract class Biome{
 		self::register(self::TAIGA, new TaigaBiome());
 		self::register(self::SWAMP, new SwampBiome());
 		self::register(self::RIVER, new RiverBiome());
-
+        self::register(self::MESA, new MesaBiome());
 		self::register(self::ICE_PLAINS, new IcePlainsBiome());
 
 
