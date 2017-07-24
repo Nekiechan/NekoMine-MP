@@ -41,7 +41,7 @@ use pocketmine\level\generator\populator\Populator;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
-class Forest extends Generator{
+class SuperFlat extends Generator{
 	/** @var ChunkManager */
 	private $level;
 	/** @var Chunk */
@@ -57,7 +57,7 @@ class Forest extends Generator{
 	}
 
 	public function getName(){
-		return "forest";
+		return "superflat";
 	}
 
 	public function __construct(array $options = []){
