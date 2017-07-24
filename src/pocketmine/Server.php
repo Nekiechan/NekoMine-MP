@@ -56,7 +56,8 @@ use pocketmine\level\format\io\region\McRegion;
 use pocketmine\level\format\io\region\PMAnvil;
 use pocketmine\level\generator\biome\Biome;
 use pocketmine\level\generator\Flat;
-use pocketmine\level\generator\Forest;
+use pocketmine\level\generator\SuperFlat;
+use pocketmine\level\generator\Custom;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\hell\Nether;
 use pocketmine\level\generator\normal\Normal;
@@ -1642,11 +1643,12 @@ class Server{
 
 
 			Generator::addGenerator(Flat::class, "flat");
-            Generator::addGenerator(Forest::class, "forest");
+            Generator::addGenerator(SuperFlat::class, "superflat");
 			Generator::addGenerator(Normal::class, "normal");
 			Generator::addGenerator(Normal::class, "default");
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
+            Generator::addGenerator(Custom::class, "custom");
 
 			foreach((array) $this->getProperty("worlds", []) as $name => $worldSetting){
 				if($this->loadLevel($name) === false){
