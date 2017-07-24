@@ -57,7 +57,7 @@ use pocketmine\level\format\io\region\PMAnvil;
 use pocketmine\level\generator\biome\Biome;
 use pocketmine\level\generator\Flat;
 use pocketmine\level\generator\SuperFlat;
-use pocketmine\level\generator\Custom;
+use pocketmine\level\generator\custom\Custom;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\hell\Nether;
 use pocketmine\level\generator\normal\Normal;
