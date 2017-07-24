@@ -78,7 +78,7 @@ return true;
             $sender->getInventory()->clearAll();
             $sender->sendMessage(TextFormat::GREEN . "Successfully cleared your inventory");
         }else{
-            $sender->sendMessage(TextFormat::RED . "Please run this command in-game.");
+            $sender->sendMessage(TextFormat::RED . "Cannot Clear a Non-Player's inventory! Either run this command ingame or put a correct player!");
         }
 }
         return true;
