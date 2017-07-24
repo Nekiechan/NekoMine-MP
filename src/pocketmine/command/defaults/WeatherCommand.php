@@ -20,7 +20,7 @@ declare(strict_types=1);
 namespace pocketmine\command\defaults;
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
-se pocketmine\level\Level;
+use pocketmine\level\Level;
 use pocketmine\level\weather\Weather;
 use pocketmine\Player;
 use pocketmine\Server;
