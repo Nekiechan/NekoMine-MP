@@ -125,12 +125,8 @@ class Beacon extends Transparent {
 					new IntTag("z", $this->z)
 				]);
 				Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
+			
 			}
-
-			if($player->isCreative() and $player->getServer()->limitedCreative){
-				return true;
-			}
-			$player->addWindow($beacon->getInventory());
 		}
 
 		return true;
