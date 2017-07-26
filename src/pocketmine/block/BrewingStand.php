@@ -148,7 +148,7 @@ class BrewingStand extends Transparent {
 				$nbt->Items->setTagType(NBT::TAG_Compound);
 				$brewingStand = Tile::createTile(Tile::BREWING_STAND, $this->getLevel(), $nbt);
 			}
-			$player->addWindow($brewingStand->getInventory());
+			//$player->addWindow($brewingStand->getInventory()); TODO
 		}
 		return true;
 	}
