@@ -76,8 +76,6 @@ use pocketmine\level\generator\LightPopulationTask;
 use pocketmine\level\generator\PopulationTask;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\level\particle\Particle;
-use pocketmine\level\light\BlockLightUpdate;
-use pocketmine\level\light\SkyLightUpdate;
 use pocketmine\level\sound\Sound;
 use pocketmine\level\weather\Weather;
 use pocketmine\entity\Lightning;
