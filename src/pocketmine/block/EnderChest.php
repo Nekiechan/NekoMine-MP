@@ -151,9 +151,7 @@ class EnderChest extends Transparent {
 				Tile::createTile("EnderChest", $this->getLevel(), $nbt);
 			}
 
-			if($player->isCreative() and $player->getServer()->limitedCreative){
-				return true;
-			}
+		
 
 			$player->getEnderChestInventory()->openAt($this);
 		}
