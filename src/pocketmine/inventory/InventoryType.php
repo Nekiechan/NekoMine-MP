@@ -41,7 +41,12 @@ class InventoryType{
 	const BREWING_STAND = 7;
 	const ANVIL = 8;
 	const ENCHANT_TABLE = 9;
-
+	const DISPENSER = 10;
+	const DROPPER = 11;
+	const HOPPER = 12;
+	const ENDER_CHEST = 13;
+	const BEACON = 14;
+	const PLAYER_FLOATING = 254;
 	private static $default = [];
 
 	private $size;
@@ -74,6 +79,8 @@ class InventoryType{
 			static::ENCHANT_TABLE => new InventoryType(2, "Enchant", WindowTypes::ENCHANTMENT), //1 INPUT/OUTPUT, 1 LAPIS
 			static::BREWING_STAND => new InventoryType(4, "Brewing", WindowTypes::BREWING_STAND), //1 INPUT, 3 POTION
 			static::ANVIL =>         new InventoryType(3, "Anvil", WindowTypes::ANVIL) //2 INPUT, 1 OUTP
+			static::ENDER_CHEST => new InventoryType(27, "Ender Chest", 0),
+			static::BEACON => new InventoryType(0, "Beacon", 13),
 		];
 	}
 
