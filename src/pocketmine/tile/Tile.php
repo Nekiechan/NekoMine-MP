@@ -68,7 +68,7 @@ abstract class Tile extends Position{
 	public static function init(){
 		//self::registerTile(Beacon::class);
 		//self::registerTile(BeaconDelayedCheckTask::class);
-		self::registerTile(BrewingStand::class);
+		//self::registerTile(BrewingStand::class);
 		self::registerTile(Chest::class);
 		//self::registerTile(EnderChest::class);
 		self::registerTile(EnchantTable::class);
