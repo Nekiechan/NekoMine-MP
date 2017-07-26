@@ -2,24 +2,22 @@
 
 /*
  *
- *    _______                                _
- *   |__   __|                              | |
- *      | | ___  ___ ___  ___ _ __ __ _  ___| |_
- *      | |/ _ \/ __/ __|/ _ \  __/ _` |/ __| __|
- *      | |  __/\__ \__ \  __/ | | (_| | (__| |_
- *      |_|\___||___/___/\___|_|  \__,_|\___|\__|
- *
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author Tesseract Team
- * @link http://www.github.com/TesseractTeam/Tesseract
- * 
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
  *
- */
+ *
+*/
 
 namespace pocketmine\tile;
 
@@ -29,7 +27,6 @@ use pocketmine\nbt\tag\StringTag;
 
 class EnderChest extends Spawnable implements Nameable {
 
-
 	/**
 	 * @return string
 	 */
@@ -38,12 +35,18 @@ class EnderChest extends Spawnable implements Nameable {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function hasName(){
+		return isset($this->namedtag->CustomName);
+	}
+
+	/**
 	 * @param void $str
 	 */
 	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
-
 			return;
 		}
 
@@ -54,7 +57,7 @@ class EnderChest extends Spawnable implements Nameable {
 	 * @return CompoundTag
 	 */
 	public function getSpawnCompound(){
-		$enderchest = new CompoundTag("", [
+		$c = new CompoundTag("", [
 			new StringTag("id", Tile::ENDER_CHEST),
 			new IntTag("x", (int) $this->x),
 			new IntTag("y", (int) $this->y),
@@ -62,16 +65,9 @@ class EnderChest extends Spawnable implements Nameable {
 		]);
 
 		if($this->hasName()){
-			$enderchest->CustomName = $this->namedtag->CustomName;
+			$c->CustomName = $this->namedtag->CustomName;
 		}
-
-		return $enderchest;
+		return $c;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function hasName(){
-		return isset($this->namedtag->CustomName);
-	}
 }
