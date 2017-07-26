@@ -43,7 +43,8 @@ abstract class Tile extends Position{
 	const MOB_SPAWNER = "MobSpawner";
 	const SIGN = "Sign";
 	const SKULL = "Skull";
-
+    const BEACON = "Beacon";
+	const ENDER_CHEST = "EnderChest";
 	public static $tileCount = 1;
 
 	private static $knownTiles = [];
@@ -65,13 +66,18 @@ abstract class Tile extends Position{
 	public $tickTimer;
 
 	public static function init(){
+		self::registerTile(Beacon::class);
+		self::registerTile(BeaconDelayedCheckTask::class);
+		self::registerTile(BrewingStand::class);
 		self::registerTile(Chest::class);
+		self::registerTile(EnderChest::class);
 		self::registerTile(EnchantTable::class);
 		self::registerTile(FlowerPot::class);
 		self::registerTile(Furnace::class);
 		self::registerTile(ItemFrame::class);
 		self::registerTile(Sign::class);
 		self::registerTile(Skull::class);
+
 	}
 
 	/**
