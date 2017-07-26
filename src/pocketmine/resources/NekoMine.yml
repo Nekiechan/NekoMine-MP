@@ -41,6 +41,7 @@ server-prefix: "[A-NekoMine-Server]"
 enable-custom-message: true
 join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
 leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
+enable-onJoin: true
 #Enable Dev commands
 enable-dev-commands: true
 #Enable NSFW
