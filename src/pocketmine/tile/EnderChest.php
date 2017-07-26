@@ -36,7 +36,7 @@ class EnderChest extends Spawnable implements InventoryHolder, Container, Nameab
 	protected $doubleInventory = null;
 	public function __construct(Level $level, CompoundTag $nbt){
 		parent::__construct($level, $nbt);
-		$this->inventory = new EnderChestInventory($this);
+		$this->inventory = new EnderChest($this);
 		if(!isset($this->namedtag->Items) or !($this->namedtag->Items instanceof ListTag)){
 			$this->namedtag->Items = new ListTag("Items", []);
 			$this->namedtag->Items->setTagType(NBT::TAG_Compound);
