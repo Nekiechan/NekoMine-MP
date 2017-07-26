@@ -1,26 +1,23 @@
 <?php
 
 /*
- *
- *  _____            _               _____           
- * / ____|          (_)             |  __ \          
- *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
- *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
- *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
- * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
- *                         __/ |                    
- *                        |___/                     
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author GenisysPro
- * @link https://github.com/GenisysPro/GenisysPro
- *
- *
-*/
+*
+*  _   _      _         __  __ _                   __  __ _____  
+* | \ | |    | |       |  \/  (_)                 |  \/  |  __ \ 
+* |  \| | ___| | _____ | \  / |_ _ __   ___ ______| \  / | |__) |
+* | . ` |/ _ \ |/ / _ \| |\/| | | '_ \ / _ \______| |\/| |  ___/ 
+* | |\  |  __/   < (_) | |  | | | | | |  __/      | |  | | |     
+* |_| \_|\___|_|\_\___/|_|  |_|_|_| |_|\___|      |_|  |_|_|     
+*This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU Lesser General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* @author NekoMine Team
+* @link http://www.nekomineforums.blogspot.com/
+* 
+*
+*/       
 
 namespace pocketmine\block;
 
@@ -155,20 +152,27 @@ class EnderChest extends Transparent {
 			if($top->isTransparent() !== true){
 				return true;
 			}
-
-			if(!($this->getLevel()->getTile($this) instanceof TileEnderChest)){
+$t = $this->getLevel()->getTile($this);
+			$enderchest = null;
+			if($t instanceof TileEnderChest){
+				$enderchest = $t;
+			}else{
 				$nbt = new CompoundTag("", [
+					new ListTag("Items", []),
 					new StringTag("id", Tile::ENDER_CHEST),
 					new IntTag("x", $this->x),
 					new IntTag("y", $this->y),
 					new IntTag("z", $this->z)
 				]);
-				Tile::createTile("EnderChest", $this->getLevel(), $nbt);
+				$nbt->Items->setTagType(NBT::TAG_Compound);
+				$enderchest = Tile::createTile("EnderChest", $this->getLevel(), $nbt);
 			}
-
-			
-
-			$player->getEnderChestInventory()->openAt($this);
+			if(isset($enderchest->namedtag->Lock) and $enderchest->namedtag->Lock instanceof StringTag){
+				if($enderchest->namedtag->Lock->getValue() !== $item->getCustomName()){
+					return true;
+				}
+			}
+			$player->addWindow($enderchest->getInventory());
 		}
 
 		return true;
