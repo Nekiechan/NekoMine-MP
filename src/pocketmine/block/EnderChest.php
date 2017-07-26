@@ -152,6 +152,7 @@ class EnderChest extends Transparent {
 			if($top->isTransparent() !== true){
 				return true;
 			}
+		/*
 $t = $this->getLevel()->getTile($this);
 			$enderchest = null;
 			if($t instanceof TileEnderChest){
@@ -173,6 +174,7 @@ $t = $this->getLevel()->getTile($this);
 				}
 			}
 			$player->addWindow($enderchest->getInventory());
+		*/
 		}
 
 		return true;
