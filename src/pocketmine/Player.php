@@ -328,6 +328,67 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	private $perm = null;
 	private $customTags = [];
 	private $tagData = [];
+	
+	
+    /**
+     * @return int
+     */
+	public function getPlayerX(){
+        return $this->getFloorX();
+    }
+	/**
+     * @return int
+     */
+	public function getPlayerY(){
+        return $this->getFloorY();
+    }
+	/**
+     * @return int
+     */
+	public function getPlayerZ(){
+        return $this->getFloorZ();
+    }
+	
+	public function getDeviceModel(){
+		return $this->deviceModel;
+	}
+	public function getDeviceOS(){
+		return $this->deviceOS;
+	}
+	public function OSnumToString($os){
+	//Android => 1
+	if($os === 1){
+		return "Android";
+	}elseif($os === 2){
+	//iOS => 2
+		return "IOS";
+	}elseif($os === 3){
+	//OSX => 3
+		return "OSX";
+	}elseif($os === 4){
+	//FireOS => 4
+		return "FireOS";
+    }elseif($os === 5){
+	//GearVR => 5
+		return "GearVR";
+    }elseif($os === 6){
+	//Hololens => 6
+		return "Hololens";
+	}elseif($os === 7){
+	//Win10 => 7
+		return "Windows 10";
+	}elseif($os === 8){
+	//Win32 => 8
+		return "Windows 32bit";
+	}elseif($os === 9){
+	//Dedicated => 9
+		return "Dedicated";
+	}else{
+    //If OS isnt the above
+        return "Unknown";
+    }
+}
+	
 	public function addTag($string, $value){
 			$this->customTags[$string] = $value;
 			$this->tagData[$string] = $string;
@@ -759,51 +820,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return isset($this->achievements[$achievementId]) and $this->achievements[$achievementId] != false;
 	}
 	
-	public function getDeviceModel(){
-		return $this->deviceModel;
-	}
-	public function getDeviceOS(){
-		return $this->deviceOS;
-	}
-	public function OSnumToString($os){
-	//Android => 1
-	if($os === 1){
-		return "Android";
-	}
-	//iOS => 2
-	if($os === 2){
-		return "IOS";
-	}
-	//OSX => 3
-	if($os === 3){
-		return "OSX";
-	}
-	//FireOS => 4
-	if($os === 4){
-		return "FireOS";
-	}
-	//GearVR => 5
-	if($os === 5){
-		return "GearVR";
-	}
-	//Hololens => 6
-	if($os === 6){
-		return "Hololens";
-	}
-	//Win10 => 7
-	if($os === 7){
-		return "Windows 10";
-	}
-	//Win32 => 8
-	if($os === 8){
-		return "Windows 32bit";
-	}
-	//Dedicated => 9
-	if($os === 9){
-		return "Dedicated";
-	}
 	
-	}
 	/**
 	 * @return bool
 	 */
@@ -819,24 +836,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function getDisplayName(){
 		return $this->displayName;
 	}
-    /**
-     * @return int
-     */
-	public function getPlayerX(){
-        return $this->getFloorX();
-    }
-	/**
-     * @return int
-     */
-	public function getPlayerY(){
-        return $this->getFloorY();
-    }
-	/**
-     * @return int
-     */
-	public function getPlayerZ(){
-        return $this->getFloorZ();
-    }
 	/**
 	 * @param string $name
 	 */
