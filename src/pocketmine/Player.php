@@ -286,7 +286,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	
 	protected $deviceModel;
 	protected $deviceOS;
-
+   /** @var WelcomeMessages */
+	private $line1;
+    private $line2;
+    private $line3;
+    private $line4;
+    private $line5;
 	private $loaderId = null;
 
 	protected $stepHeight = 0.6;
@@ -1025,6 +1030,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($this->hasPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE)){
 			$this->server->getPluginManager()->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this);
 		}
+        //Welcome Messages
+		$line1 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line1", "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"));
+        $line2 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line2", "§a>Welcome to §f{serverprefix}§a @{player}!"));
+        $line3 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line3", "§a>this server was made with NekoMine-MP!!"));
+        $line4 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line4", "§a>Donate at: §l§e§uhttps://www.paypal.com/donate/?token=d3uraLjjvZEZDLxcxXw5m8t9-XHXUtF_wOAuZYkG9NLuZhPMPtUSotsXJX6UZzCjXNj_kG&country.x=US&locale.x=US"));
+        $line5 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line5", "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"));
+ $this->getPlayer()->sendMessage($line1);
+$this->getPlayer()->sendMessage($line2);
+$this->getPlayer()->sendMessage($line3);
+$this->getPlayer()->sendMessage($line4);
+$this->getPlayer()->sendMessage($line5);
 		//NSFW
 		 if($this->server->getNekoMineConfigValue("enable-nsfw", false)){
 		 	$this->getPlayer()->sendMessage($this->server->getNekoMineConfigValue("nsfw-message","§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"));
