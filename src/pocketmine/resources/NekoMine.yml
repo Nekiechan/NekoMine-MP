@@ -41,7 +41,11 @@ server-prefix: "[A-NekoMine-Server]"
 enable-custom-message: true
 join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
 leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
-enable-onJoin: true
+welcome-message-line1: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
+welcome-message-line2: "§a>Welcome to §f{serverprefix}§a @{player}!"
+welcome-message-line3: "§a>this server was made with NekoMine-MP!!"
+welcome-message-line4: "§a>Donate at: §l§e§uhttps://www.paypal.com/donate/?token=d3uraLjjvZEZDLxcxXw5m8t9-XHXUtF_wOAuZYkG9NLuZhPMPtUSotsXJX6UZzCjXNj_kG&country.x=US&locale.x=US"
+welcome-message-line5: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
 #Enable Dev commands
 enable-dev-commands: true
 #Enable NSFW
