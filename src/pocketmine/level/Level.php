@@ -372,7 +372,28 @@ class Level implements ChunkManager, Metadatable{
 		$this->tickRate = 1;
 		
 		$this->weather->setCanCalculate(true);
-	}
+        $this->setDimension(self::DIMENSION_NORMAL);
+
+        if ($this->folderName == "nether" or $this->folderName == "Nether"){
+            $this->setDimension(self::DIMENSION_NETHER);
+}elseif ($this->folderName == "end" or $this->folderName == "End" or $this->folderName == "ender" or $this->folderName == "Ender"){
+            $this->setDimension(self::DIMENSION_END);
+}
+        if ($this->getDimension() == self::DIMENSION_NORMAL) {
+            $this->weather->setCanCalculate(true);
+        } else $this->weather->setCanCalculate(false);
+    }
+
+    public function setDimension(int $dimension)
+    {
+        $this->dimension = $dimension;
+    }
+
+    public function getDimension(): int
+    {
+        return $this->dimension;
+    }
+
 
 	public function getTickRate() : int{
 		return $this->tickRate;
