@@ -61,6 +61,7 @@ use pocketmine\level\generator\custom\Custom;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\hell\Nether;
 use pocketmine\level\generator\normal\Normal;
+use pocketmine\level\generator\ender\Ender;
 use pocketmine\level\Level;
 use pocketmine\level\LevelException;
 use pocketmine\metadata\EntityMetadataStore;
@@ -148,7 +149,9 @@ class Server{
 	private $pluginManager = null;
 
 	private $profilingTickRate = 20;
-
+    public $enderEnabled = true;
+	public $enderName = "ender";
+	public $enderLevel = null;
 	/** @var AutoUpdater */
 	private $updater = null;
 
@@ -1655,7 +1658,7 @@ class Server{
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
             Generator::addGenerator(Custom::class, "custom");
-
+            Generator::addGenerator(Ender::class, "ender");
 			foreach((array) $this->getProperty("worlds", []) as $name => $worldSetting){
 				if($this->loadLevel($name) === false){
 					$seed = $this->getProperty("worlds.$name.seed", time());
