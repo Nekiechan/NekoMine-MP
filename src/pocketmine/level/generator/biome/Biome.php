@@ -97,7 +97,7 @@ abstract class Biome{
 		self::register(self::RIVER, new RiverBiome());
         self::register(self::MESA, new MesaBiome());
 		self::register(self::ICE_PLAINS, new IcePlainsBiome());
-        self::register(self::END, new EnderBiome());
+       
 
 		self::register(self::SMALL_MOUNTAINS, new SmallMountainsBiome());
 
