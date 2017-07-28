@@ -72,7 +72,7 @@ namespace pocketmine {
 	use pocketmine\wizard\SetupWizard;
 	use raklib\RakLib;
 
-	const VERSION = "2.0.0Beta(32Bit)";
+	const VERSION = "2.0.1Beta(32Bit)";
 	const API_VERSION = "2.0.0";
 	const CODENAME = "§l§aNeko§r";
 
@@ -111,7 +111,7 @@ namespace pocketmine {
 		if(!is_file(\pocketmine\PATH . "src/spl/ClassLoader.php")){
 			echo "[CRITICAL] Unable to find the PocketMine-SPL library." . PHP_EOL;
 			echo "[CRITICAL] Please use provided builds or clone the repository recursively." . PHP_EOL;
-echo "[NEKO] if you're using a non-compiled src, clone the SPL library from PocketMine GitHub." . PHP_EOL;
+            echo "[NEKO] if you're using a non-compiled src, clone the SPL library from PocketMine GitHub." . PHP_EOL;
 			exit(1);
 		}
 		require_once(\pocketmine\PATH . "src/spl/ClassLoader.php");
