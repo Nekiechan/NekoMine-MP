@@ -23,6 +23,7 @@ namespace pocketmine\level\generator\biome;
 
 use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
+use pocketmine\level\generator\ender\biome\EnderBiome;
 use pocketmine\level\generator\normal\biome\DesertBiome;
 use pocketmine\level\generator\normal\biome\ForestBiome;
 use pocketmine\level\generator\normal\biome\IcePlainsBiome;
@@ -49,7 +50,7 @@ abstract class Biome{
 	const RIVER = 7;
     
 	const HELL = 8;
-
+    const END = 9;
 	const ICE_PLAINS = 12;
 
 
@@ -96,7 +97,7 @@ abstract class Biome{
 		self::register(self::RIVER, new RiverBiome());
         self::register(self::MESA, new MesaBiome());
 		self::register(self::ICE_PLAINS, new IcePlainsBiome());
-
+        self::register(self::END, new EnderBiome());
 
 		self::register(self::SMALL_MOUNTAINS, new SmallMountainsBiome());
 
