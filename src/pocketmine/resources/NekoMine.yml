@@ -32,8 +32,6 @@ kill-on-exit: false
 # formats:
 # {player} = player name
 # {gamemode} = player gamemode
-# {world} = world that player spawned in WIP
-# {time} = time (in server's timezone) of player joining
 # {serverprefix} = your custom [Bob'sServer] tag
 # {os} = the player's OS
 # {model} the player's Device Model
