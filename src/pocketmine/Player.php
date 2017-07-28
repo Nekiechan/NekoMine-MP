@@ -412,6 +412,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->addTag("serverprefix", $this->server->getNekoMineConfigValue("server-prefix","[A-NekoMine-Server]"));
 		//$this->addTag("world", $this->getLevel()); TODO
 		$this->addTag("nsfw", $this->server->getNekoMineConfigValue("nsfw-message","§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"));
+        $this->addTag("donationlink", $this->server->getNekoMineConfigValue("donation-link","Bit.ly/DonateNekos"));
 	}
 	
 	public function applyConfig($string)
@@ -425,7 +426,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$string = str_replace("{gamemode}", $this->getTagValue("gamemode"), $string);
 		$string = str_replace("{serverprefix}", $this->getTagValue("serverprefix"), $string);
 		$string = str_replace("{nsfw}", $this->getTagValue("nsfw"), $string);
-		
+        $string = str_replace("{donationlink}", $this->getTagValue("donationlink"), $string);
+        
+		if($this->server->getNekoMineConfigValue("enable-color", true)){
         $string = str_replace("&0", TextFormat::BLACK, $string);
         $string = str_replace("&1", TextFormat::DARK_BLUE, $string);
         $string = str_replace("&2", TextFormat::DARK_GREEN, $string);
@@ -448,7 +451,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
         $string = str_replace("&n", TextFormat::UNDERLINE, $string);
         $string = str_replace("&o", TextFormat::ITALIC, $string);
         $string = str_replace("&r", TextFormat::RESET, $string);
-		
+        }
         return $string;
     }
 
@@ -1034,13 +1037,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$line1 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line1", "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"));
         $line2 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line2", "§a>Welcome to §f{serverprefix}§a @{player}!"));
         $line3 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line3", "§a>this server was made with NekoMine-MP!!"));
-        $line4 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line4", "§a>Donate at: §l§e§uhttps://www.paypal.com/donate/?token=d3uraLjjvZEZDLxcxXw5m8t9-XHXUtF_wOAuZYkG9NLuZhPMPtUSotsXJX6UZzCjXNj_kG&country.x=US&locale.x=US"));
+        $line4 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line4", "§a>Donate at: §l§e§u{donationlink}"));
         $line5 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line5", "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"));
- $this->getPlayer()->sendMessage($line1);
-$this->getPlayer()->sendMessage($line2);
-$this->getPlayer()->sendMessage($line3);
-$this->getPlayer()->sendMessage($line4);
-$this->getPlayer()->sendMessage($line5);
+        $this->getPlayer()->sendMessage($line1);
+        $this->getPlayer()->sendMessage($line2);
+        $this->getPlayer()->sendMessage($line3);
+        $this->getPlayer()->sendMessage($line4);
+        $this->getPlayer()->sendMessage($line5);
 		//NSFW
 		 if($this->server->getNekoMineConfigValue("enable-nsfw", false)){
 		 	$this->getPlayer()->sendMessage($this->server->getNekoMineConfigValue("nsfw-message","§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"));
