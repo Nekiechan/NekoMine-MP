@@ -37,6 +37,8 @@ kill-on-exit: false
 # {serverprefix} = your custom [Bob'sServer] tag
 # {os} = the player's OS
 # {model} the player's Device Model
+# {donationlink}
+donation-link: "Bit.ly/DonateNekos"
 server-prefix: "[A-NekoMine-Server]"
 enable-custom-message: true
 join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
@@ -44,7 +46,7 @@ leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
 welcome-message-line1: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
 welcome-message-line2: "§a>Welcome to §f{serverprefix}§a @{player}!"
 welcome-message-line3: "§a>this server was made with NekoMine-MP!!"
-welcome-message-line4: "§a>Donate at: §l§e§uBit.ly/DonateNekos"
+welcome-message-line4: "§a>Donate at: §l§e§u{donationlink}"
 welcome-message-line5: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
 #Enable Dev commands
 enable-dev-commands: true
