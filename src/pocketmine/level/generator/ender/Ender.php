@@ -98,7 +98,7 @@ class Ender extends Generator
         for ($x = 0; $x < 16; ++$x) {
             for ($z = 0; $z < 16; ++$z) {
 
-                $biome = Biome::getBiome(Biome::END);
+                $biome = Biome::getBiome(Biome::ENDER);
                 $biome->setGroundCover([
                     Block::get(Block::OBSIDIAN, 0)
 
