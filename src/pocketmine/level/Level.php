@@ -126,7 +126,11 @@ class Level implements ChunkManager, Metadatable{
 	const BLOCK_UPDATE_SCHEDULED = 3;
 	const BLOCK_UPDATE_WEAK = 4;
 	const BLOCK_UPDATE_TOUCH = 5;
-
+	
+    const DIMENSION_NORMAL = 0;
+    const DIMENSION_NETHER = 1;
+    const DIMENSION_END = 2;
+	
 	const TIME_DAY = 0;
 	const TIME_SUNSET = 12000;
 	const TIME_NIGHT = 14000;
@@ -265,7 +269,7 @@ class Level implements ChunkManager, Metadatable{
 	private $generatorInstance;
     private $weather;
 	private $closed = false;
-
+    private $dimension = self::DIMENSION_NORMAL;
 	public static function chunkHash(int $x, int $z){
 		return PHP_INT_SIZE === 8 ? (($x & 0xFFFFFFFF) << 32) | ($z & 0xFFFFFFFF) : $x . ":" . $z;
 	}
@@ -1587,7 +1591,7 @@ $this->weather->calcWeather($currentTick);
 				"PickupDelay" => new ShortTag("PickupDelay", $delay)
 			]));
 
-			$itemEntity->spawnToAll();
+//$itemEntity->spawnToAll(); BUGGED atm
 		}
 	}
 
