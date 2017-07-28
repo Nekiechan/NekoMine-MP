@@ -17,7 +17,7 @@
 #*
 #*/                   
 # NekoMine's config version, DO NOT EDIT!
-version: 5
+version: 6
 # Plugin api, edit at your own risk! (alot of 3.0.0 and below wont work properly!)
 plugin-api: "2.0.0"
 # Allows older clients to join! WARNING, USE AT YOUR OWN RISK!
@@ -28,42 +28,59 @@ enable-api-scripts: false
 backwards-protocol: []
 # Kill php process on shutdown, WIP!
 kill-on-exit: false
-# Join/Leave Messages
+# Message Formats
 # formats:
 # {player} = player name
 # {gamemode} = player gamemode
-# {world} = world that player spawned in
+# {world} = world that player spawned in WIP
 # {time} = time (in server's timezone) of player joining
 # {serverprefix} = your custom [Bob'sServer] tag
 # {os} = the player's OS
 # {model} the player's Device Model
 # {donationlink}
+# {nsfw} = the message you set for nsfw
+# &ColorCode = color coding (for editing in windows)
+# § use this if nessesary
+
+#Enables &ColorCoding (ex &a for green)
+enable-color: true
+#your {donationlink}
 donation-link: "Bit.ly/DonateNekos"
+#your {serverprefix}
 server-prefix: "[A-NekoMine-Server]"
+
+#Allows custom Join/Leave Messages
+#If false, will display normal PMMP leave/join messages
 enable-custom-message: true
+
+#Custom Join Message (Uses Message Formats)
 join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
+#Custom Leave Message (Uses Message Formats)
 leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
+
+#Enable NSFW (For Adult Servers, if any.)
+#notifies players that this is a NSFW server on join if true
+enable-nsfw: false
+nsfw-message: "§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"
+
+#Welcome Messages (Good for telling people about your server when they first connect
+#(Uses Message Formats)
 welcome-message-line1: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
 welcome-message-line2: "§a>Welcome to §f{serverprefix}§a @{player}!"
 welcome-message-line3: "§a>this server was made with NekoMine-MP!!"
 welcome-message-line4: "§a>Donate at: §l§e§u{donationlink}"
 welcome-message-line5: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
+
 #Enable Dev commands
 enable-dev-commands: true
-#Enable NSFW
-#notifies players that this is a NSFW server on join if true
-enable-nsfw: false
-nsfw-message: "§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"
-#Enable Player like/dislike System		--WIP--
-#enables/disables the /like <player> and the /dislike <player> commands
-enable-likesystem: false
-likesystem-data: []
-#Enable pause console on crash	--WIP--
-enable-pause: false
+
+
 #Enable RolePlay Commands (turn off if a plugin uses these commands, command overlapping causes both to not work!)
 enable-rp-commands: true
-#Block specific OS's from joining
+
+#Block specific OS's from joining  WIP
 enable-blocking: false
+#Block OS's when true
 block-windows: false
 #win32 is anyone not running windows 10 and somehow joined
 block-win32: false
