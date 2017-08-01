@@ -1612,7 +1612,7 @@ $this->weather->calcWeather($currentTick);
 				"PickupDelay" => new ShortTag("PickupDelay", $delay)
 			]));
 
-//$itemEntity->spawnToAll(); BUGGED atm
+$itemEntity->spawnToAll();
 		}
 	}
 
