@@ -213,7 +213,6 @@ abstract class Entity extends Location implements Metadatable{
 		Entity::registerEntity(Cow::class);
 		Entity::registerEntity(Creeper::class);
 		Entity::registerEntity(Donkey::class);
-		Entity::registerEntity(DroppedItem::class);
 		Entity::registerEntity(Egg::class);
 		Entity::registerEntity(ElderGuardian::class);
 		Entity::registerEntity(Enderman::class);
@@ -229,6 +228,7 @@ abstract class Entity extends Location implements Metadatable{
 		Entity::registerEntity(Husk::class);
 		Entity::registerEntity(Ilama::class);
 		Entity::registerEntity(IronGolem::class);
+		Entity::registerEntity(Item::class);
 		Entity::registerEntity(LavaSlime::class); //Magma Cube
 		Entity::registerEntity(Lightning::class);
 		Entity::registerEntity(Minecart::class);
