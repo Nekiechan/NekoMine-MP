@@ -1584,36 +1584,37 @@ $this->weather->calcWeather($currentTick);
 	 * @param Item    $item
 	 * @param Vector3 $motion
 	 * @param int     $delay
+	 *
+	 * @return DroppedItem|null
 	 */
 	public function dropItem(Vector3 $source, Item $item, Vector3 $motion = null, int $delay = 10){
-		$motion = $motion === null ? new Vector3(lcg_value() * 0.2 - 0.1, 0.2, lcg_value() * 0.2 - 0.1) : $motion;
+		$motion = $motion ?? new Vector3(lcg_value() * 0.2 - 0.1, 0.2, lcg_value() * 0.2 - 0.1);
 		$itemTag = $item->nbtSerialize();
 		$itemTag->setName("Item");
-
 		if($item->getId() > 0 and $item->getCount() > 0){
 			$itemEntity = Entity::createEntity("Item", $this, new CompoundTag("", [
-				"Pos" => new ListTag("Pos", [
+				new ListTag("Pos", [
 					new DoubleTag("", $source->getX()),
 					new DoubleTag("", $source->getY()),
 					new DoubleTag("", $source->getZ())
 				]),
-
-				"Motion" => new ListTag("Motion", [
+				new ListTag("Motion", [
 					new DoubleTag("", $motion->x),
 					new DoubleTag("", $motion->y),
 					new DoubleTag("", $motion->z)
 				]),
-				"Rotation" => new ListTag("Rotation", [
+				new ListTag("Rotation", [
 					new FloatTag("", lcg_value() * 360),
 					new FloatTag("", 0)
 				]),
-				"Health" => new ShortTag("Health", 5),
-				"Item" => $itemTag,
-				"PickupDelay" => new ShortTag("PickupDelay", $delay)
+				new ShortTag("Health", 5),
+				$itemTag,
+				new ShortTag("PickupDelay", $delay)
 			]));
-
-$itemEntity->spawnToAll();
+			$itemEntity->spawnToAll();
+			return $itemEntity;
 		}
+		return null;
 	}
 
 	/**
