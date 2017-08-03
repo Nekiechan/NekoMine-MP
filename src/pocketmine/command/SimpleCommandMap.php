@@ -80,6 +80,7 @@ use pocketmine\command\defaults\FacepalmCommand;
 use pocketmine\command\defaults\HissCommand;
 use pocketmine\command\defaults\HugCommand;
 use pocketmine\command\defaults\KissCommand;
+use pocketmine\command\defaults\RawCommand;
 use pocketmine\command\defaults\MeowCommand;
 use pocketmine\command\defaults\PurrCommand;
 use pocketmine\command\defaults\SlapCommand;
@@ -124,6 +125,7 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new SnuggleCommand("snuggle"));
         }
 		$this->register("pocketmine", new NsfwCommand("nsfw"));
+        $this->register("pocketmine", new RawCommand("raw"));
 		$this->register("pocketmine", new WeatherCommand("weather"));
 		$this->register("pocketmine", new SetBlockCommand("setblock"));
 		$this->register("pocketmine", new FirstplayedCommand("firstplayed"));
