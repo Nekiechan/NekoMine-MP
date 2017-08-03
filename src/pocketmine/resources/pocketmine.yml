@@ -165,8 +165,9 @@ anonymous-statistics:
  enabled: true
  host: stats.pocketmine.net
 
+#AUTO UPDATER CAUSES CRASHES ATM
 auto-updater:
- enabled: true
+ enabled: false
  on-update:
   warn-console: true
   warn-ops: true
