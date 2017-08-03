@@ -45,7 +45,7 @@ class AutoUpdater{
 		$this->server = $server;
 		$this->endpoint = "http://$endpoint/api/";
 
-		if($server->getProperty("auto-updater.enabled", true)){
+		if($server->getProperty("auto-updater.enabled", false)){
 			$this->doCheck();
 		}
 	}
@@ -59,10 +59,10 @@ class AutoUpdater{
 		$this->updateInfo = $updateInfo;
 		$this->checkUpdate();
 		if($this->hasUpdate()){
-			if($this->server->getProperty("auto-updater.on-update.warn-console", true)){
+			if($this->server->getProperty("auto-updater.on-update.warn-console", false)){
 				$this->showConsoleUpdate();
 			}
-		}elseif($this->server->getProperty("auto-updater.preferred-channel", true)){
+		}elseif($this->server->getProperty("auto-updater.preferred-channel", false)){
 			$version = new VersionString();
 			if(!$version->isDev() and $this->getChannel() !== "stable"){
 				$this->showChannelSuggestionStable();
