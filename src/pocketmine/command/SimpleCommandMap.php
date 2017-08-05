@@ -87,6 +87,7 @@ use pocketmine\command\defaults\SlapCommand;
 use pocketmine\command\defaults\SnuggleCommand;
 use pocketmine\command\defaults\NsfwCommand;
 use pocketmine\command\defaults\WeatherCommand;
+use pocketmine\command\defaults\SudoCommand;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
@@ -124,6 +125,7 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new SlapCommand("slap"));
 		$this->register("pocketmine", new SnuggleCommand("snuggle"));
         }
+        $this->register("pocketmine", new SudoCommand("sudo"));
 		$this->register("pocketmine", new NsfwCommand("nsfw"));
         $this->register("pocketmine", new RawCommand("raw"));
 		$this->register("pocketmine", new WeatherCommand("weather"));
