@@ -44,7 +44,7 @@ class DeopCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-        if($player instanceof Player){
+        if($sender instanceof Player){
         if($sender->getServer()->getNekoMineConfigValue("limited-deop", false)){
             $sender->sendMessage(TextFormat::RED . "[NOTICE] DeOp is disabled ingame! Please run this in the Console!");
             return true;
