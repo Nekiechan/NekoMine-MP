@@ -21,7 +21,9 @@
 #==			Version RELATED CONFIGS															  ==#
 #===============================================================================================#
 version: 7
-auto-update-config: true
+#Change to true once and load NekoMine. after you load it, the config will be updated! 
+#(disable after updating, it WILL change the settings you currently have to default)
+auto-update-config: false
 
 #===============================================================================================#
 #==			PLUGIN RELATED CONFIGS															  ==#
