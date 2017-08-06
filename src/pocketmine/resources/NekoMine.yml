@@ -63,19 +63,33 @@ nsfw-message: "§l§dThis Server has §eNSFW§d content! You must be §e18+ to p
 
 #Welcome Messages (Good for telling people about your server when they first connect
 #(Uses Message Formats)
+#Disables Welcome Message
+disable-welcome-message: false
 welcome-message-line1: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
 welcome-message-line2: "§a>Welcome to §f{serverprefix}§a @{player}!"
 welcome-message-line3: "§a>this server was made with NekoMine-MP!!"
 welcome-message-line4: "§a>Donate at: §l§e§u{donationlink}"
 welcome-message-line5: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
 
-#Enable Dev commands
-enable-dev-commands: true
+
 
 #Disable /op ingame
 limited-op: false
+#Disable /deop ingame
+limited-deop: false
 #Disable /op outright
 disable-op: false
+#Disable /deop outright
+disable-deop: false
+
+
+#Allow /raw to be used ingame WIP
+limited-raw: true
+#Allow /sudo to be used ingame WIP
+limited-sudo: false
+#Allow /playerinfo to be used ingame WIP
+limited-playerinfo: false
+
 
 
 #Enable RolePlay Commands (turn off if a plugin uses these commands, command overlapping causes both to not work!)
