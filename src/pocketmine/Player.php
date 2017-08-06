@@ -283,6 +283,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/** @var Vector3 */
 	protected $sleeping = null;
 	protected $clientID = null;
+	protected $clientTempID = null;
 	
 	protected $deviceModel;
 	protected $deviceOS;
@@ -360,6 +361,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function getDeviceOS(){
 		return $this->deviceOS;
 	}
+	
+	public function getTempID(){
+		return base64_encode($this->clientTempID);	
+	}
+	
 	public function OSnumToString($os){
 	//Android => 1
 	if($os === 1){
@@ -786,6 +792,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->ip = $ip;
 		$this->port = $port;
 		$this->clientID = $clientID;
+		$this->clientTempID = random_bytes(20);
 		$this->loaderId = Level::generateChunkLoaderId($this);
 		$this->chunksPerTick = (int) $this->server->getProperty("chunk-sending.per-tick", 4);
 		$this->spawnThreshold = (int) (($this->server->getProperty("chunk-sending.spawn-radius", 4) ** 2) * M_PI);
