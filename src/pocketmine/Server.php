@@ -1513,7 +1513,7 @@ class Server{
 					$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/NekoMine.yml");
 				}
 				@file_put_contents($this->dataPath . "NekoMine.yml", $content);
-			}elseif($this->server->getNekoMineConfigValue("auto-update-config", false)){
+			}elseif($this->getNekoMineConfigValue("auto-update-config", false)){
 					$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/NekoMine.yml");
 					@file_put_contents($this->dataPath . "NekoMine.yml", $content);
 			} 
