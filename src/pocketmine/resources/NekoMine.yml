@@ -17,95 +17,36 @@
 #*
 #*/                   
 # NekoMine's config version, DO NOT EDIT!
+#===============================================================================================#
+#==			Version RELATED CONFIGS															  ==#
+#===============================================================================================#
 version: 7
-# Plugin api, edit at your own risk! (alot of 3.0.0 and below wont work properly!)
+auto-update-config: true
+
+#===============================================================================================#
+#==			PLUGIN RELATED CONFIGS															  ==#
+#===============================================================================================#
+# Plugin api, edit at your own risk! (alot of 3.0.0 and below wont work properly!) DISABLED, WIP
 plugin-api: "2.0.0"
-# Allows older clients to join! WARNING, USE AT YOUR OWN RISK!
-# Example:
+
+# Loads EVERY plugin regardless of it's API (MAY CAUSE CRASHES!!)
+disable-plugin-api: false
+
+#===============================================================================================#
+#==			DEVELOPER RELATED CONFIGS														  ==#
+#===============================================================================================#
 # Enables devs to use event scripts to excecute code. IE when server crashes, starts etc (WIP)
 enable-api-scripts: false
-# backwards-protocol: [number , number]
-backwards-protocol: []
-# Kill php process on shutdown, WIP!
-kill-on-exit: false
-# Message Formats
-# formats:
-# {player} = player name
-# {gamemode} = player gamemode
-# {serverprefix} = your custom [Bob'sServer] tag
-# {os} = the player's OS
-# {model} the player's Device Model
-# {donationlink}
-# {nsfw} = the message you set for nsfw
-# &ColorCode = color coding (for editing in windows)
-# § use this if nessesary
 
-#Enables &ColorCoding (ex &a for green)
-enable-color: true
-#your {donationlink}
-donation-link: "Bit.ly/DonateNekos"
-#your {serverprefix}
-server-prefix: "[A-NekoMine-Server]"
-
-#Allows custom Join/Leave Messages
-#If false, will display normal PMMP leave/join messages
-enable-custom-message: true
-
-#Custom Join Message (Uses Message Formats)
-join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
-#Custom Leave Message (Uses Message Formats)
-leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
-
-#Enable NSFW (For Adult Servers, if any.)
-#notifies players that this is a NSFW server on join if true
-enable-nsfw: false
-nsfw-message: "§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"
-
-#Welcome Messages (Good for telling people about your server when they first connect
-#(Uses Message Formats)
-#Disables Welcome Message
-disable-welcome-message: false
-welcome-message-line1: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
-welcome-message-line2: "§a>Welcome to §f{serverprefix}§a @{player}!"
-welcome-message-line3: "§a>this server was made with NekoMine-MP!!"
-welcome-message-line4: "§a>Donate at: §l§e§u{donationlink}"
-welcome-message-line5: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
-
-
-
-#Disable /op ingame
-limited-op: false
-#Disable /deop ingame
-limited-deop: false
-#Disable /op outright
-disable-op: false
-#Disable /deop outright
-disable-deop: false
-
-
-#Allow /raw to be used ingame
-#The purpose of /raw is for using it to "notify" your players 
-limited-raw: true
-#Allow /sudo to be used ingame
-#The purpose of /sudo is to run a command as another player
-limited-sudo: false
-#Allow /playerinfo to be used ingame
-#The purpose of /playerinfo is to obtain useful information about a player
-limited-playerinfo: false
-
-
-
-#Enable RolePlay Commands (turn off if a plugin uses these commands, command overlapping isnt good!)
-enable-rp-commands: true
-
+#===============================================================================================#
+#==			OS RELATED CONFIGS														          ==#
+#===============================================================================================#
 #Block specific OS's from joining
 enable-blocking: false
-
 #Block OS's when true
 #WINDOWS MACHINES
 block-windows: false
 block-win32: false
-
 #MOBILE DEVICES
 block-android: false
 block-ios: false
@@ -117,4 +58,95 @@ block-gearvr: false
 block-hololens: false
 #what even is the OS dedicated?
 block-dedicated: false
+
+
+#===============================================================================================#
+#==			MCPE VERSION/NETWORK RELATED CONFIGS											  ==#
+#===============================================================================================#
+# Allows older clients to join! WARNING, USE AT YOUR OWN RISK!
+# Example: backwards-protocol: [number , number]
+backwards-protocol: []
+#Custom Motd on main menu. WIP
+custom-motd: false
+motd: "WIP"
+
+#===============================================================================================#
+#==			CHAT/MESSAGE RELATED CONFIGS													  ==#
+#===============================================================================================#
+#==| Message Formats																		 |==#
+#==| formats:																			     |==#
+#==| {player} = player name																     |==#
+#==| {gamemode} = player gamemode															 |==#
+#==| {serverprefix} = your custom [Bob'sServer] tag											 |==#
+#==| {os} = the player's OS																	 |==#
+#==| {model} the player's Device Model														 |==#
+#==| {donationlink}																			 |==#
+#==| {nsfw} = the message you set for nsfw													 |==#
+#==| &ColorCode = color coding (for editing in windows)										 |==#
+#==| § use this if nessesary															 	 |==#
+#===============================================================================================#
+#Disables Welcome Message
+disable-welcome-message: false
+#Enables &ColorCoding (ex &a for green)
+enable-color: true
+#Allows custom Join/Leave Messages
+#If false, will display normal PMMP leave/join messages
+enable-custom-message: true
+#Enable NSFW (For Adult Servers, if any.)
+enable-nsfw: false
+
+#your {donationlink}
+donation-link: "Bit.ly/DonateNekos"
+#your {serverprefix}
+server-prefix: "[A-NekoMine-Server]"
+
+#Custom Join Message (Uses Message Formats)
+join-message: "§l§a{player} §r§l§e>§dJoined {serverprefix}"
+#Custom Leave Message (Uses Message Formats)
+leave-message: "§l§a{player} §r§l§e>§dLeft {serverprefix}....."
+
+#notifies players that this is a NSFW server on join if true
+nsfw-message: "§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"
+
+#Welcome Messages (Good for telling people about your server when they first connect
+#(Uses Message Formats)
+welcome-message-line1: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
+welcome-message-line2: "§a>Welcome to §f{serverprefix}§a @{player}!"
+welcome-message-line3: "§a>this server was made with NekoMine-MP!!"
+welcome-message-line4: "§a>Donate at: §l§e§u{donationlink}"
+welcome-message-line5: "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"
+
+#===============================================================================================#
+#==			COMMAND RELATED CONFIGS														      ==#
+#===============================================================================================#
+
+#Enable RolePlay Commands (turn off if a plugin uses these commands, command overlapping isnt good!)
+enable-rp-commands: true
+
+#Disable /op ingame
+limited-op: false
+#Disable /deop ingame
+limited-deop: false
+#Allow /raw to be used ingame
+#The purpose of /raw is for using it to "notify" your players 
+limited-raw: true
+#Allow /sudo to be used ingame
+#The purpose of /sudo is to run a command as another player
+limited-sudo: false
+#Allow /playerinfo to be used ingame
+#The purpose of /playerinfo is to obtain useful information about a player
+limited-playerinfo: false
+
+
+#Disable /op outright
+disable-op: false
+#Disable /deop outright
+disable-deop: false
+
+
+
+#===============================================================================================#
+#==			OTHER RELATED CONFIGS														      ==#
+#===============================================================================================#
+
 
