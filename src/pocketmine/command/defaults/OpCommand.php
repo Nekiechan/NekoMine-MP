@@ -50,16 +50,18 @@ class OpCommand extends VanillaCommand{
 
 			return false;
 		}
+		if($player instanceof Player){
         if($sender->getServer()->getNekoMineConfigValue("limited-op", false)){
             $sender->sendMessage(TextFormat::RED . "[NOTICE] Op is disabled ingame! Please run this in the Console!");
             return true;
+        }
         }
 		$name = array_shift($args);
 
 		$player = $sender->getServer()->getOfflinePlayer($name);
 		Command::broadcastCommandMessage($sender, new TranslationContainer("commands.op.success", [$player->getName()]));
 		if($player instanceof Player){
-			$player->sendMessage(TextFormat::GRAY . "You are now op!");
+			$player->sendMessage(TextFormat::GREEN . "[NOTICE] " . TextFormat::GRAY . "You are now op!");
 		}
 		$player->setOp(true);
 		return true;
