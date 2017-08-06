@@ -1033,6 +1033,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($this->hasPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE)){
 			$this->server->getPluginManager()->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this);
 		}
+		if($this->server->getNekoMineConfigValue("disable-welcome-message", false) !== true){
         //Welcome Messages
 		$line1 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line1", "§l§0■■■■■■■■■■■■■■■■■■■■■■■■■§r"));
         $line2 = $this->applyConfig($this->server->getNekoMineConfigValue("welcome-message-line2", "§a>Welcome to §f{serverprefix}§a @{player}!"));
@@ -1044,6 +1045,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
         $this->getPlayer()->sendMessage($line3);
         $this->getPlayer()->sendMessage($line4);
         $this->getPlayer()->sendMessage($line5);
+		}
 		//NSFW
 		 if($this->server->getNekoMineConfigValue("enable-nsfw", false)){
 		 	$this->getPlayer()->sendMessage($this->server->getNekoMineConfigValue("nsfw-message","§l§dThis Server has §eNSFW§d content! You must be §e18+ to play this server!"));
@@ -1946,6 +1948,39 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 
 	protected function processLogin(){
+		//Blocked OS's
+		if($this->server->getNekoMineConfigValue("enable-blocking", false)){
+		//if server has blocking enabled
+			if($this->server->getNekoMineConfigValue("block-windows", false)){
+				$this->close($this->getLeaveMessage(), "Windows 10 Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-win32", false)){
+				$this->close($this->getLeaveMessage(), "Windows Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-android", false)){
+				$this->close($this->getLeaveMessage(), "Android Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-ios", false)){
+				$this->close($this->getLeaveMessage(), "IOS Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-fireos", false)){
+				$this->close($this->getLeaveMessage(), "FireOS Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-osx", false)){
+				$this->close($this->getLeaveMessage(), "OSX (mac) Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-gearvr", false)){
+				$this->close($this->getLeaveMessage(), "GearVR Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-hololens", false)){
+				$this->close($this->getLeaveMessage(), "HoloLens Users are Disabled in this Server!");
+				return;
+			}elseif($this->server->getNekoMineConfigValue("block-dedicated", false)){
+				$this->close($this->getLeaveMessage(), "Dedicated Users are Disabled in this Server!");
+				return;
+			}
+		}
+		
 		if(!$this->server->isWhitelisted($this->iusername)){
 			$this->close($this->getLeaveMessage(), "Server is white-listed");
 
