@@ -38,7 +38,7 @@ class SudoCommand extends VanillaCommand{
 			return true;
 		}
 		if($sender instanceof Player){
-        if($sender->getServer()->getNekoMineConfigValue("disable-sudo", false)){
+        if($sender->getServer()->getNekoMineConfigValue("limited-sudo", false)){
             $sender->sendMessage(TextFormat::RED . "[NOTICE] Sudo is disabled ingame! Please run this in the Console!");
             return true;
         }
