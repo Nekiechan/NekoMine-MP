@@ -153,7 +153,9 @@ class SimpleCommandMap implements CommandMap{
 		if($this->server->getNekoMineConfigValue("disable-op", false) !== true){
         $this->register("pocketmine", new OpCommand("op"));
         }
+		if($this->server->getNekoMineConfigValue("disable-deop", false) !== true){
 		$this->register("pocketmine", new DeopCommand("deop"));
+		}
 		$this->register("pocketmine", new WhitelistCommand("whitelist"));
 		$this->register("pocketmine", new SaveOnCommand("save-on"));
 		$this->register("pocketmine", new SaveOffCommand("save-off"));
