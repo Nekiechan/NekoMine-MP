@@ -150,7 +150,9 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new ListCommand("list"));
 		$this->register("pocketmine", new DifficultyCommand("difficulty"));
 		$this->register("pocketmine", new KickCommand("kick"));
-		$this->register("pocketmine", new OpCommand("op"));
+		if($sender->getServer()->getNekoMineConfigValue("disable-op", false) !== false){
+        $this->register("pocketmine", new OpCommand("op"));
+        }
 		$this->register("pocketmine", new DeopCommand("deop"));
 		$this->register("pocketmine", new WhitelistCommand("whitelist"));
 		$this->register("pocketmine", new SaveOnCommand("save-on"));
