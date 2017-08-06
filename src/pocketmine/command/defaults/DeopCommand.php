@@ -44,7 +44,12 @@ class DeopCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-
+        if($player instanceof Player){
+        if($sender->getServer()->getNekoMineConfigValue("limited-deop", false)){
+            $sender->sendMessage(TextFormat::RED . "[NOTICE] DeOp is disabled ingame! Please run this in the Console!");
+            return true;
+        }
+        }
 		if(count($args) === 0){
 			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 
@@ -56,7 +61,7 @@ class DeopCommand extends VanillaCommand{
 		$player = $sender->getServer()->getOfflinePlayer($name);
 		$player->setOp(false);
 		if($player instanceof Player){
-			$player->sendMessage(TextFormat::GRAY . "You are no longer op!");
+			$player->sendMessage(TextFormat::RED . "[NOTICE] " . TextFormat::GRAY . "You are no longer op!");
 		}
 		Command::broadcastCommandMessage($sender, new TranslationContainer("commands.deop.success", [$player->getName()]));
 
