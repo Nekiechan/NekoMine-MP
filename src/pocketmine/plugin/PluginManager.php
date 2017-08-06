@@ -225,7 +225,12 @@ class PluginManager{
 								if($version !== $this->server->getApiVersion()){
 									$pluginApi = array_pad(explode("-", $version), 2, ""); //0 = version, 1 = suffix (optional)
 									$serverApi = array_pad(explode("-", $this->server->getApiVersion()), 2, "");
-
+									
+									if($this->server->getNekoMineConfigValue("disable-plugin-api",false)){
+										//if config sets to ignore plugin api
+										continue;
+									}
+									
 									if(strtoupper($pluginApi[1]) !== strtoupper($serverApi[1])){ //Different release phase (alpha vs. beta) or phase build (alpha.1 vs alpha.2)
 										continue;
 									}
