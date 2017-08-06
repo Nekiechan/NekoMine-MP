@@ -37,10 +37,16 @@ class PlayerInfoCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-if(count($args) === 0){
-   $sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
-return false;
-}
+        if($player instanceof Player){
+        if($sender->getServer()->getNekoMineConfigValue("disable-playerdata", false)){
+            $sender->sendMessage(TextFormat::RED . "[NOTICE] PlayerData is disabled ingame! Please run this in the Console!");
+            return true;
+        }
+        }
+        if(count($args) === 0){
+            $sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
+            return false;
+        }
         $name = strtolower(array_shift($args));
         $player = $sender->getServer()->getPlayer($name);
 		if($player instanceof Player){
