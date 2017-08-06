@@ -40,7 +40,7 @@ class RawCommand extends VanillaCommand{
 			return true;
 		}
 	if($sender instanceof Player){
-        if($sender->getServer()->getNekoMineConfigValue("disable-raw", true)){
+        if($sender->getServer()->getNekoMineConfigValue("limited-raw", true)){
             $sender->sendMessage(TextFormat::RED . "[NOTICE] Raw is disabled ingame! Please run this in the Console!");
             return true;
         }
