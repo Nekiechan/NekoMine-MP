@@ -1513,10 +1513,10 @@ class Server{
 					$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/NekoMine.yml");
 				}
 				@file_put_contents($this->dataPath . "NekoMine.yml", $content);
-			}elseif($this->getNekoMineConfigValue("auto-update-config", false)){
+			}/*elseif($this->getNekoMineConfigValue("auto-update-config", false)){
 					$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/NekoMine.yml");
 					@file_put_contents($this->dataPath . "NekoMine.yml", $content);
-			} 
+			} */
 			$this->nekomineconfig = new Config($this->dataPath . "NekoMine.yml", Config::YAML, []);
 			$this->logger->info($this->getLanguage()->translateString("pocketmine.server.start", [TextFormat::AQUA . $this->getVersion() . TextFormat::RESET]));
 
