@@ -1505,6 +1505,7 @@ class Server{
 			$this->memoryManager = new MemoryManager($this);
 			$this->logger->info("Loading NekoMine.yml...");
 			$lang = $this->getProperty("settings.language", BaseLang::FALLBACK_LANGUAGE);
+			
 			if(!file_exists($this->dataPath . "NekoMine.yml")){
 				if(file_exists($this->filePath . "src/pocketmine/resources/NekoMine_$lang.yml")){
 					$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/NekoMine_$lang.yml");
@@ -1512,7 +1513,10 @@ class Server{
 					$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/NekoMine.yml");
 				}
 				@file_put_contents($this->dataPath . "NekoMine.yml", $content);
-			}
+			}elseif($this->server->getNekoMineConfigValue("auto-update-config", false)){
+					$content = file_get_contents($file = $this->filePath . "src/pocketmine/resources/NekoMine.yml");
+					@file_put_contents($this->dataPath . "NekoMine.yml", $content);
+			} 
 			$this->nekomineconfig = new Config($this->dataPath . "NekoMine.yml", Config::YAML, []);
 			$this->logger->info($this->getLanguage()->translateString("pocketmine.server.start", [TextFormat::AQUA . $this->getVersion() . TextFormat::RESET]));
 
