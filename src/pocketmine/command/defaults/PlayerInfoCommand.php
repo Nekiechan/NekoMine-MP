@@ -37,7 +37,7 @@ class PlayerInfoCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-        if($player instanceof Player){
+        if($sender instanceof Player){
         if($sender->getServer()->getNekoMineConfigValue("disable-playerdata", false)){
             $sender->sendMessage(TextFormat::RED . "[NOTICE] PlayerData is disabled ingame! Please run this in the Console!");
             return true;
