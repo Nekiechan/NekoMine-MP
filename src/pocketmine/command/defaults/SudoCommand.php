@@ -37,13 +37,19 @@ class SudoCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
+		if($sender instanceof Player){
+        if($sender->getServer()->getNekoMineConfigValue("disable-sudo", false)){
+            $sender->sendMessage(TextFormat::RED . "[NOTICE] Sudo is disabled ingame! Please run this in the Console!");
+            return true;
+        }
+        }
     if(count($args) < 2) {
 					$sender->sendMessage("Please enter a player and a command.");
 					return true;
 				}
-		$player = $this->getServer()->getPlayer(array_shift($args));
+		$player = $sender->getServer()->getPlayer(array_shift($args));
 				if($player instanceof Player) {
-					$this->getServer()->dispatchCommand($player, trim(implode(" ", $args)));
+					$sender->getServer()->dispatchCommand($player, trim(implode(" ", $args)));
 					return true;
 				} else {
 					$sender->sendMessage("Player not found.");
