@@ -47,7 +47,7 @@ class RawCommand extends VanillaCommand{
       $sender->sendMessage("§l§cPut a Msg! §a/raw <msg>");
 			return false;
 		}
-   $sender->getServer()->broadcastMessage(implode(" ", $args));
+   $sender->getServer()->broadcastMessage(TextFormat::RED . "[NOTICE] " . implode(" ", $args));
    }
 		return true;
 	}
