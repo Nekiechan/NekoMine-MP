@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -32,12 +34,11 @@ class TakeItemEntityPacket extends DataPacket{
 	public $target;
 	public $eid;
 
-	public function decode(){
+	public function decodePayload(){
 
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putEntityRuntimeId($this->target);
 		$this->putEntityRuntimeId($this->eid);
 	}

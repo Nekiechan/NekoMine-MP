@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -39,16 +41,15 @@ class PlayStatusPacket extends DataPacket{
 
 	public $status;
 
-	public function decode(){
-
+	public function decodePayload(){
+		$this->status = $this->getInt();
 	}
 
 	public function canBeSentBeforeLogin() : bool{
 		return true;
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putInt($this->status);
 	}
 

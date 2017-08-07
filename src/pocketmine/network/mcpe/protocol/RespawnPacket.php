@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -33,12 +35,11 @@ class RespawnPacket extends DataPacket{
 	public $y;
 	public $z;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->getVector3f($this->x, $this->y, $this->z);
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putVector3f($this->x, $this->y, $this->z);
 	}
 

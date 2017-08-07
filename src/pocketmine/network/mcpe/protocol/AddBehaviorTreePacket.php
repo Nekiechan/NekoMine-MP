@@ -25,25 +25,23 @@ namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
 
-
 use pocketmine\network\mcpe\NetworkSession;
 
-class ClientToServerHandshakePacket extends DataPacket{
-	const NETWORK_ID = ProtocolInfo::CLIENT_TO_SERVER_HANDSHAKE_PACKET;
+class AddBehaviorTreePacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::ADD_BEHAVIOR_TREE_PACKET;
 
-	public function canBeSentBeforeLogin() : bool{
-		return true;
-	}
+	/** @var string */
+	public $unknownString1;
 
 	public function decodePayload(){
-		//No payload
+		$this->unknownString1 = $this->getString();
 	}
 
 	public function encodePayload(){
-		//No payload
+		$this->putString($this->unknownString1);
 	}
 
 	public function handle(NetworkSession $session) : bool{
-		return $session->handleClientToServerHandshake($this);
+		return $session->handleAddBehaviorTree($this);
 	}
 }

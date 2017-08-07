@@ -25,25 +25,34 @@ namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
 
-
 use pocketmine\network\mcpe\NetworkSession;
 
-class ClientToServerHandshakePacket extends DataPacket{
-	const NETWORK_ID = ProtocolInfo::CLIENT_TO_SERVER_HANDSHAKE_PACKET;
+class UpdateEquipPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::UPDATE_EQUIP_PACKET;
 
-	public function canBeSentBeforeLogin() : bool{
-		return true;
-	}
+	public $windowId;
+	public $windowType;
+	public $unknownVarint; //TODO: find out what this is (vanilla always sends 0)
+	public $entityUniqueId;
+	public $namedtag;
 
 	public function decodePayload(){
-		//No payload
+		$this->windowId = $this->getByte();
+		$this->windowType = $this->getByte();
+		$this->unknownVarint = $this->getVarInt();
+		$this->entityUniqueId = $this->getEntityUniqueId();
+		$this->namedtag = $this->get(true);
 	}
 
 	public function encodePayload(){
-		//No payload
+		$this->putByte($this->windowId);
+		$this->putByte($this->windowType);
+		$this->putVarInt($this->unknownVarint);
+		$this->putEntityUniqueId($this->entityUniqueId);
+		$this->put($this->namedtag);
 	}
 
 	public function handle(NetworkSession $session) : bool{
-		return $session->handleClientToServerHandshake($this);
+		return $session->handleUpdateEquip($this);
 	}
 }

@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -34,13 +36,12 @@ class DropItemPacket extends DataPacket{
 	/** @var Item */
 	public $item;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->type = $this->getByte();
 		$this->item = $this->getSlot();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putByte($this->type);
 		$this->putSlot($this->item);
 	}

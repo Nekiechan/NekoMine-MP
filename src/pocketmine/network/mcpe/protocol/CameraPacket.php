@@ -25,25 +25,27 @@ namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
 
-
 use pocketmine\network\mcpe\NetworkSession;
 
-class ClientToServerHandshakePacket extends DataPacket{
-	const NETWORK_ID = ProtocolInfo::CLIENT_TO_SERVER_HANDSHAKE_PACKET;
+class CameraPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::CAMERA_PACKET;
 
-	public function canBeSentBeforeLogin() : bool{
-		return true;
-	}
+	/** @var int */
+	public $cameraUniqueId;
+	/** @var int */
+	public $playerUniqueId;
 
 	public function decodePayload(){
-		//No payload
+		$this->cameraUniqueId = $this->getEntityUniqueId();
+		$this->playerUniqueId = $this->getEntityUniqueId();
 	}
 
 	public function encodePayload(){
-		//No payload
+		$this->putEntityUniqueId($this->cameraUniqueId);
+		$this->putEntityUniqueId($this->playerUniqueId);
 	}
 
 	public function handle(NetworkSession $session) : bool{
-		return $session->handleClientToServerHandshake($this);
+		return $session->handleCamera($this);
 	}
 }

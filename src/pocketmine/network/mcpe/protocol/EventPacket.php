@@ -25,25 +25,43 @@ namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
 
-
 use pocketmine\network\mcpe\NetworkSession;
 
-class ClientToServerHandshakePacket extends DataPacket{
-	const NETWORK_ID = ProtocolInfo::CLIENT_TO_SERVER_HANDSHAKE_PACKET;
+class EventPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::EVENT_PACKET;
 
-	public function canBeSentBeforeLogin() : bool{
-		return true;
-	}
+	const TYPE_ACHIEVEMENT_AWARDED = 0;
+	const TYPE_ENTITY_INTERACT = 1;
+	const TYPE_PORTAL_BUILT = 2;
+	const TYPE_PORTAL_USED = 3;
+	const TYPE_MOB_KILLED = 4;
+	const TYPE_CAULDRON_USED = 5;
+	const TYPE_PLAYER_DEATH = 6;
+	const TYPE_BOSS_KILLED = 7;
+	const TYPE_AGENT_COMMAND = 8;
+	const TYPE_AGENT_CREATED = 9;
+
+	public $playerRuntimeId;
+	public $eventData;
+	public $type;
 
 	public function decodePayload(){
-		//No payload
+		$this->playerRuntimeId = $this->getEntityRuntimeId();
+		$this->eventData = $this->getVarInt();
+		$this->type = $this->getByte();
+
+		//TODO: nice confusing mess
 	}
 
 	public function encodePayload(){
-		//No payload
+		$this->putEntityRuntimeId($this->playerRuntimeId);
+		$this->putVarInt($this->eventData);
+		$this->putByte($this->type);
+
+		//TODO: also nice confusing mess
 	}
 
 	public function handle(NetworkSession $session) : bool{
-		return $session->handleClientToServerHandshake($this);
+		return $session->handleEvent($this);
 	}
 }

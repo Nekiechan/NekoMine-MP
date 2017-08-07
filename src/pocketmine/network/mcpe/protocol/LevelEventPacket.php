@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -77,6 +79,7 @@ class LevelEventPacket extends DataPacket{
 	const EVENT_START_THUNDER = 3002;
 	const EVENT_STOP_RAIN = 3003;
 	const EVENT_STOP_THUNDER = 3004;
+	const EVENT_PAUSE_GAME = 3005; //data: 1 to pause, 0 to resume
 
 	const EVENT_REDSTONE_TRIGGER = 3500;
 	const EVENT_CAULDRON_EXPLODE = 3501;
@@ -103,14 +106,13 @@ class LevelEventPacket extends DataPacket{
 	public $z = 0;
 	public $data;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->evid = $this->getVarInt();
 		$this->getVector3f($this->x, $this->y, $this->z);
 		$this->data = $this->getVarInt();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putVarInt($this->evid);
 		$this->putVector3f($this->x, $this->y, $this->z);
 		$this->putVarInt($this->data);

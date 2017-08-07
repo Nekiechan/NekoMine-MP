@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -37,7 +39,7 @@ class CommandStepPacket extends DataPacket{
 	public $inputJson;
 	public $outputJson;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->command = $this->getString();
 		$this->overload = $this->getString();
 		$this->uvarint1 = $this->getUnsignedVarInt();
@@ -47,11 +49,10 @@ class CommandStepPacket extends DataPacket{
 		$this->inputJson = json_decode($this->getString());
 		$this->outputJson = json_decode($this->getString());
 
-		$this->get(true); //TODO: read command origin data
+		$this->getRemaining(); //TODO: read command origin data
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putString($this->command);
 		$this->putString($this->overload);
 		$this->putUnsignedVarInt($this->uvarint1);
