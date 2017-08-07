@@ -14,10 +14,12 @@
  * (at your option) any later version.
  *
  * @author PocketMine Team
- * @link   http://www.pocketmine.net/
+ * @link http://www.pocketmine.net/
  *
  *
- */
+*/
+
+declare(strict_types=1);
 
 namespace pocketmine\event\block;
 
@@ -31,7 +33,7 @@ use pocketmine\Player;
 class SignChangeEvent extends BlockEvent implements Cancellable{
 	public static $handlerList = null;
 
-	/** @var \pocketmine\Player */
+	/** @var Player */
 	private $player;
 	/** @var string[] */
 	private $lines = [];
@@ -67,7 +69,20 @@ class SignChangeEvent extends BlockEvent implements Cancellable{
 	 * @return string
 	 */
 	public function getLine($index){
+		if($index < 0 or $index > 3){
+			throw new \InvalidArgumentException("Index must be in the range 0-3!");
+		}
 		return $this->lines[$index];
+	}
+
+	/**
+	 * @param string[] $lines
+	 */
+	public function setLines(array $lines){
+		if(count($lines) !== 4){
+			throw new \InvalidArgumentException("Array size must be 4!");
+		}
+		$this->lines = $lines;
 	}
 
 	/**
@@ -75,6 +90,9 @@ class SignChangeEvent extends BlockEvent implements Cancellable{
 	 * @param string $line
 	 */
 	public function setLine($index, $line){
+		if($index < 0 or $index > 3){
+			throw new \InvalidArgumentException("Index must be in the range 0-3!");
+		}
 		$this->lines[$index] = $line;
 	}
 }
