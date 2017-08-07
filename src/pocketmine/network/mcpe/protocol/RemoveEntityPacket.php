@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -29,15 +31,14 @@ use pocketmine\network\mcpe\NetworkSession;
 class RemoveEntityPacket extends DataPacket{
 	const NETWORK_ID = ProtocolInfo::REMOVE_ENTITY_PACKET;
 
-	public $eid;
+	public $entityUniqueId;
 
-	public function decode(){
-		$this->eid = $this->getEntityUniqueId();
+	public function decodePayload(){
+		$this->entityUniqueId = $this->getEntityUniqueId();
 	}
 
-	public function encode(){
-		$this->reset();
-		$this->putEntityUniqueId($this->eid);
+	public function encodePayload(){
+		$this->putEntityUniqueId($this->entityUniqueId);
 	}
 
 	public function handle(NetworkSession $session) : bool{

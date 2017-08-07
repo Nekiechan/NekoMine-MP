@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -30,12 +32,11 @@ class SetTimePacket extends DataPacket{
 
 	public $time;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->time = $this->getVarInt();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putVarInt($this->time);
 	}
 

@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 
 namespace pocketmine\network\mcpe\protocol;
 
@@ -48,7 +50,7 @@ class ClientboundMapItemDataPacket extends DataPacket{
 	/** @var Color[][] */
 	public $colors = [];
 
-	public function decode(){
+	public function decodePayload(){
 		$this->mapId = $this->getEntityUniqueId();
 		$this->type = $this->getUnsignedVarInt();
 
@@ -91,8 +93,7 @@ class ClientboundMapItemDataPacket extends DataPacket{
 		}
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putEntityUniqueId($this->mapId);
 
 		$type = 0;
@@ -126,6 +127,7 @@ class ClientboundMapItemDataPacket extends DataPacket{
 				$this->putByte($decoration["xOffset"]);
 				$this->putByte($decoration["yOffset"]);
 				$this->putString($decoration["label"]);
+				assert($decoration["color"] instanceof Color);
 				$this->putLInt($decoration["color"]->toARGB());
 			}
 		}

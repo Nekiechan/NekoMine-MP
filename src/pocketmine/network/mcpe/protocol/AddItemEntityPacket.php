@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -29,7 +31,9 @@ use pocketmine\network\mcpe\NetworkSession;
 class AddItemEntityPacket extends DataPacket{
 	const NETWORK_ID = ProtocolInfo::ADD_ITEM_ENTITY_PACKET;
 
+	/** @var int|null */
 	public $entityUniqueId = null; //TODO
+	/** @var int */
 	public $entityRuntimeId;
 	public $item;
 	public $x;
@@ -40,7 +44,7 @@ class AddItemEntityPacket extends DataPacket{
 	public $speedZ = 0.0;
 	public $metadata = [];
 
-	public function decode(){
+	public function decodePayload(){
 		$this->entityUniqueId = $this->getEntityUniqueId();
 		$this->entityRuntimeId = $this->getEntityRuntimeId();
 		$this->item = $this->getSlot();
@@ -49,8 +53,7 @@ class AddItemEntityPacket extends DataPacket{
 		$this->metadata = $this->getEntityMetadata();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putEntityUniqueId($this->entityUniqueId ?? $this->entityRuntimeId);
 		$this->putEntityRuntimeId($this->entityRuntimeId);
 		$this->putSlot($this->item);

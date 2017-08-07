@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -31,12 +33,11 @@ class AddItemPacket extends DataPacket{
 
 	public $item;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->item = $this->getSlot();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putSlot($this->item);
 	}
 

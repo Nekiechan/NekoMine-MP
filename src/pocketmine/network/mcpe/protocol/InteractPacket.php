@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -34,16 +36,17 @@ class InteractPacket extends DataPacket{
 	const ACTION_LEAVE_VEHICLE = 3;
 	const ACTION_MOUSEOVER = 4;
 
+	const ACTION_OPEN_INVENTORY = 6;
+
 	public $action;
 	public $target;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->action = $this->getByte();
 		$this->target = $this->getEntityRuntimeId();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putByte($this->action);
 		$this->putEntityRuntimeId($this->target);
 	}

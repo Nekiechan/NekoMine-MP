@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -31,12 +33,11 @@ class SetPlayerGameTypePacket extends DataPacket{
 
 	public $gamemode;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->gamemode = $this->getVarInt();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putVarInt($this->gamemode);
 	}
 

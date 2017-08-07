@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -31,12 +33,11 @@ class SetCommandsEnabledPacket extends DataPacket{
 
 	public $enabled;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->enabled = $this->getBool();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putBool($this->enabled);
 	}
 

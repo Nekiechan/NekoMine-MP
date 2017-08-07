@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -36,7 +38,7 @@ class ContainerSetSlotPacket extends DataPacket{
 	public $item;
 	public $selectSlot = 0;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->windowid = $this->getByte();
 		$this->slot = $this->getVarInt();
 		$this->hotbarSlot = $this->getVarInt();
@@ -44,8 +46,7 @@ class ContainerSetSlotPacket extends DataPacket{
 		$this->selectSlot = $this->getByte();
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putByte($this->windowid);
 		$this->putVarInt($this->slot);
 		$this->putVarInt($this->hotbarSlot);

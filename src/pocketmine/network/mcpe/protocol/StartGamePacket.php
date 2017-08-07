@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -45,20 +47,21 @@ class StartGamePacket extends DataPacket{
 	public $spawnX;
 	public $spawnY;
 	public $spawnZ;
-	public $hasAchievementsDisabled = 1;
+	public $hasAchievementsDisabled = true;
 	public $dayCycleStopTime = -1; //-1 = not stopped, any positive value = stopped at that time
-	public $eduMode = 0;
+	public $eduMode = false;
 	public $rainLevel;
 	public $lightningLevel;
 	public $commandsEnabled;
-	public $isTexturePacksRequired = 0;
+	public $isTexturePacksRequired = true;
+	public $gameRules = []; //TODO: implement this
 	public $levelId = ""; //base64 string, usually the same as world folder name in vanilla
 	public $worldName;
 	public $premiumWorldTemplateId = "";
 	public $unknownBool = false;
 	public $currentTick = 0;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->entityUniqueId = $this->getEntityUniqueId();
 		$this->entityRuntimeId = $this->getEntityRuntimeId();
 		$this->playerGamemode = $this->getVarInt();
@@ -78,7 +81,7 @@ class StartGamePacket extends DataPacket{
 		$this->lightningLevel = $this->getLFloat();
 		$this->commandsEnabled = $this->getBool();
 		$this->isTexturePacksRequired = $this->getBool();
-		/*$gameRulesCount = */$this->getUnsignedVarInt(); //TODO
+		$this->gameRules = $this->getGameRules();
 		$this->levelId = $this->getString();
 		$this->worldName = $this->getString();
 		$this->premiumWorldTemplateId = $this->getString();
@@ -87,11 +90,10 @@ class StartGamePacket extends DataPacket{
 
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putEntityUniqueId($this->entityUniqueId);
 		$this->putEntityRuntimeId($this->entityRuntimeId);
-		$this->putVarInt($this->playerGamemode); //client gamemode, other field is world gamemode
+		$this->putVarInt($this->playerGamemode);
 		$this->putVector3f($this->x, $this->y, $this->z);
 		$this->putLFloat($this->pitch);
 		$this->putLFloat($this->yaw);
@@ -108,7 +110,7 @@ class StartGamePacket extends DataPacket{
 		$this->putLFloat($this->lightningLevel);
 		$this->putBool($this->commandsEnabled);
 		$this->putBool($this->isTexturePacksRequired);
-		$this->putUnsignedVarInt(0); //TODO: gamerules
+		$this->putGameRules($this->gameRules);
 		$this->putString($this->levelId);
 		$this->putString($this->worldName);
 		$this->putString($this->premiumWorldTemplateId);

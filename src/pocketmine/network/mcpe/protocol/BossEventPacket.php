@@ -19,6 +19,8 @@
  *
 */
 
+declare(strict_types=1);
+
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
@@ -62,7 +64,7 @@ class BossEventPacket extends DataPacket{
 	/** @var int */
 	public $overlay;
 
-	public function decode(){
+	public function decodePayload(){
 		$this->bossEid = $this->getEntityUniqueId();
 		$this->eventType = $this->getUnsignedVarInt();
 		switch($this->eventType){
@@ -70,9 +72,11 @@ class BossEventPacket extends DataPacket{
 			case self::TYPE_UNREGISTER_PLAYER:
 				$this->playerEid = $this->getEntityUniqueId();
 				break;
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case self::TYPE_SHOW:
 				$this->title = $this->getString();
 				$this->healthPercent = $this->getLFloat();
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case self::TYPE_UNKNOWN_6:
 				$this->unknownShort = $this->getLShort();
 			case self::TYPE_TEXTURE:
@@ -84,13 +88,13 @@ class BossEventPacket extends DataPacket{
 				break;
 			case self::TYPE_TITLE:
 				$this->title = $this->getString();
+				break;
 			default:
 				break;
 		}
 	}
 
-	public function encode(){
-		$this->reset();
+	public function encodePayload(){
 		$this->putEntityUniqueId($this->bossEid);
 		$this->putUnsignedVarInt($this->eventType);
 		switch($this->eventType){
@@ -98,9 +102,11 @@ class BossEventPacket extends DataPacket{
 			case self::TYPE_UNREGISTER_PLAYER:
 				$this->putEntityUniqueId($this->playerEid);
 				break;
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case self::TYPE_SHOW:
 				$this->putString($this->title);
 				$this->putLFloat($this->healthPercent);
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case self::TYPE_UNKNOWN_6:
 				$this->putLShort($this->unknownShort);
 			case self::TYPE_TEXTURE:
