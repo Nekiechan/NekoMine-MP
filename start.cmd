@@ -1,10 +1,15 @@
 @echo off
-TITLE NekoMine-MP server software for Minecraft: Pocket Edition
+TITLE NekoMine-MP Windows
 cd /d %~dp0
 
 if exist bin\php\php.exe (
 	set PHPRC=""
 	set PHP_BINARY=bin\php\php.exe
+) else (
+    if exist bin\win\php\php.exe (
+       set PHPRC=""
+	   set PHP_BINARY=bin\win\php\php.exe
+    )
 ) else (
 	set PHP_BINARY=php
 )
