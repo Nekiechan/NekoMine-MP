@@ -22,7 +22,7 @@ class MakeServerCommand extends VanillaCommand
 		}
 		$server = $sender->getServer();
 		if(!file_exists(Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "NekoMine" . DIRECTORY_SEPARATOR)) {
-			mkdir(Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "NekoMine . DIRECTORY_SEPARATOR, 0777);
+			mkdir(Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "NekoMine" . DIRECTORY_SEPARATOR, 0777);
 		}
 		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "NekoMine" . DIRECTORY_SEPARATOR . $server->getName() . "_" . $server->getPocketMineVersion() . ".phar";
 		if(file_exists($pharPath)) {
