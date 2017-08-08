@@ -37,7 +37,7 @@ class NoticeCommand extends VanillaCommand{
 			return true;
 		}
 	if($sender instanceof Player){
-        if($sender->getServer()->getNekoMineConfigValue("limited-raw", true)){
+        if($sender->getServer()->getNekoMineConfigValue("limited-notice", true)){
             $sender->sendMessage(TextFormat::RED . "[NOTICE] Notice is disabled ingame! Please run this in the Console!");
             return true;
         }
