@@ -88,6 +88,9 @@ use pocketmine\command\defaults\SnuggleCommand;
 use pocketmine\command\defaults\NsfwCommand;
 use pocketmine\command\defaults\WeatherCommand;
 use pocketmine\command\defaults\SudoCommand;
+use pocketmine\command\defaults\MakePluginCommand;
+use pocketmine\command\defaults\MakeServerCommand;
+use pocketmine\command\defaults\BiomeCommand;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
@@ -155,6 +158,11 @@ class SimpleCommandMap implements CommandMap{
         }
 		if($this->server->getNekoMineConfigValue("disable-deop", false) !== true){
 		$this->register("pocketmine", new DeopCommand("deop"));
+		}
+		if($this->server->getNekoMineConfigValue("enable-dev-commands", false)){
+		$this->register("pocketmine", new MakeServerCommand("compileserver"));
+		$this->register("pocketmine", new MakePluginCommand("compileplugin"));
+		
 		}
 		$this->register("pocketmine", new WhitelistCommand("whitelist"));
 		$this->register("pocketmine", new SaveOnCommand("save-on"));
