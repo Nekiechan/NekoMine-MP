@@ -43,21 +43,21 @@ class MakePluginCommand extends VanillaCommand
 		}
 		$pluginName = trim(implode(" ", $args));
 		if($pluginName === "" or !(($plugin = Server::getInstance()->getPluginManager()->getPlugin($pluginName)) instanceof Plugin)) {
-			$sender->sendMessage("[LeverylDevTools] " . TextFormat::RED . "Invalid plugin name, check the name case.");
+			$sender->sendMessage("[NekoMine] " . TextFormat::RED . "Invalid plugin name, check the name case.");
 			return true;
 		}
 		$description = $plugin->getDescription();
 		if(!($plugin->getPluginLoader() instanceof FolderPluginLoader)) {
-			$sender->sendMessage("[LeverylDevTools] " . TextFormat::RED . "Plugin " . $description->getName() . " is not in folder structure.");
+			$sender->sendMessage("[NekoMine] " . TextFormat::RED . "Plugin " . $description->getName() . " is not in folder structure.");
 			return true;
 		}
 		if($plugin->getPluginLoader() instanceof ZipPluginLoader) {
-			$sender->sendMessage("[LeverylDevTools] " . TextFormat::RED . "Plugin " . $description->getName() . " is in ZIP structure.");
+			$sender->sendMessage("[NekoMine] " . TextFormat::RED . "Plugin " . $description->getName() . " is in ZIP structure.");
 			return true;
 		}
-		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "Leveryl" . DIRECTORY_SEPARATOR . $description->getName() . "_v" . $description->getVersion() . ".phar";
+		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "NekoMine" . DIRECTORY_SEPARATOR . $description->getName() . "_v" . $description->getVersion() . ".phar";
 		if(file_exists($pharPath)) {
-			$sender->sendMessage("[LeverylDevTools] " . "Phar plugin already exists, overwriting...");
+			$sender->sendMessage("[NekoMine] " . "Phar plugin already exists, overwriting...");
 			@unlink($pharPath);
 		}
 		$phar = new \Phar($pharPath);
@@ -75,7 +75,7 @@ class MakePluginCommand extends VanillaCommand
 		if($description->getName() === "DevTools") {
 			$phar->setStub('<?php require("phar://". __FILE__ ."/src/DevTools/ConsoleScript.php"); __HALT_COMPILER();');
 		} else {
-			$phar->setStub('<?php echo "Leveryl plugin ' . $description->getName() . ' v' . $description->getVersion() . '\nThis file has been generated using Leveryl v' . $sender->getServer()->getVersion() . '-' . $sender->getServer()->getCodename() . ' by LeverylTeam at ' . date("r") . '\n----------------\n";if(extension_loaded("phar")){$phar = new \Phar(__FILE__);foreach($phar->getMetadata() as $key => $value){echo ucfirst($key).": ".(is_array($value) ? implode(", ", $value):$value)."\n";}} __HALT_COMPILER();');
+			$phar->setStub('<?php echo "NekoMine plugin ' . $description->getName() . ' v' . $description->getVersion() . '\nThis file has been generated using Leveryl v' . $sender->getServer()->getVersion() . '-' . $sender->getServer()->getCodename() . ' by NekoMineTeam at ' . date("r") . '\n----------------\n";if(extension_loaded("phar")){$phar = new \Phar(__FILE__);foreach($phar->getMetadata() as $key => $value){echo ucfirst($key).": ".(is_array($value) ? implode(", ", $value):$value)."\n";}} __HALT_COMPILER();');
 		}
 		$phar->setSignatureAlgorithm(\Phar::SHA1);
 		$reflection = new \ReflectionClass("pocketmine\\plugin\\PluginBase");
@@ -89,7 +89,7 @@ class MakePluginCommand extends VanillaCommand
 				continue;
 			}
 			$phar->addFile($file, $path);
-			$sender->sendMessage("[LeverylDevTools] " . "Adding $path");
+			$sender->sendMessage("[NekoMine] " . "Adding $path");
 		}
 		foreach($phar as $file => $finfo) {
 			/** @var \PharFileInfo $finfo */
@@ -101,7 +101,7 @@ class MakePluginCommand extends VanillaCommand
 			$phar->compressFiles(\Phar::GZ);
 		}
 		$phar->stopBuffering();
-		$sender->sendMessage("[LeverylDevTools] " . "Phar plugin " . $description->getName() . " v" . $description->getVersion() . " has been created on " . $pharPath);
+		$sender->sendMessage("[NekoMine] " . "Phar plugin " . $description->getName() . " v" . $description->getVersion() . " has been created on " . $pharPath);
 		return true;
 	}
 }
