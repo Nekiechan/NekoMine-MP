@@ -10,8 +10,8 @@ class MakeServerCommand extends VanillaCommand
 		parent::__construct(
 			$name,
 			"Creates a Server Phar plugin from non-packaged installation",
-			"/makeserver <pluginName> (nogz)",
-			["ms"]
+			"/compileserver <serverName> (nogz)",
+			["ms","cs"]
 		);
 		$this->setPermission("pocketmine.command.makeserver");
 	}
