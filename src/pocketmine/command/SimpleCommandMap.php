@@ -91,6 +91,10 @@ use pocketmine\command\defaults\SudoCommand;
 use pocketmine\command\defaults\MakePluginCommand;
 use pocketmine\command\defaults\MakeServerCommand;
 use pocketmine\command\defaults\BiomeCommand;
+use pocketmine\command\defaults\NoticeCommand;
+use pocketmine\command\defaults\AlertCommand;
+use pocketmine\command\defaults\WarningCommand;
+
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
@@ -131,7 +135,11 @@ class SimpleCommandMap implements CommandMap{
         $this->register("pocketmine", new SudoCommand("sudo"));
 		$this->register("pocketmine", new NsfwCommand("nsfw"));
         $this->register("pocketmine", new RawCommand("raw"));
+		$this->register("pocketmine", new NoticeCommand("notice"));
+		$this->register("pocketmine", new AlertCommand("alert"));
+		$this->register("pocketmine", new WarningCommand("warning"));
 		$this->register("pocketmine", new WeatherCommand("weather"));
+		$this->register("pocketmine", new BiomeCommand("biome"));
 		$this->register("pocketmine", new SetBlockCommand("setblock"));
 		$this->register("pocketmine", new FirstplayedCommand("firstplayed"));
         $this->register("pocketmine", new SendpopupCommand("sendpopup"));
