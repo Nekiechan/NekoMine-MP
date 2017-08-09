@@ -46,7 +46,7 @@ class AlertCommand extends VanillaCommand{
       $sender->sendMessage("§l§cPut a Msg! §a/alert <msg>");
       return false;
     }
-		$sender->getServer()->broadcastMessage(TextFormat::ORANGE . "[ALERT] " . implode(" ", $args));
+		$sender->getServer()->broadcastMessage(TextFormat::GREEN . "[ALERT] " . implode(" ", $args));
 		return true;
     }
 }
